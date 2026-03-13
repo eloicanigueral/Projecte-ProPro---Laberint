@@ -12,11 +12,6 @@
  */
 public class Laberint {
 
-    /** Crea un laberint buit. */
-    public Laberint() {
-
-    }
-
     /**
      * Crea un laberint.
      */
@@ -25,18 +20,18 @@ public class Laberint {
     }
 
     /** @return La sala d'entrada d'aquest laberint. */
-    public Sala salaEntrada() {
-
+    public Espai salaEntrada(Espai e) {
+        return e;
     }
 
     /** @return La sala de sortida d'aquest laberint. */
-    public Sala salaSortida() {
-
+    public Espai salaSortida(Espai s) {
+        return s;
     }
 
 
     /** @return El laberint és buit (sense cap sala). */
     public boolean buit() {
-
+        return false;
     }
 }

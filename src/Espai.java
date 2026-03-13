@@ -1,9 +1,13 @@
 /**
- * @class Espai
- * @brief Un espai del laberint.
+ * @class SmartGlasses
+ * @brief Modul per gestionar les smart glasses.
+ *
+ * @details ....
+ * 
+ * @invariant .
+ * @invariant .
  *
  * @author arnaulloret
- * @version 2012.1.14
  */
 public class Espai {
 
@@ -14,9 +18,11 @@ public class Espai {
      * @param c         Caixa amb aliments i claus dins la sala.
      * @param tresor    Té tresor.
      */
-    public Espai(int num, boolean oberta, Caixa c, boolean tresor) {}
+    public Espai(int num, boolean oberta) {}
 
     /** @return El número de sala. */
-    public int idEspai() {}
+    public int idEspai() {
+        return 0;
+    }
 
 }

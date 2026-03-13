@@ -1,4 +1,14 @@
-@author arnaulloret
+/**
+ * @class Porta
+ * @brief Classe per gestionar les portes del laberint.
+ *
+ * @details ....
+ * 
+ * @invariant .
+ * @invariant .
+ *
+ * @author arnaulloret
+ */
 public class Porta {
     public void obrir() {}
     public void tancar() {}

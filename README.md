@@ -10,7 +10,7 @@
 
 - [doc](doc): documentació general (diagrames, explicacions, ...)
 - [doc/html](doc/html): documentació del codi font en format html generada amb [Doxygen](http://www.doxygen.nl/)
-- [lib](lib): biblioteques auxiliars (fitxers JAR)
+- [lib](lib): biblioteques auxiliars (fitxers JARfdaf)
 - [out/artifacts](out/artifacts): fitxer JAR de l'aplicació
 - [src](src): codi font (fitxers .java)
 - [test](test): joc de proves i comentaris sobre aquest

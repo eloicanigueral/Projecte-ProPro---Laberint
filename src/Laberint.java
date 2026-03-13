@@ -18,12 +18,9 @@ public class Laberint {
     }
 
     /**
-     * Crea un laberint a partir d'una sala i dos laberints.
-     * La sala \a entrada s'estableix com a sala d'entrada al laberint.
-     * Les portes esquerra i dreta de sortida d'aquesta sala connecten
-     * amb el laberint \a esquerre i \a dret, respectivament.
+     * Crea un laberint.
      */
-    public Laberint(Sala entrada, Laberint esquerre, Laberint dret) {
+    public Laberint() {
         
     }
 

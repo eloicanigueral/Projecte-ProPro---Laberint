@@ -2,7 +2,7 @@
  * @class Espai
  * @brief Un espai del laberint.
  *
- * @author mbofill
+ * @author arnaulloret
  * @version 2012.1.14
  */
 public class Espai {

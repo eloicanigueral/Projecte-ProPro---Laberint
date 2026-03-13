@@ -2,15 +2,10 @@
  * @class Laberint
  * @brief Laberint al que s'ha d'escapar.
  *
- * @details Laberint format per sales, cadascuna d'elles amb una
- * entrada i dues sortides.  Podem imaginar que hi ha una porta a
- * l'entrada de cada sala, i les sortides són portes d'entrada a una
- * altra sala. Si una sortida comunica amb un laberint buit (en lloc
- * d'una sala) representa que no hi ha sortida.
+ * @details Laberint format per sales i passadissos. Cada sala pot tenir més de 2 portes, 
+ * els passadíssos només en tenen 2 (un a cada costat).
  * 
- * @invariant No hi ha cicles.
- * @invariant Només hi ha una sala del tresor.
- * @invariant Les sales tenen sortida a dues altres sales, o a cap (són cul de sac).
+ * @invariant Pot haver més d'una entrada, i més d'una sortida.
  * @invariant Si una sala té dues sortides, aquestes porten a sales diferents.
  *
  * @author eloicanigueral

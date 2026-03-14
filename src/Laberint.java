@@ -2,12 +2,16 @@
  * @class Laberint
  * @brief Laberint al que s'ha d'escapar.
  *
- * @details Laberint format per sales i passadissos. Cada sala pot tenir més de 2 portes, 
- * els passadíssos només en tenen 2 (un a cada costat).
+ * @details El laberint està format per un conjunt d'espais connectats entre si.
+ * Dins dels espais s'hi troben personatges i objectes. Un espai pot ser un passadís o una sala.
  * 
- * @invariant Pot haver més d'una entrada, i més d'una sortida.
- * @invariant Si una sala té dues sortides, aquestes porten a sales diferents.
- *
+ * Aquesta classe serà la responsable de gestionar la simulació del joc,
+ * controlant l'ordre de moviment dels personatges i executant els torns
+ * de simulació fins que s'acabi el joc.
+ * 
+ * Es guardarà el nombre de sales que té el laberint, com estan connectades entre si,
+ * el nombre de personatges i de quin tipus són.
+ * 
  * @author eloicanigueral
  */
 public class Laberint {

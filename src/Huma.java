@@ -13,13 +13,13 @@
  * @author arnaulloret
  */
 
-public class Huma{
+public class Huma extends Personatge{
     public void actuar(){}
     //decideix com actua el personatge al seu moviment
     //Pre:--
     //Post:l'humà ha escollit la millor sala seguint la seva estratègia i ha canviat de sala.
 
-    public Sala escollirSeguentSala(){}
+    public Espai escollirSeguentPorta(){}
     //aplica l'algoritme per escollir la segÜent millor sala
     //Pre: --
     //Post: retorna la millor Sala per anar aquest humà.

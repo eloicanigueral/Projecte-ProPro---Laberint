@@ -15,7 +15,7 @@
  * @author arnaulloret
  */
 
-public class Guardia{
+public class Guardia extends Personatge{
     public void protegirHumans(){}
     //aplica immunitat als humans que hi ha a la sala que entra
     //Pre: --

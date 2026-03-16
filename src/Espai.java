@@ -41,6 +41,7 @@ public class Espai {
     //Pre: --
     //Post: retorna una List dels personatges que hi ha actualment a l'espai.
 
+    public 
     
 
 }

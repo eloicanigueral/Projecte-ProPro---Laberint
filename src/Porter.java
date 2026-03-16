@@ -11,7 +11,7 @@
  * @author arnaulloret
  */
 
-public class Porter{
+public class Porter extends Personatge{
     public void actuar(){}
     //canvia de sala
     //Pre: --

@@ -38,4 +38,11 @@ public class Laberint {
     public boolean buit() {
         return false;
     }
+
+    /**
+     * @pre Queda algun personatge huma viu
+     * 
+     * @post Avança un torn
+     */
+    public void seguentTorn(){}
 }

@@ -17,31 +17,31 @@
  */
 public class Espai {
     public boolean esPle(){}
-    //per saber si hi cap més gent a una sala
-    //Pre: --
-    //Post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.
+    /** per saber si hi cap més gent a una sala
+    @pre: --
+    @post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.*/
 
     public void entrar(Personatge p){}
-    //fer entrar un personatge a l'espai
-    //Pre: espai no és ple
-    //Post: el personatge passa a estar a dins de l'espai.
+    /** fer entrar un personatge a l'espai
+    @pre: espai no és ple
+    @post: el personatge passa a estar a dins de l'espai. */
 
     public void sortir(Personatge p){}
-    //fer sortir a un personatge de l'espai
-    //Pre: p està a dins de l'espai
-    //Post: el personatge deixa d'estar dins de l'espai.
+    /** fer sortir a un personatge de l'espai
+    @pre p està a dins de l'espai
+    @post el personatge deixa d'estar dins de l'espai.*/
 
     public List<Porta> getPortes(){}
-    //per saber les portes que té aquest espai
-    //Pre: --
-    //Post: retorna una List de totes les portes que hi ha a l'espai
+    /**per saber les portes que té aquest espai
+    @pre: --
+    @post: retorna una List de totes les portes que hi ha a l'espai*/
 
     public List<Personatge> getPersonatges(){}
-    //per saber els personatges que hi ha dins un espai
-    //Pre: --
-    //Post: retorna una List dels personatges que hi ha actualment a l'espai.
-
-    public 
+    /** per saber els personatges que hi ha dins un espai
+    @pre: --
+    @post: retorna una List dels personatges que hi ha actualment a l'espai. */
+    
+    
     
 
 }

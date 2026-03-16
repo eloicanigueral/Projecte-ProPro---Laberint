@@ -9,8 +9,8 @@
 
 public class Objecte {
     public boolean estaTirat(){}
-    //Pre: --
-    //Post: retorna true si l'objecte està al terra. false altrament
+    /** @pre:
+    @post: retorna true si l'objecte està al terra. false altrament */
 
     
 }

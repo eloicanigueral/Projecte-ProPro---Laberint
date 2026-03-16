@@ -20,7 +20,7 @@ public class AlienGran extends Personatge{
      * 
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
-    public void matar(){}
+    public void matar(Personatge p){}
 
     /**
      * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i matar)
@@ -30,6 +30,6 @@ public class AlienGran extends Personatge{
     /**
      * @post S'escull la seguent porta
      */
-        public Espai escollirSeguentPorta(){}
+    public Espai escollirSeguentPorta(){}
 
 }

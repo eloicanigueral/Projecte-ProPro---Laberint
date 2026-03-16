@@ -15,21 +15,34 @@
  * @author eloicanigueral
  */
 public class Laberint {
-    public void inicialitzaLaberint(){}
-    //crea totes les sales del laberint, les portes i els personatges que hi haura
-    //Pre: --
-    //Post: crea el laberint amb totes les sales, les connexions i els
-    //personatges que hi haura
 
-    public void executarSimulacio(){}
-    //bucle principal del programa
-    //Pre:--
-    //Post: bucle principal que acabarà quan no hi hagin personatges o ja hagin sortit tots
+    /**
+     * Crea un laberint.
+     */
+    public Laberint() {
+        
+    }
 
-    private executarTorn(){}
-    //fa que el personatge que li toca actuï
-    //Pre: --
-    //Post: el personatge que li toca actuar ha actuat.
+    /** @return La sala d'entrada d'aquest laberint. */
+    public Espai salaEntrada(Espai e) {
+        return e;
+    }
 
-    
+    /** @return La sala de sortida d'aquest laberint. */
+    public Espai salaSortida(Espai s) {
+        return s;
+    }
+
+
+    /** @return El laberint és buit (sense cap sala). */
+    public boolean buit() {
+        return false;
+    }
+
+    /**
+     * @pre Queda algun personatge humà viu dins el laberint
+     * 
+     * @post Avança un torn
+     */
+    public void seguentTorn(){}
 }

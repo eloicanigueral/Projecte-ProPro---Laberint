@@ -40,7 +40,7 @@ public class Laberint {
     }
 
     /**
-     * @pre Queda algun personatge huma viu
+     * @pre Queda algun personatge humà viu dins el laberint
      * 
      * @post Avança un torn
      */

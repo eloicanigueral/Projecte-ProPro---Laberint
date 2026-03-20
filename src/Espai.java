@@ -15,18 +15,39 @@
  *
  * @author arnaulloret
  */
+
+import java.util.ArrayList;
+import java.util.List;
 public class Espai {
-    public boolean esPle(){}
+    private int idEspai;
+    private int nPersonatges=0;
+    private int maxPersonatges;
+    private ArrayList<Personatge> personatges;
+
+    public boolean esPle(){
+        boolean esPle=false;
+        if(nPersonatges == maxPersonatges) esPle=true;
+        return esPle;
+    }
     /** per saber si hi cap més gent a una sala
     @pre: --
     @post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.*/
 
-    public void entrar(Personatge p){}
+    public void entrar(Personatge p){
+        if(nPersonatges+1 == maxPersonatges){
+            personatges.add(p);
+            p.canviEspai(this);
+            nPersonatges++;
+        }
+        
+    }
     /** fer entrar un personatge a l'espai
     @pre: espai no és ple
     @post: el personatge passa a estar a dins de l'espai. */
 
-    public void sortir(Personatge p){}
+    public void sortir(Personatge p){
+
+    }
     /** fer sortir a un personatge de l'espai
     @pre p està a dins de l'espai
     @post el personatge deixa d'estar dins de l'espai.*/

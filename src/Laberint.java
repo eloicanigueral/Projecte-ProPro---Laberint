@@ -45,4 +45,8 @@ public class Laberint {
      * @post Avança un torn
      */
     public void seguentTorn(){}
+
+    //metode moviment...
+    /// balblabal crido actuar del personatge que li toqui
+    /// i dsps miro si hi ha objectes al terra, si nhi ha, recollir objecte personatge
 }

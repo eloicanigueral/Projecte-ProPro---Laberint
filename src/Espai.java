@@ -23,6 +23,7 @@ public class Espai {
     private int nPersonatges=0;
     private int maxPersonatges;
     private ArrayList<Personatge> personatges;
+    private ArrayList<Objecte> objectesTirats;
 
     public boolean esPle(){
         boolean esPle=false;
@@ -46,7 +47,8 @@ public class Espai {
     @post: el personatge passa a estar a dins de l'espai. */
 
     public void sortir(Personatge p){
-
+        personatges.remove(p);
+        nPersonatges--;
     }
     /** fer sortir a un personatge de l'espai
     @pre p està a dins de l'espai
@@ -61,8 +63,15 @@ public class Espai {
     /** per saber els personatges que hi ha dins un espai
     @pre: --
     @post: retorna una List dels personatges que hi ha actualment a l'espai. */
-    
-    
+    public ArrayList<Objecte> veureObjectes(){
+        return objectesTirats;
+    }
+
+    public boolean hiHaObjectes(){
+        boolean hiHaObjectes=false;
+        if(objectesTirats.size() > 0) hiHaObjectes=true;
+        return hiHaObjectes;
+    }
     
 
 }

@@ -12,7 +12,7 @@
  * @author arnaulloret
  */
 
-public class Clau {
+public class Clau implements Objecte{
     public int getCodi(){}
     /**retorna el codi de la clau
     @pre: --

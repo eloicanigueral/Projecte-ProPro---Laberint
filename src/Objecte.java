@@ -7,8 +7,11 @@
  * @author arnaulloret
  */
 
-public class Objecte {
-    public boolean estaTirat(){}
+public interface Objecte {
+    private boolean alTerra=false;
+    public boolean estaTirat(){
+        return alTerra;
+    }
     /** @pre:
     @post: retorna true si l'objecte està al terra. false altrament */
 

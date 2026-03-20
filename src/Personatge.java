@@ -7,19 +7,54 @@
  * @author eloicanigueral
  */
 
+import java.util.ArrayList;
 
 public class Personatge {
 
+    private int idPersonatge;
+    private ArrayList<Clau> claus = new ArrayList<Clau>();
+    private boolean smartGlasses = false;
+    private boolean viu = true;
+    private Espai espaiActual; // espai o int???
+    private Memoria memoria;
+    private boolean haSortit = false;
+
+
     /** @return Retorna l'espai actual del personatge. */
-    public Espai salaActual(){}
+    public Espai espaiActual(){
+        return espaiActual;
+    }
+
+    public void canviEspai(Espai e){
+        espaiActual = e;
+    }    
 
     /** @return Retorna si el personatge esta viu o no. */
-    public boolean estaViu(){}
+    public boolean estaViu(){
+        return viu;
+    }
 
     /** 
-     * @post Recull l'objecte del terra i se'l guarda al seu inventari (segons el tipus de personatge, i si ho necessita) */
-    public void recollirItem(Objecte o){}    
+     * @post El personatge mor */
+    public void morir(){
+        viu = false;
+    }
+
+    /** 
+     * @post Recull l'objecte del terra i se'l guarda  */
+    public void recollirItem(Objecte o){
+        if(viu){   
+            if(o instanceof Clau){
+                claus.add((Clau) o);
+            }
+            else if(o instanceof SmartGlasses){
+                smartGlasses = true;
+            }
+        }
+    }    
 
     /** @return Retorna si el personatge ha sortit del laberint */
-    public boolean haSortit(){}
+    public boolean haSortit(){
+        return haSortit;
+    }
 }

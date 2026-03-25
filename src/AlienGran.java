@@ -15,6 +15,10 @@
 
 public class AlienGran extends Personatge{
 
+    public AlienGran(int capacitatMemoria) {
+        super(" a_gran", capacitatMemoria);
+    }
+
     /**
      * @pre Està a una sala juntament amb un humà
      * 

@@ -16,6 +16,8 @@ public class SmartGlasses extends Objecte {
 
     /** @return Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida */
     public Espai camiRapid(){}
+//     A SmartGlasses: camiRapid() ha de rebre l'espai origenprofe
+// I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar()
 
     /**
      * @pre S'ha accedit a un espai que no estava previst per la ruta de les smartGlasses

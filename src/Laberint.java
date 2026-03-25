@@ -21,7 +21,7 @@ public class Laberint {
         
     }
 
-    /** @return La sala d'entrada d'aquest laberint. */
+    /** @return La sala d'entrada d'aquest laberint. */ //HA DE RETORNAR UNA LLISTA... PQ NHI POT HAVER MES DE UNA TANT DE ENTRADA COM DE SORTIDA
     public Espai salaEntrada(Espai e) {
         return e;
     }
@@ -42,7 +42,7 @@ public class Laberint {
      * 
      * @post Avança un torn
      */
-    public void seguentTorn(){}
+    public void seguentTorn(){}  //millor fer tot aixo en una altra classe aprat.. que sigui per tota la simulacio i tal.. com un main
 
     //metode moviment...
     /// balblabal crido actuar del personatge que li toqui

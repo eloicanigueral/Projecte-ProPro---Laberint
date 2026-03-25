@@ -15,6 +15,10 @@
 
 public class AlienPetit extends Personatge{
 
+    public AlienPetit(int capacitatMemoria) { //aqui capacitat = nombre_espais
+        super("a_petit", capacitatMemoria);
+    }
+
     /**
      * @pre Està a una sala juntament amb un humà
      * 

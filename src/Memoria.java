@@ -10,7 +10,23 @@
  * @author eloicanigueral
  */
 
+import java.util.ArrayList;
+
 public class Memoria{
+
+    private int capacitatMem=0;
+    private ArrayList<Pair<Espai, Boolean>> espais; //llista amb lespai i si es segur o no.. (mirar si true es perillos o es segur...)
+                    //es crida aixi:  new Pair<Boolean,Ruta>(trobat,r)
+
+
+
+    /**
+     *  @post: Constructor amb la capacitat de memoria del personatge
+     * 
+    */
+    public Memoria(int mem){
+        capacitatMem=mem;
+    }
 
     /**
      * @pre El personatge esta a un espai e
@@ -19,6 +35,9 @@ public class Memoria{
      * indicant si aquest és o no perillós (s'ha vist algun alien o restes humanes)
      */
     public void recordarEspai(Espai e){}
+    // recordarEspai(e, esPerillos) i recordaComAPerillos(e)
+
+
 
     /**
      * @post S'elimina de memoria l'espai visitat fa més temps (el primer de la cua)

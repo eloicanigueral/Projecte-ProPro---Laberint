@@ -17,18 +17,18 @@
 
 public class Guardia extends Personatge{
     public void protegirHumans(){}
-    //aplica immunitat als humans que hi ha a la sala que entra
-    //Pre: --
-    //Post: els altres personatges humans de la sala actual del guardia passen a tenir immunitat
+    /** aplica immunitat als humans que hi ha a la sala que entra
+    @pre: --
+    @post: els altres personatges humans de la sala actual del guardia passen a tenir immunitat */
 
     public void desprotegirHumans(){}
-    //treu la immunitat quan el guardia marxa de la sala
-    //Pre: --
-    //Post: els altres personatges de la sala deixen de tenir immunitat amb els aliens
+    /** treu la immunitat quan el guardia marxa de la sala
+    @pre: --
+    @post: els altres personatges de la sala deixen de tenir immunitat amb els aliens */
 
     public void actuar(){}
-    //tria a quina sala vol anar, desprotegeix els humans de la sala actual, es mou de sala, protegeix els humans de la sala nova
-    //Pre: --
-    //Post: s'han desprotegit els humans de la sala actual, s'ha escollit la millor porta, s'ha mogut de sala i s'han protegit els nous humans.
-    
+    /** tria a quina sala vol anar, desprotegeix els humans de la sala actual, es mou de sala, protegeix els humans de la sala nova
+    @pre: --
+    @post: s'han desprotegit els humans de la sala actual, s'ha escollit la millor porta, s'ha mogut de sala i s'han protegit els nous humans.
+    */
 }

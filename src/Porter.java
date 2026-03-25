@@ -13,8 +13,8 @@
 
 public class Porter extends Personatge{
     public void actuar(){}
-    //canvia de sala
-    //Pre: --
-    //Post: aplica l'estratègia per triar la millor porta segons el seu criteri i canvia de sala.
+    /** canvia de sala
+    @pre: --
+    @post: aplica l'estratègia per triar la millor porta segons el seu criteri i canvia de sala. */
     
 }

@@ -20,27 +20,27 @@
 
 public class Porta {
     public boolean potObrir(Personatge p, Espai origen){}
-    //per saber si un personatge podrà obrir una porta des d'un espai determinat.
-    //Pre: p està a l'espai origen.
-    //Post: retorna true si el personatge pot obrir la porta (té la clau), false altrament.
+    /** per saber si un personatge podrà obrir una porta des d'un espai determinat.
+    @pre: p està a l'espai origen.
+    @post retorna true si el personatge pot obrir la porta (té la clau), false altrament. */
 
     public void obrir(){}
-    //obre la porta
-    //Pre: --
-    //Post: la porta s'obre.
+    /** obre la porta
+    @pre: --
+    @post: la porta s'obre. */
 
     public boolean estaOberta(){}
-    //indica si la porta està oberta
-    //Pre: --
-    //Post: retorna true si la porta està oberta, false altrament.
+    /** indica si la porta està oberta
+    @pre: --
+    @post: retorna true si la porta està oberta, false altrament. */
 
     public void tancar(){}
-    //tanca la porta
-    //Pre: --
-    //Post: la porta es tanca.
+    /** tanca la porta
+    @pre: --
+    @post: la porta es tanca. */
 
     public int getCodi(){}
-    //per saber el codi de la porta
-    //Pre: --
-    //Post: retorna el codi identificador de la porta.
+    /** per saber el codi de la porta
+    @pre: --
+    @post: retorna el codi identificador de la porta. */
 }

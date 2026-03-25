@@ -12,6 +12,9 @@
  */
 
 public class Porter extends Personatge{
+    public Porter(String tipusPersonatge, int capacitatMemoria){
+        super("porter",capacitatMemoria);
+    }
     public void actuar(){}
     /** canvia de sala
     @pre: --

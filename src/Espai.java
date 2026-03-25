@@ -23,8 +23,14 @@ public class Espai {
     private int nPersonatges=0;
     private int maxPersonatges;
     private ArrayList<Personatge> personatges;
-    private ArrayList<Objecte> objectesTirats;
+    private ArrayList<Clau> clausTirades;
+    private int smartGlassesTirades;
+    private ArrayList<Porta> portes;
 
+    public Espai(int idEspai, int maxPersonatges){
+        nPersonatges=0;
+        smartGlassesTirades=0;
+    }
     public boolean esPle(){
         boolean esPle=false;
         if(nPersonatges == maxPersonatges) esPle=true;
@@ -54,16 +60,20 @@ public class Espai {
     @pre p està a dins de l'espai
     @post el personatge deixa d'estar dins de l'espai.*/
 
-    public List<Porta> getPortes(){}
+    public List<Porta> getPortes(){
+        return portes;
+    }
     /**per saber les portes que té aquest espai
     @pre: --
     @post: retorna una List de totes les portes que hi ha a l'espai*/
 
-    public List<Personatge> getPersonatges(){}
+    public List<Personatge> getPersonatges(){
+        return personatges;
+    }
     /** per saber els personatges que hi ha dins un espai
     @pre: --
     @post: retorna una List dels personatges que hi ha actualment a l'espai. */
-    public ArrayList<Objecte> veureObjectes(){
+    public ArrayList<Claus> veureObjectes(){
         return objectesTirats;
     }
 
@@ -71,6 +81,13 @@ public class Espai {
         boolean hiHaObjectes=false;
         if(objectesTirats.size() > 0) hiHaObjectes=true;
         return hiHaObjectes;
+    }
+    public ArrayList<Clau> recollirClaus(){
+        return clausTirades;
+    }
+
+    public void deixarClau(Clau c){
+        clausTirades.add(c);
     }
     
 

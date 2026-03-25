@@ -12,15 +12,19 @@
  * @author arnaulloret
  */
 
-public class Clau implements Objecte{
-    public int getCodi(){}
+public class Clau{
+    private int codi;
+
+    public Clau(int codi){
+        this.codi = codi;
+    }
+    public int getCodi(){
+        return codi;
+    }
     /**retorna el codi de la clau
     @pre: --
     @post: retorna el codi identificador de la clau */
 
-    public boolean esMestre(){}
-    /** per saber si la clau es mestre o no
-    @pre: --
-    @post retorna true si la clau és mestre (pot obrir tot), false altrament */
+
 
 }

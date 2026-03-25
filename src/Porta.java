@@ -17,30 +17,67 @@
  * Encara que estigui oberta el sentit de pas serà el mateix (només s'entra per on hi ha el pany).
  * @author arnaulloret
  */
-
+import java.util.ArrayList;
+import java.util.List;
 public class Porta {
-    public boolean potObrir(Personatge p, Espai origen){}
+    private Espai a;
+    private Espai b;
+    private int codi;
+    private int comptadorMoviments;
+    private boolean oberta;
+
+    public Porta(int codi, Espai a, Espai b){
+        this.codi = codi;
+        this.a = a;
+        this.b = b;
+        comptadorMoviments=0;
+    }
+    public boolean potObrir(ArrayList<Clau> claus){
+        /*boolean trobat = false;
+        int i=0;
+        while(!trobat && i<claus.size()){
+            Clau c = claus.get(i);
+            if(c.getCodi() == this.codi) trobat = true; 
+            i++;
+        }
+        aixo millor ferho a personatge i alien gran i porter retorni sempre true.  
+        */
+        return p.teClau(this.codi); //shaurà de passar personatge en comptes darray list.
+    }
     /** per saber si un personatge podrà obrir una porta des d'un espai determinat.
     @pre: p està a l'espai origen.
     @post retorna true si el personatge pot obrir la porta (té la clau), false altrament. */
 
-    public void obrir(){}
+    public void obrir(){
+        comptadorMoviments=3;
+        oberta = true;
+    }
     /** obre la porta
     @pre: --
     @post: la porta s'obre. */
+    public void baixarComptador(){
+        comptadorMoviments--;
+        if(comptadorMoviments <= 0) oberta = false;
+    }
 
-    public boolean estaOberta(){}
+    public boolean estaOberta(){
+        if(comptadorMoviments > 0) return true;
+        else return false;
+    }
     /** indica si la porta està oberta
     @pre: --
     @post: retorna true si la porta està oberta, false altrament. */
 
-    public void tancar(){}
-    /** tanca la porta
-    @pre: --
-    @post: la porta es tanca. */
 
-    public int getCodi(){}
+    public int comprovarClau(){
+        return codi;
+    }
     /** per saber el codi de la porta
     @pre: --
     @post: retorna el codi identificador de la porta. */
+
+    public Espai altreCostat(Espai origen){
+        if(origen == a) return b;
+        else return a;
+    }
 }

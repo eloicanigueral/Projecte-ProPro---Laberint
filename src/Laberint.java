@@ -16,9 +16,7 @@
  */
 public class Laberint {
 
-    /**
-     * Crea un laberint.
-     */
+    /** Crea un laberint. */
     public Laberint() {
         
     }

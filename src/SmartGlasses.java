@@ -12,7 +12,7 @@
  * @author eloicanigueral
  */
 
-public class SmartGlasses extends Objecte {
+public class SmartGlasses {
 
     /** @return Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida */
     public Espai camiRapid(){}

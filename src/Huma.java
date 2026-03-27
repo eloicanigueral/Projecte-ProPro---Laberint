@@ -14,11 +14,11 @@
  */
 import java.util.ArrayList;
 public class Huma extends Personatge{
-    private SmartGlasses ulleres;
+    //private SmartGlasses ulleres;
     
     public Huma(int capacitatMemoria){
         super("huma",capacitatMemoria);
-        this.ulleres = null;
+        //this.ulleres = null;
     }
     public void actuar(){
         Porta seg = escollirSeguentPorta();
@@ -36,8 +36,8 @@ public class Huma extends Personatge{
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = espaiActual().getPortes();
         for(int i=0; i<portes.size();i++){
-            if(teClau(p.get(i).comprovarClau())){
-                return p;
+            if(teClau(portes.get(i).comprovarClau())){
+                return portes.get(i);
             }
         }
         return null;

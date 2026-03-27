@@ -36,6 +36,6 @@ public class AlienGran extends Personatge{
     /**
      * @post S'escull la seguent porta
      */
-    public Espai escollirSeguentPorta(){}
+    //public Espai escollirSeguentPorta(){}
 
 }

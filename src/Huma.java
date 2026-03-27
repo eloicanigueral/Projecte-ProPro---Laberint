@@ -26,7 +26,7 @@ public class Huma extends Personatge{
             Espai desti = seg.altreCostat(espaiActual());
             espaiActual().sortir(this);
             desti.entrar(this);
-            System.out.print("Huma mou a sala " + desti.mostrarId());
+            System.out.println("Huma mou a sala " + desti.mostrarId());
         }
     }
     /** decideix com actua el personatge al seu moviment

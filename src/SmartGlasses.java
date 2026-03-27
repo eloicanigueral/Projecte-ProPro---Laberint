@@ -15,7 +15,10 @@
 public class SmartGlasses {
 
     /** @return Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida */
-    public Espai camiRapid(){}
+    public Espai camiRapid(){
+        Espai a = new Espai(1,1);
+        return a;
+    }
 //     A SmartGlasses: camiRapid() ha de rebre l'espai origenprofe
 // I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar()
 

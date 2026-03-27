@@ -19,8 +19,8 @@ public class SmartGlasses {
         Espai a = new Espai(1,1);
         return a;
     }
-//     A SmartGlasses: camiRapid() ha de rebre l'espai origenprofe
-// I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar()
+//     ha de rebre l'espai origen per saber des de on ha de comencar....
+// I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar() ???
 
     /**
      * @pre S'ha accedit a un espai que no estava previst per la ruta de les smartGlasses

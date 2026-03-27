@@ -15,7 +15,12 @@
 
 public class AlienPetit extends Personatge{
 
-    public AlienPetit(int capacitatMemoria) { //aqui capacitat = nombre_espais
+    /**
+     * @pre Es crida el constructor de l'alien petit juntament amb la seva capacitat de memòria
+     * 
+     * @post Es crea un alien petit amb la seva capacitat de memoria inicial
+     */
+    public AlienPetit(int capacitatMemoria) {
         super("a_petit", capacitatMemoria);
     }
 
@@ -34,6 +39,11 @@ public class AlienPetit extends Personatge{
     /**
      * @post S'escull la seguent porta
      */
-    //public Espai escollirSeguentPorta(){}
+    public Espai escollirSeguentPorta(){ //PER FERRR!!!!!!!!
+        return null;
+    }
+
+    //emm he de crear una que sigui per poder augmentar la memoria de lalien!!!!
+    //a memoria hi tinc un augmentarCapacitat.....
 
 }

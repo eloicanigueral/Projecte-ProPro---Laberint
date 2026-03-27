@@ -34,7 +34,7 @@ public class Memoria{
      * @post S'afegeix l'espai a la cua d'espais visitats (que es recorden), juntament
      * indicant si aquest és o no perillós (s'ha vist algun alien o restes humanes)
      */
-    public void recordarEspai(Espai e){}
+    public void recordarEspai(Espai e){} //per ferrr!!!!!!!!!!!!!!
     // recordarEspai(e, esPerillos) i recordaComAPerillos(e)
 
 
@@ -42,12 +42,14 @@ public class Memoria{
     /**
      * @post S'elimina de memoria l'espai visitat fa més temps (el primer de la cua)
      */
-    public void oblidarEspai(){}
+    public void oblidarEspai(){}  //per ferrr!!!!!!!!!!!!!!
 
     /**
      * @pre Es tracta d'un alien petit
      * 
      * @post Se li suma la capacitat de memoria
      */
-    public void augmentarCapacitat(int x){}
+    public void augmentarCapacitat(int x){
+        capacitatMem += x;
+    }  //per ferrr!!!!!!!!!!!!!!
 }

@@ -15,7 +15,12 @@
 
 public class AlienGran extends Personatge{
 
-    public AlienGran(int capacitatMemoria) {
+    /**
+     * @pre Es crida el constructor de l'alien gran juntament amb la seva capacitat de memòria
+     * 
+     * @post Es crea l'alien gran amb la seva capacitat de memoria determinada
+     */
+    public AlienGran(int capacitatMemoria) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
         super(" a_gran", capacitatMemoria);
     }
 
@@ -36,6 +41,8 @@ public class AlienGran extends Personatge{
     /**
      * @post S'escull la seguent porta
      */
-    //public Espai escollirSeguentPorta(){}
+    public Espai escollirSeguentPorta(){ //PER FERRR!!!!!!!
+        return null;
+    }
 
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public abstract class Personatge {
 
     private String tipusPersonatge;
-    private ArrayList<Clau> claus = new ArrayList<Clau>();
+    private ArrayList<Clau> claus = new ArrayList<Clau>(); //aixo al constructor no?? .. aqui el new sobra...
     private boolean smartGlasses = false;
     private SmartGlasses ulleres;
     private boolean viu = true;
@@ -20,11 +20,15 @@ public abstract class Personatge {
     private Memoria memoria;
     private boolean haSortit = false;
 
-
+    /**
+     * @pre Des de la classe corresponent al personatge, es crida el cosntructor indicant el seu tipus i capacitat de memoria
+     * 
+     * @post Es crea el personatge concret indicat, i s'inicialitzen els seus atributs
+     */
     protected Personatge(String tipus, int capacitatMemoria) {
         this.tipusPersonatge = tipus;
         this.memoria = new Memoria(capacitatMemoria);
-        this.claus = new ArrayList<>();
+        this.claus = new ArrayList<>(); //entre <> hi va Clau?? o no?
         this.espaiActual = null;
     }
 
@@ -34,14 +38,28 @@ public abstract class Personatge {
         return espaiActual;
     }
 
+    /**
+     * @pre S'indica l'espai al que es vol canviar
+     * 
+     * @post Si el personatge pot entrar a l'espai, hi canvia i s'actualitza l'espai actual, si no, es mante al mateix espai //AIXO HA DE SER AIXI??????
+     * //SI NO POT ENTRAR A AUN HA DE ANAR PROVANTA  VERUE SIKK ESS  POT CANVIAR NO??? O KLK....
+     */
     protected void canviEspai(Espai e){ //amb un bool i si no es pot doncs tornar a profvar una altra porta aligual no millor???
         if (potEntrarEspai(e)) espaiActual = e;
     }
     
+    /**
+     * @return Retorna si el personatge pot entrar a l'espai indicat
+     */
     public boolean potEntrarEspai(Espai e) {
         return !e.estaPle() || (tipusPersonatge=="a_gran" && e.hiHaHuma()); //ben feta aquesta funcio??
     }
 
+    /**
+     * @pre S'indica el codi de la clau que el personatge ha agafat, i per tant, s'ha d'afegir al seu inventari de claus
+     * 
+     * @post S'afageix la clau a l'inventari del personatge
+     */
     public void afegirClau(int codi){
         claus.add(new Clau(codi));
     }
@@ -66,7 +84,7 @@ public abstract class Personatge {
             ulleres = espaiActual.recollirSmartGlasses();
         }
 
-        if (espaiActual.hiHaClaus()) { //he de fer dos fors???
+        if (espaiActual.hiHaClaus()) {
             ArrayList<Clau> tirades = espaiActual.veureClaus();
             for (int i = 0; i < tirades.size(); i++) {
                 if (!claus.contains(tirades.get(i))) {
@@ -80,8 +98,12 @@ public abstract class Personatge {
 
 
 
-    // falta boolean de potObrirPorta(){envio tot larray de claus a potObrirPorta(claus)
+    // falta boolean de potObrirPorta(){envio tot larray de claus a potObrirPorta(claus) !!!!!
     //per cada porta crida el potObrir aquest.. iii }
+
+        /**
+     * @return Retorna si el personatge té la clau amb el codi indicat, o si és un porter o l'alien gran (que poden obrir totes les portes)
+     */
     public boolean teClau(int codi){
         boolean trobat = false;
         int i=0;
@@ -102,12 +124,18 @@ public abstract class Personatge {
         return haSortit;
     }
 
+
+    /** @return Retorna el tipus del personatge */
     public String obtenirTipus(){
         return tipusPersonatge;
     }
 
+
+    /**
+     * @pre Personatge viu, i es el seu torn
+     * 
+     * @post Cada personatge actua segons la seva estrategia
+     */
     public abstract void actuar(); //mirar si cal.. i com ferho... pq tots tenen un actuar diferent pero tots son personatges
 
-//     fer actuar() abstracte
-// I fer privats/protegits els mètodes que no han de ser públics
 }

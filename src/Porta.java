@@ -32,17 +32,9 @@ public class Porta {
         this.b = b;
         comptadorMoviments=0;
     }
-    public boolean potObrir(ArrayList<Clau> claus){
-        /*boolean trobat = false;
-        int i=0;
-        while(!trobat && i<claus.size()){
-            Clau c = claus.get(i);
-            if(c.getCodi() == this.codi) trobat = true; 
-            i++;
-        }
-        aixo millor ferho a personatge i alien gran i porter retorni sempre true.  
-        */
-        return p.teClau(this.codi); //shaurà de passar personatge en comptes darray list.
+    public boolean potObrir(Personatge p){
+        
+        return p.teClau(this.codi); 
     }
     /** per saber si un personatge podrà obrir una porta des d'un espai determinat.
     @pre: p està a l'espai origen.

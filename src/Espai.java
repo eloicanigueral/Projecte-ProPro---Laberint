@@ -73,26 +73,30 @@ public class Espai {
     /** per saber els personatges que hi ha dins un espai
     @pre: --
     @post: retorna una List dels personatges que hi ha actualment a l'espai. */
-    public ArrayList<Clau> veureClaus(){
-        return clausTirades;
+    public boolean hiHaClaus(){
+        return clausTirades.size() > 0;
     }
-    public boolean veureSmartGlasses(){
+    public boolean hiHaSmartGlasses(){
         if(smartGlassesTirades > 0) return true;
         else return false;
     }
 
-    public boolean hiHaObjectes(){
-        boolean hiHaObjectes=true;
-        if(smartGlassesTirades == 0 && clausTirades.size() == 0) hiHaObjectes=false;
-        return hiHaObjectes;
-    }
-    public ArrayList<Clau> recollirClaus(){
+    public ArrayList<Clau> veureClaus(){
         return clausTirades;
+    }
+
+    public void agafarClau(Clau c){
+        clausTirades.remove(c);
+    }
+    public SmartGlasses recollirSmartGlasses(){
+        SmartGlasses ulleres = new SmartGlasses();
+        return ulleres;
     }
 
     public void deixarClau(Clau c){
         clausTirades.add(c);
     }
+
     
 
 }

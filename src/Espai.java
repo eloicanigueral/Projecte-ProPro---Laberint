@@ -30,23 +30,33 @@ public class Espai {
     public Espai(int idEspai, int maxPersonatges){
         nPersonatges=0;
         smartGlassesTirades=0;
+        this.maxPersonatges = maxPersonatges;
+        personatges = new ArrayList<Personatge>();
+        clausTirades = new ArrayList<Clau>();
+        portes = new ArrayList<Porta>();
     }
-    public boolean esPle(){
-        boolean esPle=false;
-        if(nPersonatges == maxPersonatges) esPle=true;
-        return esPle;
+    
+    public void addPorta(Porta p){
+        portes.add(p);
+    }
+    public boolean estaPle(){
+        return nPersonatges == maxPersonatges;
     }
     /** per saber si hi cap més gent a una sala
     @pre: --
     @post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.*/
 
     public void entrar(Personatge p){
-        if(nPersonatges+1 == maxPersonatges){
+        if(!estaPle()){
             personatges.add(p);
             p.canviEspai(this);
             nPersonatges++;
         }
         
+    }
+
+    public int mostrarId(){
+        return idEspai;
     }
     /** fer entrar un personatge a l'espai
     @pre: espai no és ple
@@ -60,7 +70,7 @@ public class Espai {
     @pre p està a dins de l'espai
     @post el personatge deixa d'estar dins de l'espai.*/
 
-    public List<Porta> getPortes(){
+    public ArrayList<Porta> getPortes(){
         return portes;
     }
     /**per saber les portes que té aquest espai
@@ -97,6 +107,12 @@ public class Espai {
         clausTirades.add(c);
     }
 
+    public boolean hiHaHuma(){
+        for(int i=0; i<personatges.size();i++){
+            if(personatges.get(i) instanceof Huma) return true;
+        }
+        return false;
+    }
     
 
 }

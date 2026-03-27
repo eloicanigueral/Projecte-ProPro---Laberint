@@ -18,7 +18,7 @@
  * @author arnaulloret
  */
 import java.util.ArrayList;
-import java.util.List;
+
 public class Porta {
     private Espai a;
     private Espai b;

@@ -12,26 +12,41 @@
  * 
  * @author arnaulloret
  */
-
+import java.util.ArrayList;
 public class Huma extends Personatge{
     private SmartGlasses ulleres;
-
-    public Huma(String tipusPersonatge, int capacitatMemoria){
+    
+    public Huma(int capacitatMemoria){
         super("huma",capacitatMemoria);
         this.ulleres = null;
     }
-    public void actuar(){}
+    public void actuar(){
+        Porta seg = escollirSeguentPorta();
+        if(seg != null){
+            Espai desti = seg.altreCostat(espaiActual());
+            espaiActual().sortir(this);
+            desti.entrar(this);
+            System.out.print("Huma mou a sala " + desti.mostrarId());
+        }
+    }
     /** decideix com actua el personatge al seu moviment
     @pre: --
     @post: l'humà ha escollit la millor sala seguint la seva estratègia i ha canviat de sala. */
 
-    public Espai escollirSeguentPorta(){
-        if(ulleres != null){
-            //ruta ulleres
+    public Porta escollirSeguentPorta(){
+        ArrayList<Porta> portes = espaiActual().getPortes();
+        for(int i=0; i<portes.size();i++){
+            if(teClau(p.get(i).comprovarClau())){
+                return p;
+            }
         }
-        else{
-            //ruta sense ulleres
-        }
+        return null;
+        // if(ulleres != null){
+        //     //ruta ulleres
+        // }
+        // else{
+        //     //ruta sense ulleres
+        // }
         
     }
     /** aplica l'algoritme per escollir la segÜent millor sala

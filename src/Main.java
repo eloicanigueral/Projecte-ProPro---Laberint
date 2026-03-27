@@ -4,7 +4,7 @@
  *
  * @details ......
  * 
- * @author eloicanigueral
+ * @author arnaulloret
  */
 
 public class Main {
@@ -14,12 +14,10 @@ public class Main {
     private static boolean quedenHumans(Laberint lab) {} //per fer... 
     public static void main(String[] args) {
         Laberint lab = new Laberint();
-        // mm aqui suposo que hem de construir el laberint i tal.. 
-        //      amb el maxim de personatges i tal suposo?
-        // ii les memories i tal???
-
-        while(quedenHumans(lab)){
-            seguentTorn();
+        
+        for(int i=0; i<5; i++){
+            System.outprintln("---Torn" + (i+1) + "---");
+            lab.seguentTorn();
         }
     }
 }

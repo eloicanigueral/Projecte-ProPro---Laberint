@@ -55,24 +55,42 @@ public abstract class Personatge {
 
     /** 
      * @post Recull l'objecte del terra i se'l guarda  */
-    public void recollirItem(ArrayList<Objecte> o){ 
-        for (int i = 0; i < o.size(); i++) {
-            System.out.println(o.get(i));
-            if (o.get(i).esClau()){
-                Clau clau = (Clau) o.get(i);
-                claus.add(clau);
-            }
-            else {
-
-            }
-
+    //tb m falta tot lu de memoria.. un que retorni la quantitat de memoria??? iii un que vaigi guardant per a aquest personatge... (un "recordar..." o afegirmemoria o algo aixi saes?)
+    public void recollirObjecte(){
+        if (!smartGlasses && espaiActual.hiHaSmartGlasses()) {
+            smartGlasses = true;
+            ulleres = espaiActual.recollirSmartGlasses();
         }
+
+        if (espaiActual.hiHaClaus()) { //he de fer dos fors???
+            ArrayList<Clau> tirades = espaiActual.veureClaus();
+            for (int i = 0; i < tirades.size(); i++) {
+                if (!claus.contains(tirades.get(i))) {
+                    claus.add(tirades.get(i));
+                    espaiActual.agafarClau(tirades.get(i));
+                }
+            }
+        
     }
 
-    //tb m falta tot lu de memoria.. un que retorni la quantitat de memoria??? iii un que vaigi guardant per a aquest personatge... (un "recordar..." o afegirmemoria o algo aixi saes?)
+
 
     // falta boolean de potObrirPorta(){envio tot larray de claus a potObrirPorta(claus)
     //per cada porta crida el potObrir aquest.. iii }
+    public boolean teClau(int codi){
+        boolean trobat = false;
+        int i=0;
+
+        if (tipusPersonatge== "a_gran" || tipusPersonatge == "porter") trobat = true; //el porter i l'alien gran sempre poden obrir les portes
+        
+        while(!trobat && i<claus.size()){
+            Clau c = claus.get(i);
+            if(c.getCodi() == codi) trobat = true; 
+            i++;
+        }
+        return trobat;
+    }
+
 
     /** @return Retorna si el personatge ha sortit del laberint */
     public boolean haSortit(){

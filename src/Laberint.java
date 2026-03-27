@@ -14,11 +14,20 @@
  * 
  * @author eloicanigueral
  */
+
+import java.util.ArrayList;
+
+
 public class Laberint {
+
+    private ArrayList<Espai> espais;
+    private ArrayList<Personatge> personatges;
 
     /** Crea un laberint. */
     public Laberint() {
-        
+        this.espais = new ArrayList<Espai>();
+        this.personatges = new ArrayList<Personatge>(); 
+        personatges.add(new Personatge("huma", 10)); //aixo es aixi???? (de prova)
     }
 
     /** @return La sala d'entrada d'aquest laberint. */ //HA DE RETORNAR UNA LLISTA... PQ NHI POT HAVER MES DE UNA TANT DE ENTRADA COM DE SORTIDA

@@ -51,7 +51,7 @@ public class Laberint {
         s4.addPorta(p3);
 
         // humà a la sala 1
-        Huma h = new Huma("huma", 5);
+        Huma h = new Huma(5);
         h.afegirClau(1);  // pot obrir porta 1
         h.afegirClau(2);  // pot obrir porta 2
         h.afegirClau(3);  // pot obrir porta 3

@@ -25,7 +25,7 @@ public abstract class Personatge {
         this.tipusPersonatge = tipus;
         this.memoria = new Memoria(capacitatMemoria);
         this.claus = new ArrayList<>();
-        this.salaActual = null;
+        this.espaiActual = null;
     }
 
 
@@ -39,7 +39,11 @@ public abstract class Personatge {
     }
     
     public boolean potEntrarEspai(Espai e) {
-        return ! e.estaPle() || (tipusPersonatge=="a_gran" and e.hiHaHuma()); //ben feta aquesta funcio??
+        return !e.estaPle() || (tipusPersonatge=="a_gran" && e.hiHaHuma()); //ben feta aquesta funcio??
+    }
+
+    public void afegirClau(int codi){
+        claus.add(new Clau(codi));
     }
 
     /** @return Retorna si el personatge esta viu o no. */
@@ -70,6 +74,7 @@ public abstract class Personatge {
                     espaiActual.agafarClau(tirades.get(i));
                 }
             }
+        }
         
     }
 
@@ -81,7 +86,7 @@ public abstract class Personatge {
         boolean trobat = false;
         int i=0;
 
-        if (tipusPersonatge== "a_gran" || tipusPersonatge == "porter") trobat = true; //el porter i l'alien gran sempre poden obrir les portes
+        if (tipusPersonatge.equals("a_gran") || tipusPersonatge.equals("porter")) trobat = true; //el porter i l'alien gran sempre poden obrir les portes
         
         while(!trobat && i<claus.size()){
             Clau c = claus.get(i);

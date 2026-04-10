@@ -7,17 +7,14 @@
  * @author arnaulloret
  */
 
+import java.util.Scanner;
 public class Main {
-
-    // private static void seguentTorn(Laberint lab) {} //per fer...
-
-    // private  boolean quedenHumans(Laberint lab){} //per fer... 
     public static void main(String[] args) {
-        Laberint lab = new Laberint();
-        
-        for(int i=0; i<5; i++){
-            System.out.println("---Torn" + (i+1) + "---");
-            lab.seguentTorn();
-        }
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Quin és el nom del fitxer d'entrada de dades?");
+        String nomFitxer = sc.nextLine();
+        Laberint lab = new Laberint(nomFitxer);
+
+        System.out.print("S'ha acabat l'execució.");
     }
 }

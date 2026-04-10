@@ -31,11 +31,12 @@ public class Porta {
         this.a = a;
         this.b = b;
         comptadorMoviments=0;
+        oberta = false;
     }
     public boolean potObrir(Personatge p){
         return p.teClau(this.codi); 
     }
-    
+
     /** per saber si un personatge podrà obrir una porta des d'un espai determinat.
     @pre: p està a l'espai origen.
     @post retorna true si el personatge pot obrir la porta (té la clau), false altrament. */

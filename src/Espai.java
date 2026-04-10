@@ -23,7 +23,7 @@ public class Espai {
     private int nPersonatges=0;
     private int maxPersonatges;
     private ArrayList<Personatge> personatges;
-    private ArrayList<Clau> clausTirades;
+    private ArrayList<Integer> clausTirades;
     private int smartGlassesTirades;
     private ArrayList<Porta> portes;
 
@@ -32,7 +32,7 @@ public class Espai {
         smartGlassesTirades=0;
         this.maxPersonatges = maxPersonatges;
         personatges = new ArrayList<Personatge>();
-        clausTirades = new ArrayList<Clau>();
+        clausTirades = new ArrayList<Integer>();
         portes = new ArrayList<Porta>();
     }
     
@@ -91,11 +91,11 @@ public class Espai {
         else return false;
     }
 
-    public ArrayList<Clau> veureClaus(){
+    public ArrayList<Integer> veureClaus(){
         return clausTirades;
     }
 
-    public void agafarClau(Clau c){
+    public void agafarClau(Integer c){
         clausTirades.remove(c);
     }
     public SmartGlasses recollirSmartGlasses(){
@@ -103,7 +103,7 @@ public class Espai {
         return ulleres;
     }
 
-    public void deixarClau(Clau c){
+    public void deixarClau(Integer c){
         clausTirades.add(c);
     }
 

@@ -16,6 +16,7 @@ public class Main {
         Laberint lab = new Laberint();
         lab.llegirLaberint(nomFitxer);
 
-        System.out.print("S'ha acabat l'execució.");
+        System.out.println("S'ha acabat l'execució.");
+        sc.close();
     }
 }

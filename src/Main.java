@@ -13,7 +13,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Quin és el nom del fitxer d'entrada de dades?");
         String nomFitxer = sc.nextLine();
-        Laberint lab = new Laberint(nomFitxer);
+        Laberint lab = new Laberint();
+        lab.llegirLaberint(nomFitxer);
 
         System.out.print("S'ha acabat l'execució.");
     }

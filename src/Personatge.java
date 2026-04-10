@@ -32,6 +32,7 @@ public abstract class Personatge {
         this.espaiActual = null;
     }
 
+    
 
     /** @return Retorna l'espai actual del personatge. */
     public Espai espaiActual(){

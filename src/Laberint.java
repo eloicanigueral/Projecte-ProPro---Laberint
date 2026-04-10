@@ -16,6 +16,9 @@
  */
 
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 
 public class Laberint {
@@ -76,6 +79,70 @@ public class Laberint {
         //amb un random o algo aixi... o tb podria ser que el constructor del laberint rebés com a paràmetre un fitxer amb la configuració del laberint i així ja es crearia tot a partir d'això... (aixo seria lo millor) (però ara per ara ho
 
     }
+
+
+    /**
+     * 
+     * @pre: Es crida el metode juntament amb el nom del fitxer amb la configuració inicial del laberint
+     * @post: Es crea el laberint a partir de la configuració del fitxer
+     */
+    public void llegirLaberint(String nomFitxer) {
+        
+        File fitxer = new File(nomFitxer);
+        
+
+        //if else? que fa try i catch
+        // que polles fa scanner
+        try (Scanner punter = new Scanner(fitxer)){
+            while (punter.hasNextLine()) {
+                String linia = punter.nextLine();
+                System.out.println(linia);
+                //llegirLinia(linia);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No s'ha trobat el fitxer: " + nomFitxer);
+        }
+    }
+
+    // private void llegirLinia(String linia) {
+    //     //aixo es un exemple de com podria ser... pero no se si es aixi exactament... (aixo es per a les sales)
+    //     String[] parts = linia.split(" ");
+    //     if (parts[0].equals("SALA")) {
+    //         int id = Integer.parseInt(parts[1]);
+    //         int capacitat = Integer.parseInt(parts[2]);
+    //         Espai sala = new Espai(id, capacitat);
+    //         espais.add(sala);
+    //     }
+    //     //aixo es un exemple de com podria ser... pero no se si es aixi exactament... (aixo es per a les portes)
+    //     else if (parts[0].equals("PORTA")) {
+    //         int id = Integer.parseInt(parts[1]);
+    //         int idSala1 = Integer.parseInt(parts[2]);
+    //         int idSala2 = Integer.parseInt(parts[3]);
+    //         Espai sala1 = trobarSalaPerId(idSala1);
+    //         Espai sala2 = trobarSalaPerId(idSala2);
+    //         Porta porta = new Porta(id, sala1, sala2);
+    //         portes.add(porta);
+    //         sala1.addPorta(porta);
+    //         sala2.addPorta(porta);
+    //     }
+    //     //aixo es un exemple de com podria ser... pero no se si es aixi exactament... (aixo es per als personatges)
+    //     else if (parts[0].equals("PERSONATGE")) {
+    //         String tipus = parts[1];
+    //         int capacitatMemoria = Integer.parseInt(parts[2]);
+    //         Personatge p;
+    //         if (tipus.equals("HUMA")) {
+    //             p = new Huma(capacitatMemoria);
+    //         } else if (tipus.equals("PORTER")) {
+    //             p = new Porter(capacitatMemoria);
+    //         } else if (tipus.equals("ALIEN_GRAN")) {
+    //             p = new AlienGran(capacitatMemoria);
+    //         } else {
+    //             return; // tipus desconegut
+    //         }
+    //         personatges.add(p);
+    //     }
+    // }
+
 
     /** @return La sala d'entrada d'aquest laberint. */ //HA DE RETORNAR UNA LLISTA... PQ NHI POT HAVER MES DE UNA TANT DE ENTRADA COM DE SORTIDA
     public Espai salaEntrada(Espai e) {

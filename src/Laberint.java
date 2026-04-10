@@ -96,52 +96,74 @@ public class Laberint {
         try (Scanner punter = new Scanner(fitxer)){
             while (punter.hasNextLine()) {
                 String linia = punter.nextLine();
-                System.out.println(linia);
-                //llegirLinia(linia);
+                llegirLinia(linia);
             }
         } catch (FileNotFoundException e) {
             System.out.println("No s'ha trobat el fitxer: " + nomFitxer);
         }
     }
 
-    // private void llegirLinia(String linia) {
-    //     //aixo es un exemple de com podria ser... pero no se si es aixi exactament... (aixo es per a les sales)
-    //     String[] parts = linia.split(" ");
-    //     if (parts[0].equals("SALA")) {
-    //         int id = Integer.parseInt(parts[1]);
-    //         int capacitat = Integer.parseInt(parts[2]);
-    //         Espai sala = new Espai(id, capacitat);
-    //         espais.add(sala);
-    //     }
-    //     //aixo es un exemple de com podria ser... pero no se si es aixi exactament... (aixo es per a les portes)
-    //     else if (parts[0].equals("PORTA")) {
-    //         int id = Integer.parseInt(parts[1]);
-    //         int idSala1 = Integer.parseInt(parts[2]);
-    //         int idSala2 = Integer.parseInt(parts[3]);
-    //         Espai sala1 = trobarSalaPerId(idSala1);
-    //         Espai sala2 = trobarSalaPerId(idSala2);
-    //         Porta porta = new Porta(id, sala1, sala2);
-    //         portes.add(porta);
-    //         sala1.addPorta(porta);
-    //         sala2.addPorta(porta);
-    //     }
-    //     //aixo es un exemple de com podria ser... pero no se si es aixi exactament... (aixo es per als personatges)
-    //     else if (parts[0].equals("PERSONATGE")) {
-    //         String tipus = parts[1];
-    //         int capacitatMemoria = Integer.parseInt(parts[2]);
-    //         Personatge p;
-    //         if (tipus.equals("HUMA")) {
-    //             p = new Huma(capacitatMemoria);
-    //         } else if (tipus.equals("PORTER")) {
-    //             p = new Porter(capacitatMemoria);
-    //         } else if (tipus.equals("ALIEN_GRAN")) {
-    //             p = new AlienGran(capacitatMemoria);
-    //         } else {
-    //             return; // tipus desconegut
-    //         }
-    //         personatges.add(p);
-    //     }
-    // }
+    private void llegirLinia(String linia) {
+      if (linia.isEmpty()) return;
+
+      Scanner punter = new Scanner(linia);
+      punter.useDelimiter(":");
+    
+      String tipus = punter.next();
+
+      switch(tipus) {
+        case "h":
+          llegirPersonatge(tipus, punter);
+          break;
+        case "ag":
+          // Processar línia de porta
+          break;
+        case "ap":
+          // Processar línia de personatge
+          break;
+        case "g":
+          // Processar línia de porta
+          break;
+        case "p":
+          // Processar línia de porta
+          break;
+        case "sala":
+          // Processar línia de porta
+          //la primera sala es la de entrada, +la ultima es de sortida?
+          break;
+        case "pas":
+          // Processar línia de porta
+          break;
+          
+      }
+
+    }
+
+//tipus:nom:memoria:[c1,c2,...]:ulleres
+    private void llegirPersonatge(String tipus, Scanner punter) {
+        String nom = punter.next();
+        int memoria = punter.nextInt();
+
+        ArrayList<Integer> claus = new ArrayList<>();
+        Scanner clausScanner = new Scanner(punter.next());
+        clausScanner.useDelimiter(",");
+        while (clausScanner.hasNextInt()) {
+            claus.add(clausScanner.nextInt());
+        }
+        if (tipus.equals("h")) {
+            boolean ulleres = punter.nextBoolean();
+            //Huma h = new Huma(memoria); //aixo sha de fer?? pq el de abaix no existeix........ no podem cridar personatge diredctament
+            //h.setUlleres(ulleres); aligual he de fer aixo per les ulleres nose.
+            llegirHuma(nom, memoria, claus, ulleres); //clar aixo es crida directe a huma.. mirar classe.....
+            personatges.add(h);
+        } else if (tipus.equals("ag")) {
+            // Llegir Alien Gran
+        } else if (tipus.equals("ap")) {
+            // Llegir Alien Petit
+        }
+        //...
+
+    }
 
 
     /** @return La sala d'entrada d'aquest laberint. */ //HA DE RETORNAR UNA LLISTA... PQ NHI POT HAVER MES DE UNA TANT DE ENTRADA COM DE SORTIDA

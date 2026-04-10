@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public abstract class Personatge {
 
     private String tipusPersonatge;
-    private ArrayList<Clau> claus = new ArrayList<Clau>(); //aixo al constructor no?? .. aqui el new sobra...
-    private boolean smartGlasses = false;
+    private ArrayList<Integer> claus;
+    private boolean smartGlasses;
     private SmartGlasses ulleres;
     private boolean viu = true;
     private Espai espaiActual; // espai o int???
@@ -25,14 +25,15 @@ public abstract class Personatge {
      * 
      * @post Es crea el personatge concret indicat, i s'inicialitzen els seus atributs
      */
-    protected Personatge(String tipus, int capacitatMemoria) {
+    protected Personatge(String tipus, int capacitatMemoria, ArrayList<Integer> clausInicials, boolean smartGlasses) {
         this.tipusPersonatge = tipus;
         this.memoria = new Memoria(capacitatMemoria);
-        this.claus = new ArrayList<>(); //entre <> hi va Clau?? o no?
+        this.claus = clausInicials;
+        this.smartGlasses = smartGlasses;
         this.espaiActual = null;
     }
 
-    
+
 
     /** @return Retorna l'espai actual del personatge. */
     public Espai espaiActual(){

@@ -47,16 +47,16 @@ public abstract class Personatge {
      * @return Retorna si el personatge pot entrar a l'espai indicat
      */
     public boolean potEntrarEspai(Espai e) {
-        return !e.estaPle() || (tipusPersonatge=="a_gran" && e.hiHaHuma()); //ben feta aquesta funcio??
+        return !e.estaPle(); // || (tipusPersonatge=="a_gran" && e.hiHaHuma()); //ben feta aquesta funcio??
     }
 
-    /**
+    /** AQUEST METODE TREUREL DE AQUI I POSARLO A ALS PERSONATGES QUE TOQUI!!!!!
      * @pre S'indica el codi de la clau que el personatge ha agafat, i per tant, s'ha d'afegir al seu inventari de claus
      * 
      * @post S'afageix la clau a l'inventari del personatge
      */
     public void afegirClau(int codi){
-        claus.add(new Clau(codi));
+      //  claus.add(new Clau(codi));
     }
 
     /** @return Retorna si el personatge esta viu o no. */
@@ -70,48 +70,49 @@ public abstract class Personatge {
         viu = false;
     }
 
-    /** 
+    /** AQUESTA IGUAL... NOMES LA NECESSITA HUMA. II ALIEN LA PART D ABAIX ---------------------------------
      * @post Recull l'objecte del terra i se'l guarda  */
     //tb m falta tot lu de memoria.. un que retorni la quantitat de memoria??? iii un que vaigi guardant per a aquest personatge... (un "recordar..." o afegirmemoria o algo aixi saes?)
-    public void recollirObjecte(){
-        if (!smartGlasses && espaiActual.hiHaSmartGlasses()) {
-            smartGlasses = true;
-            ulleres = espaiActual.recollirSmartGlasses();
-        }
+    
+    // public void recollirObjecte(){
+    //     if (!smartGlasses && espaiActual.hiHaSmartGlasses()) {
+    //         smartGlasses = true;
+    //         ulleres = espaiActual.recollirSmartGlasses();
+    //     }
 
-        if (espaiActual.hiHaClaus()) {
-            ArrayList<Clau> tirades = espaiActual.veureClaus();
-            for (int i = 0; i < tirades.size(); i++) {
-                if (!claus.contains(tirades.get(i))) {
-                    claus.add(tirades.get(i));
-                    espaiActual.agafarClau(tirades.get(i));
-                }
-            }
-        }
+    //     if (espaiActual.hiHaClaus()) {
+    //         ArrayList<Clau> tirades = espaiActual.veureClaus();
+    //         for (int i = 0; i < tirades.size(); i++) {
+    //             if (!claus.contains(tirades.get(i))) {
+    //                 claus.add(tirades.get(i));
+    //                 espaiActual.agafarClau(tirades.get(i));
+    //             }
+    //         }
+    //     }
         
-    }
+    // }
 
 
 
     // falta boolean de potObrirPorta(){envio tot larray de claus a potObrirPorta(claus) !!!!!
     //per cada porta crida el potObrir aquest.. iii }
-
+    //LU MATEIX QUE ABANS.. NOMES LES NECESITEN ALGUNES.... HUMA I ALIENPETIT....
         /**
      * @return Retorna si el personatge té la clau amb el codi indicat, o si és un porter o l'alien gran (que poden obrir totes les portes)
      */
-    public boolean teClau(int codi){
-        boolean trobat = false;
-        int i=0;
+    // public boolean teClau(int codi){
+    //     boolean trobat = false;
+    //     int i=0;
 
-        if (tipusPersonatge.equals("a_gran") || tipusPersonatge.equals("porter")) trobat = true; //el porter i l'alien gran sempre poden obrir les portes
+    //     if (tipusPersonatge.equals("a_gran") || tipusPersonatge.equals("porter")) trobat = true; //el porter i l'alien gran sempre poden obrir les portes
         
-        while(!trobat && i<claus.size()){
-            Clau c = claus.get(i);
-            if(c.getCodi() == codi) trobat = true; 
-            i++;
-        }
-        return trobat;
-    }
+    //     while(!trobat && i<claus.size()){
+    //         Clau c = claus.get(i);
+    //         if(c.getCodi() == codi) trobat = true; 
+    //         i++;
+    //     }
+    //     return trobat;
+    // }
 
 
     /** @return Retorna si el personatge ha sortit del laberint */
@@ -119,11 +120,6 @@ public abstract class Personatge {
         return haSortit;
     }
 
-
-    /** @return Retorna el tipus del personatge */
-    public String obtenirTipus(){
-        return tipusPersonatge;
-    }
 
 
     /**

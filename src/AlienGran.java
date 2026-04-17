@@ -24,7 +24,7 @@ public class AlienGran extends Personatge{
      */
     public AlienGran(String nom) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
         this.nom = nom;
-        super("a_gran", -1);
+        super(-1);
     }
 
     /**

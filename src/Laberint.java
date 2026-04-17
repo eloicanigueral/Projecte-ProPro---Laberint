@@ -57,9 +57,9 @@ public class Laberint {
 
                 llegirLinia(linia);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("No s'ha trobat el fitxer");
-        }
+        } 
+        System.out.println("No s'ha trobat el fitxer");
+
     }
 
     private void llegirLinia(String linia) {
@@ -134,11 +134,11 @@ public class Laberint {
     private void llegirEspai(String tipus, Scanner punter) {
         int id = punter.nextInt();
 
-        ArrayList<Porta> porta = new ArrayList<>();
+        ArrayList<Integer> porta = new ArrayList<>();
         Scanner portaScanner = new Scanner(punter.next());
         portaScanner.useDelimiter(","); //abans he de llegir el ()...??
         while (portaScanner.hasNextInt()) {
-            claus.add(portaScanner.nextInt());
+           porta.add(portaScanner.nextInt()); //porta.add(new Porta(portaScanner.nextInt())); ... hi ha errror amb lu de les portes.. comsabem els espais....
         }
         int max = punter.nextInt();
 
@@ -146,7 +146,7 @@ public class Laberint {
 
             Scanner personatgeScanner = new Scanner(punter.next());
             personatgeScanner.useDelimiter(","); //abans he de llegir el []...??
-            while (personatgeScanner.hasNextString()) { //existeix?? sjjssj
+            while (personatgeScanner.hasNext()) { //existeix?? sjjssj
                 //buscar a personatges el que tingui aquest nom i afegirlo a la sala
                 //i fer personatges[i].setEspaiActual(sala) o algo aixi
             }
@@ -160,10 +160,14 @@ public class Laberint {
         }
     }
 
-    /** @return La sala d'entrada d'aquest laberint. */ //HA DE RETORNAR UNA LLISTA... PQ NHI POT HAVER MES DE UNA TANT DE ENTRADA COM DE SORTIDA
-    public Espai salaEntrada(Espai e) {
-        return e;
+    //mirarrr...................... el for no magrada.. metode per fer srvir a porta...
+    public Espai caractEspai(int id) {
+        for (Espai e : espais) {
+            if (e.mostrarId() == id) return e;
+        }
+        return null; //o tirar excepcio o algo aixi
     }
+
 
     /** @return La sala de sortida d'aquest laberint. */
     public Espai salaSortida(Espai s) {

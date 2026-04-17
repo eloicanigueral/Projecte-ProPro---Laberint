@@ -17,7 +17,7 @@
  * Encara que estigui oberta el sentit de pas serà el mateix (només s'entra per on hi ha el pany).
  * @author arnaulloret
  */
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class Porta {
     private Espai a;
@@ -54,8 +54,7 @@ public class Porta {
     }
 
     public boolean estaOberta(){
-        if(comptadorMoviments > 0) return true;
-        else return false;
+        return oberta;
     }
     /** indica si la porta està oberta
     @pre: --

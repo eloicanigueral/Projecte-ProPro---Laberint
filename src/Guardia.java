@@ -17,7 +17,7 @@
 
 public class Guardia extends Personatge{
     public Guardia(String tipusPersonatge, int capacitatMemoria){
-        super("guardia",capacitatMemoria);
+        super(capacitatMemoria);
     }
     public void protegirHumans(){}
     /** aplica immunitat als humans que hi ha a la sala que entra

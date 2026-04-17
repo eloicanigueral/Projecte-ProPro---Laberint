@@ -1,6 +1,6 @@
 /**
  * @class Alien Gran
- * @brief Modul per gestionar a alien gran.
+ * @brief Modul per gestionar a alien gran. 
  *
  * @details Aquest alien té la capacitat d'obrir totes les portes del laberint. El seu objecitu és acabar amb els humans, i per tant, 
  * si hi ha una persona en el mateix espai que ell, se'l menjarà. 
@@ -14,14 +14,17 @@
  */
 
 public class AlienGran extends Personatge{
+    private String nom;
+
 
     /**
      * @pre Es crida el constructor de l'alien gran juntament amb la seva capacitat de memòria
      * 
      * @post Es crea l'alien gran amb la seva capacitat de memoria determinada
      */
-    public AlienGran(int capacitatMemoria) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
-        super(" a_gran", capacitatMemoria);
+    public AlienGran(String nom) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
+        this.nom = nom;
+        super("a_gran", -1);
     }
 
     /**

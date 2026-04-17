@@ -31,49 +31,7 @@ public class Laberint {
      * @post Es crea el laberint amb els espais, portes i personatges.
      */
     public Laberint() {
-        this.espais = new ArrayList<Espai>();
-        this.portes = new ArrayList<Porta>();
-        this.personatges = new ArrayList<Personatge>(); 
-        
-
-
-        Espai s1 = new Espai(1, 5);
-        Espai s2 = new Espai(2, 5);
-        Espai s3 = new Espai(3, 5);
-        Espai s4 = new Espai(4, 5);
-
-        Porta p1 = new Porta(1, s1, s2);
-        Porta p2 = new Porta(2, s2, s3);
-        Porta p3 = new Porta(3, s3, s4);
-
-        s1.addPorta(p1);
-        s2.addPorta(p1);
-        s2.addPorta(p2);
-        s3.addPorta(p2);
-        s3.addPorta(p3);
-        s4.addPorta(p3);
-
-        Huma h = new Huma(5);
-        h.afegirClau(1);
-        h.afegirClau(2);
-        h.afegirClau(3);
-
-        s1.entrar(h);
-
-        espais.add(s1); 
-        espais.add(s2);
-        espais.add(s3); 
-        espais.add(s4);
-        portes.add(p1); 
-        portes.add(p2);
-        portes.add(p3);
-        personatges.add(h);
-        
-        //personatges.add(new Huma(10)); //aixo es aixi???? (de prova)
-        //espais.add(new Espai(10)); //aixo es aixi???? (de prova)
-        //espais.add(new Espai(10)); //aixo es aixi???? (de prova)
-        //portes.add(new Porta(espais.get(0), espais.get(1))); //aixo es aixi???? (de prova)
-
+       llegirLaberint();
 
         //despres de crear tot he de indicar quines son les sales d'entrada i de sortida...
         //amb un random o algo aixi... o tb podria ser que el constructor del laberint rebés com a paràmetre un fitxer amb la configuració del laberint i així ja es crearia tot a partir d'això... (aixo seria lo millor) (però ara per ara ho
@@ -86,20 +44,21 @@ public class Laberint {
      * @pre: Es crida el metode juntament amb el nom del fitxer amb la configuració inicial del laberint
      * @post: Es crea el laberint a partir de la configuració del fitxer
      */
-    public void llegirLaberint(String nomFitxer) {
+    public void llegirLaberint() {
         
-        File fitxer = new File(nomFitxer);
-        
+                System.out.println("començant a llegir el laberint..."); //........... borrarr!!!!
 
         //if else? que fa try i catch
         // que polles fa scanner
-        try (Scanner punter = new Scanner(fitxer)){
+        try (Scanner punter = new Scanner(System.in)) {
             while (punter.hasNextLine()) {
                 String linia = punter.nextLine();
+                System.out.println("Llegint línia: " + linia); //........... borrarr!!!!
+
                 llegirLinia(linia);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("No s'ha trobat el fitxer: " + nomFitxer);
+            System.out.println("No s'ha trobat el fitxer");
         }
     }
 
@@ -115,56 +74,91 @@ public class Laberint {
         case "h":
           llegirPersonatge(tipus, punter);
           break;
+
         case "ag":
-          // Processar línia de porta
+          String nom = punter.next();
+          AlienGran ag = new AlienGran(nom);
+          personatges.add(ag);
           break;
+
         case "ap":
-          // Processar línia de personatge
+          llegirPersonatge(tipus, punter);
           break;
+
         case "g":
-          // Processar línia de porta
+          // Processar línia de guardia
           break;
         case "p":
-          // Processar línia de porta
+          // Processar línia de porter
           break;
+
         case "sala":
-          // Processar línia de porta
-          //la primera sala es la de entrada, +la ultima es de sortida?
-          break;
+            llegirEspai(tipus, punter);
+            break;
+          //la primera sala es la de entrada, +la ultima es de sortida???????
         case "pas":
-          // Processar línia de porta
-          break;
-          
+            llegirEspai(tipus, punter);
+            break; 
       }
 
     }
 
-//tipus:nom:memoria:[c1,c2,...]:ulleres
+    /** fer pre i post!!!! */
     private void llegirPersonatge(String tipus, Scanner punter) {
         String nom = punter.next();
         int memoria = punter.nextInt();
 
         ArrayList<Integer> claus = new ArrayList<>();
         Scanner clausScanner = new Scanner(punter.next());
-        clausScanner.useDelimiter(",");
+        clausScanner.useDelimiter(","); //abans he de llegir el []...??
         while (clausScanner.hasNextInt()) {
             claus.add(clausScanner.nextInt());
         }
         if (tipus.equals("h")) {
             boolean ulleres = punter.nextBoolean();
-            //Huma h = new Huma(memoria); //aixo sha de fer?? pq el de abaix no existeix........ no podem cridar personatge diredctament
-            //h.setUlleres(ulleres); aligual he de fer aixo per les ulleres nose.
-            llegirHuma(nom, memoria, claus, ulleres); //clar aixo es crida directe a huma.. mirar classe.....
+            Huma h = new Huma(nom, memoria, claus, ulleres);
             personatges.add(h);
-        } else if (tipus.equals("ag")) {
-            // Llegir Alien Gran
-        } else if (tipus.equals("ap")) {
-            // Llegir Alien Petit
-        }
-        //...
 
+        } else if (tipus.equals("ap")) {
+            AlienPetit ap = new AlienPetit(nom, memoria, claus);
+            personatges.add(ap);
+
+        } else if (tipus.equals("g")) {
+            // Llegir guardia
+        } else if (tipus.equals("p")) {
+            // Llegir porter
+        }
     }
 
+    /** fer pre i post!!!! */
+    private void llegirEspai(String tipus, Scanner punter) {
+        int id = punter.nextInt();
+
+        ArrayList<Porta> porta = new ArrayList<>();
+        Scanner portaScanner = new Scanner(punter.next());
+        portaScanner.useDelimiter(","); //abans he de llegir el ()...??
+        while (portaScanner.hasNextInt()) {
+            claus.add(portaScanner.nextInt());
+        }
+        int max = punter.nextInt();
+
+        if (tipus.equals("sala")) {
+
+            Scanner personatgeScanner = new Scanner(punter.next());
+            personatgeScanner.useDelimiter(","); //abans he de llegir el []...??
+            while (personatgeScanner.hasNextString()) { //existeix?? sjjssj
+                //buscar a personatges el que tingui aquest nom i afegirlo a la sala
+                //i fer personatges[i].setEspaiActual(sala) o algo aixi
+            }
+
+            Espai e = new Espai(id, porta, max);
+            espais.add(e);
+
+        } else if (tipus.equals("pas")) {
+            Espai p = new Espai(id, porta, max);
+            espais.add(p);
+        }
+    }
 
     /** @return La sala d'entrada d'aquest laberint. */ //HA DE RETORNAR UNA LLISTA... PQ NHI POT HAVER MES DE UNA TANT DE ENTRADA COM DE SORTIDA
     public Espai salaEntrada(Espai e) {

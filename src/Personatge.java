@@ -11,10 +11,6 @@ import java.util.ArrayList;
 
 public abstract class Personatge {
 
-    private String tipusPersonatge;
-    private ArrayList<Integer> claus;
-    private boolean smartGlasses;
-    private SmartGlasses ulleres;
     private boolean viu = true;
     private Espai espaiActual; // espai o int???
     private Memoria memoria;
@@ -25,11 +21,8 @@ public abstract class Personatge {
      * 
      * @post Es crea el personatge concret indicat, i s'inicialitzen els seus atributs
      */
-    protected Personatge(String tipus, int capacitatMemoria, ArrayList<Integer> clausInicials, boolean smartGlasses) {
-        this.tipusPersonatge = tipus;
+    protected Personatge(int capacitatMemoria) {
         this.memoria = new Memoria(capacitatMemoria);
-        this.claus = clausInicials;
-        this.smartGlasses = smartGlasses;
         this.espaiActual = null;
     }
 

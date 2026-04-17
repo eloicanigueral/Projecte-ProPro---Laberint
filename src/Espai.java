@@ -26,8 +26,8 @@ public class Espai {
     private ArrayList<Integer> clausTirades;
     private int smartGlassesTirades;
     private ArrayList<Porta> portes;
-
-    public Espai(int idEspai, ArrayList<Porta> portes, int maxPersonatges){
+    private ArrayList<Integer> espaisConectats;
+    public Espai(int idEspai, ArrayList<Integer> espaisConectats, int maxPersonatges){
         nPersonatges=0;
         smartGlassesTirades=0;
         this.maxPersonatges = maxPersonatges;
@@ -36,6 +36,9 @@ public class Espai {
         portes = new ArrayList<Porta>();
     }
     
+    public void conectarEspais(){
+        
+    }
     public void addPorta(Porta p){
         portes.add(p);
     }

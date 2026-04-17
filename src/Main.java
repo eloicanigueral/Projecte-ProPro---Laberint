@@ -17,4 +17,6 @@ public class Main {
         System.out.println("S'ha acabat l'execució.");
         sc.close();
     }
+    
+    
 }

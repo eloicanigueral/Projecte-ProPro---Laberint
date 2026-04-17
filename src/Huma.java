@@ -20,7 +20,7 @@ public class Huma extends Personatge{
     private ArrayList<Integer> claus;
 
     public Huma(String nom, int capacitatMemoria, ArrayList<Integer> claus, boolean ulleres){
-        super("huma",capacitatMemoria);
+        super(capacitatMemoria);
         if(ulleres){
             this.ulleres = new SmartGlasses();
         }

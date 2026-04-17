@@ -13,7 +13,7 @@
 
 public class Porter extends Personatge{
     public Porter(String tipusPersonatge, int capacitatMemoria){
-        super("porter",capacitatMemoria);
+        super(capacitatMemoria);
     }
     public void actuar(){}
     /** canvia de sala

@@ -20,16 +20,12 @@
 //import java.util.ArrayList;
 
 public class Porta {
-    private Espai a;
-    private Espai b;
     private int codi;
     private int comptadorMoviments;
     private boolean oberta;
 
-    public Porta(int codi, Espai a, Espai b){
+    public Porta(int codi){
         this.codi = codi;
-        this.a = a;
-        this.b = b;
         comptadorMoviments=0;
         oberta = false;
     }
@@ -68,8 +64,7 @@ public class Porta {
     @pre: --
     @post: retorna el codi identificador de la porta. */
 
-    public Espai altreCostat(Espai origen){
-        if(origen == a) return b;
-        else return a;
+    public Espai altreCostat(){
+        return laberint.caractEspai(this.codi);
     }
 }

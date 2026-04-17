@@ -27,7 +27,7 @@ public class Espai {
     private int smartGlassesTirades;
     private ArrayList<Porta> portes;
 
-    public Espai(int idEspai, int maxPersonatges){
+    public Espai(int idEspai, ArrayList<Porta> portes, int maxPersonatges){
         nPersonatges=0;
         smartGlassesTirades=0;
         this.maxPersonatges = maxPersonatges;

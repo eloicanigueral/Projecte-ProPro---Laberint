@@ -14,13 +14,35 @@
  */
 import java.util.ArrayList;
 public class Huma extends Personatge{
-    //private SmartGlasses ulleres;
-    
-    public Huma(int capacitatMemoria){
+    private SmartGlasses ulleres;
+    private boolean teUlleres;
+    private String nom;
+    private ArrayList<Integer> claus;
+
+    public Huma(String nom, int capacitatMemoria, ArrayList<Integer> claus, boolean ulleres){
         super("huma",capacitatMemoria);
-        //this.ulleres = null;
+        if(ulleres){
+            this.ulleres = new SmartGlasses();
+        }
+        this.claus = claus;
+        this.nom = nom;
+        teUlleres = ulleres;
     }
+
     public void actuar(){
+        if(!teUlleres && espaiActual().hiHaSmartGlasses()){
+            teUlleres = true;
+            ulleres = espaiActual().recollirSmartGlasses();
+        }
+        else if (espaiActual().hiHaClaus()) {
+            ArrayList<Clau> tirades = espaiActual().veureClaus();
+            for (int i = 0; i < tirades.size(); i++) {
+                if (!claus.contains(tirades.get(i))) {
+                    claus.add(tirades.get(i));
+                    espaiActual().agafarClau(tirades.get(i));
+                }
+            }
+        }
         Porta seg = escollirSeguentPorta();
         if(seg != null){
             Espai desti = seg.altreCostat(espaiActual());
@@ -29,24 +51,29 @@ public class Huma extends Personatge{
             System.out.println("Huma mou a sala " + desti.mostrarId());
         }
     }
-    /** decideix com actua el personatge al seu moviment
-    @pre: --
-    @post: l'humà ha escollit la millor sala seguint la seva estratègia i ha canviat de sala. */
+    
 
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = espaiActual().getPortes();
         for(int i=0; i<portes.size();i++){
-            if(teClau(portes.get(i).comprovarClau())){
-                return portes.get(i);
+            if(!teClau(portes.get(i).comprovarClau()) && !portes.get(i).estaOberta()){
+                portes.remove(i);
             }
         }
-        return null;
-        // if(ulleres != null){
-        //     //ruta ulleres
-        // }
-        // else{
-        //     //ruta sense ulleres
-        // }
+        ArrayList<Porta> perilloses, segures;
+        if(portes.size() > 0){
+           for(int i=0; i<portes.size();i++){
+                if(memoria.esPerillos(portes.get(i).altreCostat(this.espaiActual()))){
+                    perilloses.add(portes.get(i));
+                }
+                else segures.add(portes.get(i));
+            }
+            
+            
+        }
+        else return null;
+        
+        
         
     }
     /** aplica l'algoritme per escollir la segÜent millor sala

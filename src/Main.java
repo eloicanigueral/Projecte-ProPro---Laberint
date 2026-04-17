@@ -11,10 +11,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Quin és el nom del fitxer d'entrada de dades?");
-        String nomFitxer = sc.nextLine();
+        
         Laberint lab = new Laberint();
-        lab.llegirLaberint(nomFitxer);
 
         System.out.println("S'ha acabat l'execució.");
         sc.close();

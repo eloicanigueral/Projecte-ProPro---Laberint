@@ -35,7 +35,7 @@ public class Huma extends Personatge{
             ulleres = espaiActual().recollirSmartGlasses();
         }
         else if (espaiActual().hiHaClaus()) {
-            ArrayList<Clau> tirades = espaiActual().veureClaus();
+            ArrayList<Integer> tirades = espaiActual().veureClaus();
             for (int i = 0; i < tirades.size(); i++) {
                 if (!claus.contains(tirades.get(i))) {
                     claus.add(tirades.get(i));
@@ -45,7 +45,7 @@ public class Huma extends Personatge{
         }
         Porta seg = escollirSeguentPorta();
         if(seg != null){
-            Espai desti = seg.altreCostat(espaiActual());
+            Espai desti = seg.altreCostat();
             espaiActual().sortir(this);
             desti.entrar(this);
             System.out.println("Huma mou a sala " + desti.mostrarId());
@@ -56,20 +56,18 @@ public class Huma extends Personatge{
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = espaiActual().getPortes();
         for(int i=0; i<portes.size();i++){
-            if(!teClau(portes.get(i).comprovarClau()) && !portes.get(i).estaOberta()){
+            if(!claus.contains(!portes.get(i).getCodi()) && !portes.get(i).estaOberta()){
                 portes.remove(i);
             }
         }
         ArrayList<Porta> perilloses, segures;
         if(portes.size() > 0){
            for(int i=0; i<portes.size();i++){
-                if(memoria.esPerillos(portes.get(i).altreCostat(this.espaiActual()))){
+                if(memoria.esPerillos(portes.get(i).altreCostat())){
                     perilloses.add(portes.get(i));
                 }
                 else segures.add(portes.get(i));
-            }
-            
-            
+            } 
         }
         else return null;
         

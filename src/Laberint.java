@@ -17,7 +17,7 @@
 
 import java.util.ArrayList;
 import java.io.File;
-import java.util.Map;
+import java.util.HashMap;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -27,13 +27,18 @@ public class Laberint {
     private ArrayList<Espai> espais;
     private ArrayList<Porta> portes;
     private ArrayList<Personatge> personatges;
-    private Map<Integer, ArrayList<Integer>> conexions; //= new HashMap<>(); ???
+    private HashMap<Integer, ArrayList<Integer>> conexions; //= new HashMap<>(); ???
 
     /**
      * @post Es crea el laberint amb els espais, portes i personatges.
      */
     public Laberint() {
-       llegirLaberint();
+
+        espais = new ArrayList<>();
+        portes = new ArrayList<>();
+        personatges = new ArrayList<>();
+        conexions = new HashMap<>();
+        llegirLaberint();
 
         //despres de crear tot he de indicar quines son les sales d'entrada i de sortida...
         //amb un random o algo aixi... o tb podria ser que el constructor del laberint rebés com a paràmetre un fitxer amb la configuració del laberint i així ja es crearia tot a partir d'això... (aixo seria lo millor) (però ara per ara ho
@@ -61,9 +66,11 @@ public class Laberint {
 
                 llegirLinia(linia);
             }
+            System.out.println("Fora while");
+
             connectarEspais();
         } 
-        System.out.println("No s'ha trobat el fitxer");
+        System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/....
 
     }
 
@@ -114,13 +121,13 @@ public class Laberint {
         int memoria = punter.nextInt();
 
         ArrayList<Integer> claus = new ArrayList<>();
-        Scanner clausScanner = new Scanner(punter.next());
-        clausScanner.useDelimiter(","); //abans he de llegir el []...??
+        Scanner clausScanner = new Scanner(punter.next().replace("[", "").replace("]", "")); //mirar els .replace aquests....
+        clausScanner.useDelimiter(",");
         while (clausScanner.hasNextInt()) {
             claus.add(clausScanner.nextInt());
         }
         if (tipus.equals("h")) {
-            boolean ulleres = punter.nextBoolean();
+            boolean ulleres = punter.nextInt() == 1;
             Huma h = new Huma(nom, memoria, claus, ulleres);
             personatges.add(h);
 
@@ -140,7 +147,7 @@ public class Laberint {
         int id = punter.nextInt();
 
         ArrayList<Integer> portesEspai = new ArrayList<>();
-        Scanner portaScanner = new Scanner(punter.next());
+        Scanner portaScanner = new Scanner(punter.next().replace("(", "").replace(")", ""));
         portaScanner.useDelimiter(","); //abans he de llegir el ()...??
         while (portaScanner.hasNextInt()) {
            portesEspai.add(portaScanner.nextInt()); //porta.add(new Porta(portaScanner.nextInt())); ... hi ha errror amb lu de les portes.. comsabem els espais....
@@ -151,10 +158,12 @@ public class Laberint {
 
         if (tipus.equals("sala")) {
 
-            Scanner personatgeScanner = new Scanner(punter.next());
+            Scanner personatgeScanner = new Scanner(punter.next().replace("[", "").replace("]", ""));
+
             personatgeScanner.useDelimiter(","); //abans he de llegir el []...??
+
             while (personatgeScanner.hasNext()) { //existeix?? sjjssj
-                //buscar a personatges el que tingui aquest nom i afegirlo a la sala
+                String nom = personatgeScanner.next();        //canviar nom        //buscar a personatges el que tingui aquest nom i afegirlo a la sala
                 //i fer personatges[i].setEspaiActual(sala) o algo aixi
             }
 
@@ -174,10 +183,12 @@ public class Laberint {
      */
     private void connectarEspais(){
         for (int i=0; i<espais.size(); i++){
-            ArrayList<Integer> arrayPortes = conexions.get(i);
+            ArrayList<Integer> arrayPortes = conexions.get(espais.get(i).mostrarId()); //dins del get aixo__??... 
             ArrayList<Espai> arrayEspais = new ArrayList<>();
             for (int j=0; j<arrayPortes.size(); j++){
-                arrayEspais.add(espais.get(arrayPortes.get(j)));
+                if (arrayPortes.get(j) != 0){
+                    arrayEspais.add(espais.get(arrayPortes.get(j) - 1)); //pq aquest -1??
+                }
             }
             espais.get(i).conectarEspais(arrayEspais);
         }

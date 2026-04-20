@@ -30,6 +30,7 @@ public class Espai {
 
 
     public Espai(int idEspai, int maxPersonatges){
+        this.idEspai = idEspai;
         nPersonatges=0;
         smartGlassesTirades=0;
         this.maxPersonatges = maxPersonatges;
@@ -40,6 +41,7 @@ public class Espai {
     }
     
     public void conectarEspais(ArrayList<Espai> espaisConnectats){
+        System.out.println("Ha entrat a conectar espais (espais)");
         for(int i=0; i<espaisConnectats.size(); i++){
             //Porta p = new Porta(espaisConnectats.get(i).mostrarId(),this,espaisConnectats.get(i));
             //portes.add(p);

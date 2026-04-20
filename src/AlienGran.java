@@ -23,8 +23,8 @@ public class AlienGran extends Personatge{
      * @post Es crea l'alien gran amb la seva capacitat de memoria determinada
      */
     public AlienGran(String nom) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
-        this.nom = nom;
         super(-1);
+        this.nom = nom;
     }
 
     /**

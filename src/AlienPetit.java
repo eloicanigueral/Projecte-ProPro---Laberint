@@ -25,9 +25,9 @@ public class AlienPetit extends Personatge{
      * @post Es crea un alien petit amb la seva capacitat de memoria inicial
      */
     public AlienPetit(String nom, int capacitatMemoria, ArrayList<Integer> claus) {
+        super(capacitatMemoria);
         this.nom = nom;
         this.claus = claus;
-        super(capacitatMemoria);
     }
 
     /**

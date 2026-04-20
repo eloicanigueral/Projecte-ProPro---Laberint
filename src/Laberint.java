@@ -17,6 +17,7 @@
 
 import java.util.ArrayList;
 import java.io.File;
+import java.util.Map;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -26,6 +27,7 @@ public class Laberint {
     private ArrayList<Espai> espais;
     private ArrayList<Porta> portes;
     private ArrayList<Personatge> personatges;
+    private Map<Integer, ArrayList<Integer>> conexions; //= new HashMap<>(); ???
 
     /**
      * @post Es crea el laberint amb els espais, portes i personatges.
@@ -45,8 +47,10 @@ public class Laberint {
      * @post: Es crea el laberint a partir de la configuració del fitxer
      */
     public void llegirLaberint() {
+
+        //suposo que es aqui on he de fer tot lu de new Hashmap i aquestes coses???
         
-                System.out.println("començant a llegir el laberint..."); //........... borrarr!!!!
+        System.out.println("començant a llegir el laberint..."); //........... borrarr!!!!
 
         //if else? que fa try i catch
         // que polles fa scanner
@@ -57,6 +61,7 @@ public class Laberint {
 
                 llegirLinia(linia);
             }
+            connectarEspais();
         } 
         System.out.println("No s'ha trobat el fitxer");
 
@@ -134,12 +139,14 @@ public class Laberint {
     private void llegirEspai(String tipus, Scanner punter) {
         int id = punter.nextInt();
 
-        ArrayList<Integer> porta = new ArrayList<>();
+        ArrayList<Integer> portesEspai = new ArrayList<>();
         Scanner portaScanner = new Scanner(punter.next());
         portaScanner.useDelimiter(","); //abans he de llegir el ()...??
         while (portaScanner.hasNextInt()) {
-           porta.add(portaScanner.nextInt()); //porta.add(new Porta(portaScanner.nextInt())); ... hi ha errror amb lu de les portes.. comsabem els espais....
+           portesEspai.add(portaScanner.nextInt()); //porta.add(new Porta(portaScanner.nextInt())); ... hi ha errror amb lu de les portes.. comsabem els espais....
         }
+        connexions.put(id, portesEspai)
+
         int max = punter.nextInt();
 
         if (tipus.equals("sala")) {
@@ -151,12 +158,28 @@ public class Laberint {
                 //i fer personatges[i].setEspaiActual(sala) o algo aixi
             }
 
-            Espai e = new Espai(id, porta, max);
+            Espai e = new Espai(id, max);
             espais.add(e);
 
         } else if (tipus.equals("pas")) {
-            Espai p = new Espai(id, porta, max);
+            Espai p = new Espai(id, max);
             espais.add(p);
+        }
+    }
+    
+    /**
+     * fer PRE I POST....!!!!!!!!!!!!!!!!!!!
+     * @param id
+     * @return
+     */
+    private void connectarEspais(){
+        for (int i=0; i<espais.size(); i++){
+            ArrayList<Integer> arrayPortes = conexions.get(i);
+            ArrayList<Espai> arrayEspais = new ArrayList<>()
+            for (int j=0; j<arrayPortes.size(); j++){
+                arrayEspais.add(espais.get(arrayPortes.get(j)));
+            }
+            espais.get(i).conectarEspais(arrayEspais);
         }
     }
 

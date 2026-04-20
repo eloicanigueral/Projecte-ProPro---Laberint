@@ -161,7 +161,8 @@ public class Laberint {
     }
 
     //mirarrr...................... el for no magrada.. metode per fer srvir a porta...
-    public Espai caractEspai(int id) {
+    //retorna la sala a la que conecta
+    public Espai altreCostat(int id) {
         for (Espai e : espais) {
             if (e.mostrarId() == id) return e;
         }

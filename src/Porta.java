@@ -23,11 +23,14 @@ public class Porta {
     private int codi;
     private int comptadorMoviments;
     private boolean oberta;
+    Espai origen, desti;
 
-    public Porta(int codi){
+    public Porta(int codi, Espai o, Espai d){
         this.codi = codi;
         comptadorMoviments=0;
         oberta = false;
+        origen = o;
+        desti = d;
     }
 
     public int getCodi(){
@@ -65,6 +68,7 @@ public class Porta {
     @post: retorna el codi identificador de la porta. */
 
     public Espai altreCostat(){
-        return laberint.caractEspai(this.codi);
+        
+        return laberint.altreCostat(this.codi);
     }
 }

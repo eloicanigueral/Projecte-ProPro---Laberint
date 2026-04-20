@@ -34,7 +34,7 @@ public class Memoria{
      * @post S'afegeix l'espai a la cua d'espais visitats (que es recorden), juntament
      * indicant si aquest és o no perillós (s'ha vist algun alien o restes humanes)
      */
-    public void recordarEspai(Espai e){} //per ferrr!!!!!!!!!!!!!!
+    public void recordarEspai(Espai e, boolean esPerillos){} //per ferrr!!!!!!!!!!!!!!
     // recordarEspai(e, esPerillos) i recordaComAPerillos(e)
 
 
@@ -52,4 +52,12 @@ public class Memoria{
     public void augmentarCapacitat(int x){
         capacitatMem += x;
     }  //per ferrr!!!!!!!!!!!!!!
+
+    public boolean esPerillos(Espai e){
+        return true;
+    }
+    public boolean recorda(Espai e){
+        //true si recorda e false si no
+        return true;
+    }
 }

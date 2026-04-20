@@ -43,33 +43,46 @@ public class Huma extends Personatge{
                 }
             }
         }
-        Porta seg = escollirSeguentPorta();
+
+        Porta seguent;
+        if(espaiActual.hiHaAlien()){
+            seguent = escollirPortaFugida();
+        }
+        else{
+            seguent = escollirSeguentPorta();
+        }
+
         if(seg != null){
-            Espai desti = seg.altreCostat();
-            espaiActual().sortir(this);
-            desti.entrar(this);
-            System.out.println("Huma mou a sala " + desti.mostrarId());
+            Espai desti = seguent.altreCostat();
+            if(!desti.estaPle()){
+                memoria.recordarEspai(espaiAcutal,true);
+                espaiActual.sortir(this);
+                desti.entrar(this);
+            }
         }
     }
     
 
     public Porta escollirSeguentPorta(){
-        ArrayList<Porta> portes = espaiActual().getPortes();
-        for(int i=0; i<portes.size();i++){
-            if(!claus.contains(!portes.get(i).getCodi()) && !portes.get(i).estaOberta()){
-                portes.remove(i);
+        ArrayList<Porta> portes = espaiActual.getPortes();
+        ArrayList<Porta> recorda, noRecorda;
+        for(int i=0; i<portes.size(); i++){
+            if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
+            else noRecorda.add(portes.get(i));
+        }
+        if(noRecorda.size() == 0){
+            ArrayList<Porta> perillosa, noPerillosa;
+            for(int i=0; i<recorda.size(); i++){
+                if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
+                else noPerillosa.add(recorda.get(i));
+            }
+            if(noPerillosa.size() == 0){
+                
             }
         }
-        ArrayList<Porta> perilloses, segures;
-        if(portes.size() > 0){
-           for(int i=0; i<portes.size();i++){
-                if(memoria.esPerillos(portes.get(i).altreCostat())){
-                    perilloses.add(portes.get(i));
-                }
-                else segures.add(portes.get(i));
-            } 
-        }
-        else return null;
+
+        
+        
         
         
         
@@ -80,3 +93,24 @@ public class Huma extends Personatge{
 
     
 }
+
+/*
+for(int i=0; i<portes.size();i++){
+            if(!claus.contains(portes.get(i).getCodi()) && !portes.get(i).estaOberta()){
+                portes.remove(i);
+            }
+        }
+        ArrayList<Porta> perilloses, segures;
+        if(portes.size() > 0){
+           for(int i=0; i<portes.size();i++){
+                if(memoria.esPerillos(portes.get(i).altreCostat())){
+                    perilloses.add(portes.get(i));
+                }
+                else segures.add(portes.get(i));
+            }
+            if(segures.size() > 0){
+                
+            } 
+        }
+
+*/

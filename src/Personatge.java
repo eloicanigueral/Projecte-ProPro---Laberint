@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public abstract class Personatge {
 
-    private boolean viu = true;
-    private Espai espaiActual; // espai o int???
-    private Memoria memoria;
-    private boolean haSortit = false;
+    protected boolean viu = true;
+    protected Espai espaiActual; // espai o int???
+    protected Memoria memoria;
+    protected boolean haSortit = false;
 
     /**
      * @pre Des de la classe corresponent al personatge, es crida el cosntructor indicant el seu tipus i capacitat de memoria

@@ -27,17 +27,24 @@ public class Espai {
     private int smartGlassesTirades;
     private ArrayList<Porta> portes;
     private ArrayList<Integer> espaisConectats;
-    public Espai(int idEspai, ArrayList<Integer> espaisConectats, int maxPersonatges){
+
+
+    public Espai(int idEspai, int maxPersonatges){
         nPersonatges=0;
         smartGlassesTirades=0;
         this.maxPersonatges = maxPersonatges;
         personatges = new ArrayList<Personatge>();
         clausTirades = new ArrayList<Integer>();
         portes = new ArrayList<Porta>();
+        espaisConectats = new ArrayList<Integer>();
     }
     
-    public void conectarEspais(){
-        
+    public void conectarEspais(ArrayList<Espai> espaisConnectats){
+        for(int i=0; i<espaisConnectats; i++){
+            //Porta p = new Porta(espaisConnectats.get(i).mostrarId(),this,espaisConnectats.get(i));
+            //portes.add(p);
+
+        }
     }
     public void addPorta(Porta p){
         portes.add(p);
@@ -113,6 +120,13 @@ public class Espai {
     public boolean hiHaHuma(){
         for(int i=0; i<personatges.size();i++){
             if(personatges.get(i) instanceof Huma) return true;
+        }
+        return false;
+    }
+
+    public boolean hiHaAlien(){
+        for(int i=0; i<personatges.size(); i++){
+            if(personatges.get(i) instanceof AlienGran or personatges.get(i) instanceof AlienPetit) return true;
         }
         return false;
     }

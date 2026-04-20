@@ -18,6 +18,8 @@ public class SmartGlasses {
     public Espai camiRapid(){
        // ArrayList<Porta> portes;
        // return new Espai(1,portes,2);
+       Espai e = new Espai(1,1);
+       return e;
     }
 //     ha de rebre l'espai origen per saber des de on ha de comencar....
 // I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar() ???

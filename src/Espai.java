@@ -40,7 +40,7 @@ public class Espai {
     }
     
     public void conectarEspais(ArrayList<Espai> espaisConnectats){
-        for(int i=0; i<espaisConnectats; i++){
+        for(int i=0; i<espaisConnectats.size(); i++){
             //Porta p = new Porta(espaisConnectats.get(i).mostrarId(),this,espaisConnectats.get(i));
             //portes.add(p);
 
@@ -126,7 +126,7 @@ public class Espai {
 
     public boolean hiHaAlien(){
         for(int i=0; i<personatges.size(); i++){
-            if(personatges.get(i) instanceof AlienGran or personatges.get(i) instanceof AlienPetit) return true;
+            if(personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit) return true;
         }
         return false;
     }

@@ -145,7 +145,7 @@ public class Laberint {
         while (portaScanner.hasNextInt()) {
            portesEspai.add(portaScanner.nextInt()); //porta.add(new Porta(portaScanner.nextInt())); ... hi ha errror amb lu de les portes.. comsabem els espais....
         }
-        connexions.put(id, portesEspai)
+        conexions.put(id, portesEspai);
 
         int max = punter.nextInt();
 
@@ -175,7 +175,7 @@ public class Laberint {
     private void connectarEspais(){
         for (int i=0; i<espais.size(); i++){
             ArrayList<Integer> arrayPortes = conexions.get(i);
-            ArrayList<Espai> arrayEspais = new ArrayList<>()
+            ArrayList<Espai> arrayEspais = new ArrayList<>();
             for (int j=0; j<arrayPortes.size(); j++){
                 arrayEspais.add(espais.get(arrayPortes.get(j)));
             }

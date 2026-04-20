@@ -44,18 +44,18 @@ public class Huma extends Personatge{
             }
         }
 
-        Porta seguent;
+        Porta seguent = null;
         if(espaiActual.hiHaAlien()){
-            seguent = escollirPortaFugida();
+            //seguent = escollirPortaFugida();
         }
         else{
             seguent = escollirSeguentPorta();
         }
 
-        if(seg != null){
+        if(seguent != null){
             Espai desti = seguent.altreCostat();
             if(!desti.estaPle()){
-                memoria.recordarEspai(espaiAcutal,true);
+                //memoria.recordarEspai(espaiAcutal,true);
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
@@ -65,13 +65,15 @@ public class Huma extends Personatge{
 
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = espaiActual.getPortes();
-        ArrayList<Porta> recorda, noRecorda;
+        ArrayList<Porta> recorda = new ArrayList<>();
+        ArrayList<Porta> noRecorda = new ArrayList<>();
         for(int i=0; i<portes.size(); i++){
             if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
             else noRecorda.add(portes.get(i));
         }
         if(noRecorda.size() == 0){
-            ArrayList<Porta> perillosa, noPerillosa;
+            ArrayList<Porta> perillosa = new ArrayList<>();
+            ArrayList<Porta> noPerillosa = new ArrayList<>();
             for(int i=0; i<recorda.size(); i++){
                 if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
                 else noPerillosa.add(recorda.get(i));
@@ -80,13 +82,12 @@ public class Huma extends Personatge{
                 
             }
         }
-
-        
-        
-        
-        
-        
+        Porta p = portes.get(1);
+        return p; //MIRAR
     }
+    //public Porta escollirPortaFugida(){
+        
+    //}
     /** aplica l'algoritme per escollir la segÜent millor sala
     @pre: --
     @post: retorna la millor Sala per anar aquest humà. */

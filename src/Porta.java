@@ -69,6 +69,8 @@ public class Porta {
 
     public Espai altreCostat(){
         
-        return laberint.altreCostat(this.codi);
+        Espai e = new Espai(1,1);
+        return e;
+        //return this.altreCostat(this.codi);
     }
 }

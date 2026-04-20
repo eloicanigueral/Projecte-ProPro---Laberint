@@ -100,17 +100,17 @@ public abstract class Personatge {
         /**
      * @return Retorna si el personatge té la clau amb el codi indicat, o si és un porter o l'alien gran (que poden obrir totes les portes)
      */
-    // public boolean teClau(int codi){
-    //     boolean trobat = false;
-    //     int i=0;
+    //  public boolean teClau(int codi){
+    //     //  boolean trobat = false;
+    //     //  int i=0;
 
-    //     if (tipusPersonatge.equals("a_gran") || tipusPersonatge.equals("porter")) trobat = true; //el porter i l'alien gran sempre poden obrir les portes
+    //     //  if (tipusPersonatge.equals("a_gran") || tipusPersonatge.equals("porter")) trobat = true; //el porter i l'alien gran sempre poden obrir les portes
         
-    //     while(!trobat && i<claus.size()){
-    //         Clau c = claus.get(i);
-    //         if(c.getCodi() == codi) trobat = true; 
-    //         i++;
-    //     }
+    //     // while(!trobat && i<claus.size()){
+    //     //     Clau c = claus.get(i);
+    //     //     if(c.getCodi() == codi) trobat = true; 
+    //     //     i++;
+    //     // }
     //     return trobat;
     // }
 

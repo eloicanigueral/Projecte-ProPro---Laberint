@@ -11,13 +11,13 @@
  *
  * @author eloicanigueral
  */
-import.java.ArrayList;
+import java.util.ArrayList;
 public class SmartGlasses {
 
     /** @return Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida */
     public Espai camiRapid(){
-        ArrayList<Porta> portes;
-        return new Espai(1,portes,2);
+       // ArrayList<Porta> portes;
+       // return new Espai(1,portes,2);
     }
 //     ha de rebre l'espai origen per saber des de on ha de comencar....
 // I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar() ???

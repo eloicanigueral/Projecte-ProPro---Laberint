@@ -187,7 +187,7 @@ public class Laberint {
             ArrayList<Espai> arrayEspais = new ArrayList<>();
             for (int j=0; j<arrayPortes.size(); j++){
                 if (arrayPortes.get(j) != 0){
-                    arrayEspais.add(espais.get(arrayPortes.get(j) - 1)); //pq aquest -1??
+                    arrayEspais.add(altreCostat(arrayPortes.get(j))); //pq aquest -1??
                 }
             }
             espais.get(i).conectarEspais(arrayEspais);

@@ -165,7 +165,7 @@ public class Laberint {
                 String nom = personatgeScanner.next();        //canviar nom        //buscar a personatges el que tingui aquest nom i afegirlo a la sala
                 for (int i=0; i<personatges.size(); i++){
                     if (personatges.get(i).nom.equals(nom)){ //fua.. que raro.. aixo es pot????
-                        e.entrar(personatges.get(i))
+                        e.entrar(personatges.get(i));
                     }
                 }
                 //i fer personatges[i].setEspaiActual(sala) o algo aixi

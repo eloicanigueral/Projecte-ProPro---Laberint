@@ -11,5 +11,6 @@ sala:4:(0,0,0,0):3:[alien]
 pas:5:(0,1):3
 pas:7:(1,2):2
 sala:8:(0,0,3,0):5:[]
+sala:9:(0,2,3,0):3:[guardia]
 p:porter:4
 g:guardia:3:[2,4,5]

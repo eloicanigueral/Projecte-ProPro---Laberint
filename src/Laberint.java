@@ -111,7 +111,7 @@ public class Laberint {
           break;
 
         case "g":
-          // Processar línia de guardia
+          llegirPersonatge(tipus, punter);
           break;
         case "p":
           llegirPersonatge(tipus, punter);
@@ -135,23 +135,23 @@ public class Laberint {
 
 
         if (tipus.equals("h")) {
-            ArrayList<Integer> claus = llegirClaus();
+            ArrayList<Integer> claus = llegirClaus(punter);
             boolean ulleres = punter.nextInt() == 1;
             Huma h = new Huma(nom, memoria, claus, ulleres);
             personatges.add(h);
 
         } else if (tipus.equals("ap")) {
-            ArrayList<Integer> claus = llegirClaus();
+            ArrayList<Integer> claus = llegirClaus(punter);
 
             AlienPetit ap = new AlienPetit(nom, memoria, claus);
             personatges.add(ap);
 
         } else if (tipus.equals("g")) {
-            ArrayList<Integer> claus = llegirClaus();
+            ArrayList<Integer> claus = llegirClaus(punter);
 
             Guardia g = new Guardia(nom, memoria, claus);
             personatges.add(g);
-            
+
         } else if (tipus.equals("p")) {
             Porter p = new Porter(nom, memoria);
             personatges.add(p);
@@ -159,7 +159,7 @@ public class Laberint {
     }
 
     //FER PRE I POSSTT!!!!!!!!!!!!!!!!!!!!!
-    private ArrayList<Integer> llegirClaus(){
+    private ArrayList<Integer> llegirClaus(Scanner punter){
         ArrayList<Integer> claus = new ArrayList<>();
         Scanner clausScanner = new Scanner(punter.next().replace("[", "").replace("]", "")); //mirar els .replace aquests....
         clausScanner.useDelimiter(",");

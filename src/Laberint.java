@@ -18,7 +18,9 @@
 import java.util.ArrayList;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.io.FileNotFoundException;
+import java.time.format.SignStyle;
 import java.util.Scanner;
 
 
@@ -69,6 +71,17 @@ public class Laberint {
             System.out.println("Fora while");
 
             connectarEspais();
+
+            //prova cout per veure personatges:
+            System.out.println();
+            for (int i = 0; i<espais.size(); i++){
+                List<Personatge> pers = espais.get(i).getPersonatges();
+                System.out.println("Sala: " + espais.get(i).mostrarId());
+                for(int j=0; j<pers.size(); j++){
+                    System.out.print(pers.get(j).getNom() + ", ");
+                }
+                System.out.println();
+            }
         } 
         System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/....
 

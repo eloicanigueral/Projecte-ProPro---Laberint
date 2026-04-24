@@ -28,6 +28,9 @@ public abstract class Personatge {
         this.espaiActual = null;
     }
 
+    protected String getNom(){
+        return nom;
+    }
 
 
     /** @return Retorna l'espai actual del personatge. */

@@ -114,7 +114,7 @@ public class Laberint {
           // Processar línia de guardia
           break;
         case "p":
-          // Processar línia de porter
+          llegirPersonatge(tipus, punter);
           break;
 
         case "sala":
@@ -133,26 +133,40 @@ public class Laberint {
         String nom = punter.next();
         int memoria = punter.nextInt();
 
+
+        if (tipus.equals("h")) {
+            ArrayList<Integer> claus = llegirClaus();
+            boolean ulleres = punter.nextInt() == 1;
+            Huma h = new Huma(nom, memoria, claus, ulleres);
+            personatges.add(h);
+
+        } else if (tipus.equals("ap")) {
+            ArrayList<Integer> claus = llegirClaus();
+
+            AlienPetit ap = new AlienPetit(nom, memoria, claus);
+            personatges.add(ap);
+
+        } else if (tipus.equals("g")) {
+            ArrayList<Integer> claus = llegirClaus();
+
+            Guardia g = new Guardia(nom, memoria, claus);
+            personatges.add(g);
+            
+        } else if (tipus.equals("p")) {
+            Porter p = new Porter(nom, memoria);
+            personatges.add(p);
+        }
+    }
+
+    //FER PRE I POSSTT!!!!!!!!!!!!!!!!!!!!!
+    private ArrayList<Integer> llegirClaus(){
         ArrayList<Integer> claus = new ArrayList<>();
         Scanner clausScanner = new Scanner(punter.next().replace("[", "").replace("]", "")); //mirar els .replace aquests....
         clausScanner.useDelimiter(",");
         while (clausScanner.hasNextInt()) {
             claus.add(clausScanner.nextInt());
         }
-        if (tipus.equals("h")) {
-            boolean ulleres = punter.nextInt() == 1;
-            Huma h = new Huma(nom, memoria, claus, ulleres);
-            personatges.add(h);
-
-        } else if (tipus.equals("ap")) {
-            AlienPetit ap = new AlienPetit(nom, memoria, claus);
-            personatges.add(ap);
-
-        } else if (tipus.equals("g")) {
-            // Llegir guardia
-        } else if (tipus.equals("p")) {
-            // Llegir porter
-        }
+        return claus;
     }
 
     /** fer pre i post!!!! */

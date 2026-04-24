@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class Guardia extends Personatge{
     ArrayList<Integer> claus;
-    public Guardia(String tipusPersonatge, int capacitatMemoria){
+    public Guardia(String nom, String tipusPersonatge, int capacitatMemoria){
         super(nom,capacitatMemoria);
     }
     public void protegirHumans(){}
@@ -61,7 +61,7 @@ public class Guardia extends Personatge{
     }
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = espaiActual.getPortes();
-        Porta escollida;
+        Porta escollida = null;
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(portes.get(i).altreCostat().estaPle()) borra=true; //si volem que guardia entri a sales plenes treure aixo

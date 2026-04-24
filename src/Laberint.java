@@ -160,7 +160,9 @@ public class Laberint {
 
             Scanner personatgeScanner = new Scanner(punter.next().replace("[", "").replace("]", ""));
             personatgeScanner.useDelimiter(",");
-
+            Espai e = new Espai(id, max);
+            espais.add(e);
+            
             while (personatgeScanner.hasNext()) { //existeix?? sjjssj !!!!!!!!!!!!!!!!!!!!!!! FEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR!!!!!
                 String nom = personatgeScanner.next();        //canviar nom        //buscar a personatges el que tingui aquest nom i afegirlo a la sala
                 for (int i=0; i<personatges.size(); i++){
@@ -172,9 +174,6 @@ public class Laberint {
                 // no fa res, cal buscar el personatge per nom i afegir-lo a la sala. 
                 // Però l'espai es crea després del while, així que has de guardar els noms i afegir-los un cop creat l'espai
             }
-
-            Espai e = new Espai(id, max);
-            espais.add(e);
 
         } else if (tipus.equals("pas")) {
             Espai p = new Espai(id, max);
@@ -193,8 +192,8 @@ public class Laberint {
             ArrayList<Espai> arrayEspais = new ArrayList<>();
             for (int j=0; j<arrayPortes.size(); j++){
                 if (arrayPortes.get(j) != 0){
-                    //arrayEspais.add(altreCostat(arrayPortes.get(j))); //pq aquest -1??
-                    arrayEspais.add(arrayPortes.get(j).altreCostat()); //si aixo funciona deixar aixi i aixi estalvio un emtode aqui a laberint
+                    arrayEspais.add(altreCostat(arrayPortes.get(j))); //pq aquest -1??
+                    //arrayEspais.add(arrayPortes.get(j).altreCostat()); //si aixo funciona deixar aixi i aixi estalvio un emtode aqui a laberint
                 }
             }
             espais.get(i).conectarEspais(arrayEspais);

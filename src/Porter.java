@@ -15,7 +15,7 @@ import java.util.Random;
  */
 
 public class Porter extends Personatge{
-    public Porter(String tipusPersonatge, int capacitatMemoria){
+    public Porter(String nom, String tipusPersonatge, int capacitatMemoria){
         super(nom,capacitatMemoria);
     }
     public void actuar(){
@@ -33,6 +33,7 @@ public class Porter extends Personatge{
         }
         Random rand = new Random();
         escollida = portes.get(rand.nextInt(portes.size()));
+        return escollida;
     }
     /** canvia de sala
     @pre: --

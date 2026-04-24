@@ -65,7 +65,7 @@ public class Huma extends Personatge{
 
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = espaiActual.getPortes();
-        Porta escollida;
+        Porta escollida = null;
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(portes.get(i).altreCostat().estaPle()) borra=true;

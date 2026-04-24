@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public abstract class Personatge {
 
+    protected String nom;
     protected boolean viu = true;
     protected Espai espaiActual; // espai o int???
     protected Memoria memoria;
@@ -21,7 +22,8 @@ public abstract class Personatge {
      * 
      * @post Es crea el personatge concret indicat, i s'inicialitzen els seus atributs
      */
-    protected Personatge(int capacitatMemoria) {
+    protected Personatge(String nom, int capacitatMemoria) {
+        this.nom = nom;
         this.memoria = new Memoria(capacitatMemoria);
         this.espaiActual = null;
     }

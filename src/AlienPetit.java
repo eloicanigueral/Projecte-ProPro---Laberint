@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class AlienPetit extends Personatge{
 
-    private String nom;
     private ArrayList<Integer> claus;
     /**
      * @pre Es crida el constructor de l'alien petit juntament amb la seva capacitat de memòria
@@ -25,7 +24,7 @@ public class AlienPetit extends Personatge{
      * @post Es crea un alien petit amb la seva capacitat de memoria inicial
      */
     public AlienPetit(String nom, int capacitatMemoria, ArrayList<Integer> claus) {
-        super(capacitatMemoria);
+        super(nom, capacitatMemoria);
         this.nom = nom;
         this.claus = claus;
     }

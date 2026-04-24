@@ -12,6 +12,7 @@
 
 import java.util.ArrayList;
 
+
 public class Memoria{
 
     private int capacitatMem=0;
@@ -25,6 +26,7 @@ public class Memoria{
      * 
     */
     public Memoria(int mem){
+        espais = new ArrayList<>();
         capacitatMem=mem;
     }
 
@@ -34,7 +36,12 @@ public class Memoria{
      * @post S'afegeix l'espai a la cua d'espais visitats (que es recorden), juntament
      * indicant si aquest és o no perillós (s'ha vist algun alien o restes humanes)
      */
-    public void recordarEspai(Espai e, boolean esPerillos){} //per ferrr!!!!!!!!!!!!!!
+    public void recordarEspai(Espai e, boolean esPerillos){
+        if (espais.size()>=capacitatMem) {
+            espais.remove(0); 
+        }
+        espais.add(new Pair<>(e, esPerillos));
+    }
     // recordarEspai(e, esPerillos) i recordaComAPerillos(e)
 
 
@@ -42,7 +49,9 @@ public class Memoria{
     /**
      * @post S'elimina de memoria l'espai visitat fa més temps (el primer de la cua)
      */
-    public void oblidarEspai(){}  //per ferrr!!!!!!!!!!!!!!
+    public void oblidarEspai(){ //cal??????????????/
+        espais.remove(0); 
+    }  //per ferrr!!!!!!!!!!!!!!
 
     /**
      * @pre Es tracta d'un alien petit
@@ -54,10 +63,19 @@ public class Memoria{
     }  //per ferrr!!!!!!!!!!!!!!
 
     public boolean esPerillos(Espai e){
-        return true;
+        for (int i=0; i<espais.size(); i++) {
+            if (espais.get(i).first == e) {
+                return espais.get(i).second;
+            }
+        }
+        return false;
     }
     public boolean recorda(Espai e){
-        //true si recorda e false si no
-        return true;
+        for (int i=0; i<espais.size(); i++) {
+            if (espais.get(i).first == e) {
+                return true;
+            }
+        }
+        return false;
     }
 }

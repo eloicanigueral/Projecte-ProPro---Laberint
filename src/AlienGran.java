@@ -14,8 +14,6 @@
  */
 
 public class AlienGran extends Personatge{
-    private String nom;
-
 
     /**
      * @pre Es crida el constructor de l'alien gran juntament amb la seva capacitat de memòria
@@ -23,7 +21,7 @@ public class AlienGran extends Personatge{
      * @post Es crea l'alien gran amb la seva capacitat de memoria determinada
      */
     public AlienGran(String nom) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
-        super(-1);
+        super(nom, -1);
         this.nom = nom;
     }
 

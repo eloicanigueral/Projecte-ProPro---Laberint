@@ -15,7 +15,7 @@ import java.util.Random;
  */
 
 public class Porter extends Personatge{
-    public Porter(String nom, String tipusPersonatge, int capacitatMemoria){
+    public Porter(String nom, int capacitatMemoria){
         super(nom,capacitatMemoria);
     }
     public void actuar(){

@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class Guardia extends Personatge{
     ArrayList<Integer> claus;
-    public Guardia(String nom, String tipusPersonatge, int capacitatMemoria){
+    public Guardia(String nom, int capacitatMemoria, ArrayList<Integer> claus){
         super(nom,capacitatMemoria);
     }
     public void protegirHumans(){}

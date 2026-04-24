@@ -68,9 +68,6 @@ public class Porta {
     @post: retorna el codi identificador de la porta. */
 
     public Espai altreCostat(){
-        
-        Espai e = new Espai(1,1);
-        return e;
-        //return this.altreCostat(this.codi);
+        return desti;
     }
 }

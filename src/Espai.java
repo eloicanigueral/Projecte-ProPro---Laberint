@@ -135,6 +135,14 @@ public class Espai {
         }
         return false;
     }
+    public boolean esPerillos(){
+        boolean perillos = false;
+        int i=0;
+        while(!perillos && i<personatges.size()){
+            if(personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit) perillos = true;
+        }
+        return perillos;
+    }
     
 
 }

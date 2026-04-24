@@ -13,19 +13,19 @@
  * @author arnaulloret
  */
 import java.util.ArrayList;
+import java.util.Random;
+
 public class Huma extends Personatge{
     private SmartGlasses ulleres;
     private boolean teUlleres;
-    private String nom;
     private ArrayList<Integer> claus;
 
     public Huma(String nom, int capacitatMemoria, ArrayList<Integer> claus, boolean ulleres){
-        super(capacitatMemoria);
+        super(nom,capacitatMemoria);
         if(ulleres){
             this.ulleres = new SmartGlasses();
         }
         this.claus = claus;
-        this.nom = nom;
         teUlleres = ulleres;
     }
 
@@ -65,6 +65,14 @@ public class Huma extends Personatge{
 
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = espaiActual.getPortes();
+        Porta escollida;
+        for(int i=0;i<portes.size();i++){
+            boolean borra = false;
+            if(portes.get(i).altreCostat().estaPle()) borra=true;
+            if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
+            if(borra) portes.remove(i);
+        }
+        
         ArrayList<Porta> recorda = new ArrayList<>();
         ArrayList<Porta> noRecorda = new ArrayList<>();
         for(int i=0; i<portes.size(); i++){
@@ -78,12 +86,22 @@ public class Huma extends Personatge{
                 if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
                 else noPerillosa.add(recorda.get(i));
             }
-            if(noPerillosa.size() == 0){
-                
+            if(noPerillosa.size() == 0 && !espaiActual.esPerillos()){}
+            else if(noPerillosa.size() == 0 && espaiActual.esPerillos()){
+                Random rand = new Random();
+                escollida = perillosa.get(rand.nextInt(perillosa.size()));
+            }
+            else if(noPerillosa.size() > 0){
+                Random rand = new Random();
+                escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
             }
         }
-        Porta p = portes.get(1);
-        return p; //MIRAR
+        else{
+            Random rand = new Random();
+            escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
+        }
+        
+        return escollida; 
     }
     //public Porta escollirPortaFugida(){
         

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * @class Porter
  * @brief Classe per gestionar les característiques del porter.
@@ -13,9 +16,24 @@
 
 public class Porter extends Personatge{
     public Porter(String tipusPersonatge, int capacitatMemoria){
-        super(capacitatMemoria);
+        super(nom,capacitatMemoria);
     }
-    public void actuar(){}
+    public void actuar(){
+        Porta escollida = escollirSeguentPorta();
+    }
+
+    public Porta escollirSeguentPorta(){
+        ArrayList<Porta> portes = espaiActual.getPortes();
+        Porta escollida;
+        for(int i=0;i<portes.size();i++){
+            boolean borra = false;
+            if(portes.get(i).altreCostat().estaPle()) borra=true;
+            //if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
+            if(borra) portes.remove(i);
+        }
+        Random rand = new Random();
+        escollida = portes.get(rand.nextInt(portes.size()));
+    }
     /** canvia de sala
     @pre: --
     @post: aplica l'estratègia per triar la millor porta segons el seu criteri i canvia de sala. */

@@ -13,6 +13,10 @@
  * @author eloicanigueral
  */
 
+import java.util.ArrayList;
+import java.util.Random;
+
+
 public class AlienGran extends Personatge{
 
     /**
@@ -37,13 +41,51 @@ public class AlienGran extends Personatge{
     /**
      * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i matar)
      */
-    public void actuar(){}
+    public void actuar(){
+        if (!espaiActual.hiHaGuardia()){
+            for(int i=0; i<espaiActual.getPersonatges().size(); i++){ //seria mes facil mirar si hi ha huma i/o porter abans de fer tot aquest for.....
+                Personatge p = espaiActual.getPersonatges().get(i);
+                if (p instanceof Huma || p instanceof Porter){ //sha de fer aixi de llarg??????.....
+                    matar(p);
+                    return; //no magrada aquest return................
+                }
+            }
+        }
+
+        Porta seguent = escollirSeguentPorta();
+        if (seguent != null){
+            espaiActual.sortir(this);
+            seguent.altreCostat().entrar(this);
+        }
+    }
 
     /**
      * @post S'escull la seguent porta
      */
-    public Espai escollirSeguentPorta(){ //PER FERRR!!!!!!!
-        return null;
+    public Porta escollirSeguentPorta(){ //sha de fer aixi.. amb 3 arraylist?? arnau ho te semblant crec.. perooo es aixi???????....
+        //sha de refer i revisar toot.. pqqq si canviem lu de porta de sortida un bool o algo... en comptes de altrecostat == null... ii lu altre no he mirat...
+        ArrayList<Porta> portes = espaiActual.getPortes();
+        ArrayList<Porta> recorda = new ArrayList<>();
+        ArrayList<Porta> noRecorda = new ArrayList<>();
+        
+        for (int i = 0; i < portes.size(); i++) {
+            if (portes.get(i).altreCostat() == null) continue; // sortida, saltar
+            if (memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
+            else noRecorda.add(portes.get(i));
+        }
+        
+        Random rand = new Random();
+        if (noRecorda.size() > 0) return noRecorda.get(rand.nextInt(noRecorda.size()));
+        
+        // totes visitades, va a una de no perillosa
+        ArrayList<Porta> noPerillosa = new ArrayList<>();
+        for (int i = 0; i < recorda.size(); i++) {
+            if (!memoria.esPerillos(recorda.get(i).altreCostat())) noPerillosa.add(recorda.get(i));
+        }
+        if (noPerillosa.size() > 0) return noPerillosa.get(rand.nextInt(noPerillosa.size()));
+        
+        // totes perilloses, random
+        return recorda.get(rand.nextInt(recorda.size()));
     }
 
 }

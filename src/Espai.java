@@ -129,6 +129,13 @@ public class Espai {
         return false;
     }
 
+    public boolean hiHaGuardia(){
+        for(int i=0; i<personatges.size();i++){
+            if(personatges.get(i) instanceof Guardia) return true;
+        }
+        return false;
+    }
+
     public boolean hiHaAlien(){
         for(int i=0; i<personatges.size(); i++){
             if(personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit) return true;

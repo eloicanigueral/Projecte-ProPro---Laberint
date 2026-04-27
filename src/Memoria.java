@@ -27,7 +27,7 @@ public class Memoria{
     */
     public Memoria(int mem){
         espais = new ArrayList<>();
-        capacitatMem=mem;
+        capacitatMem=mem; //si mem es -1 .. pues que el capacitat aquest sigui el nombre de sales no???
     }
 
     /**

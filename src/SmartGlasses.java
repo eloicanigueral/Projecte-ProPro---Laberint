@@ -22,10 +22,10 @@ public class SmartGlasses {
         sortidesExcloses = new ArrayList<>();
     }
     /** @return Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida */
-    public Espai camiRapid(Espai origen){
+    public Porta camiRapid(Espai origen){
        //fa un bfs per arribar a la sortida mes propera
         Queue<Espai> cua = new LinkedList<>();
-        HashMap<Espai, Espai> primerPas = new HashMap<>();
+        HashMap<Espai, Porta> primerPas = new HashMap<>();
 
         ArrayList<Porta> portesOrigen = origen.getPortes();
         for(int i=0; i<portesOrigen.size();i++){
@@ -33,8 +33,8 @@ public class SmartGlasses {
             if(sortidesExcloses.contains(porta)) continue;
 
             Espai desti = porta.altreCostat();
-            if(desti.esSortida()) return null;
-            primerPas.put(desti,desti);
+            if(desti.esSortida()) return porta;
+            primerPas.put(desti,porta);
             cua.add(desti);
         }
 

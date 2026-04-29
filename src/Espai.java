@@ -150,6 +150,10 @@ public class Espai {
         }
         return perillos;
     }
+
+    public boolean esSortida(){
+        return idEspai == -1;
+    }
     
 
 }

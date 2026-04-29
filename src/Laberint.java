@@ -33,6 +33,7 @@ public class Laberint {
 
     private ArrayList<Personatge> morts;
     private ArrayList<Personatge> salvats;
+    private Espai sortida = new Espai(-1, Integer.MAX_VALUE); //el max value aqust.......
 
     /**
      * @post Es crea el laberint amb els espais, portes i personatges.
@@ -46,7 +47,6 @@ public class Laberint {
 
         morts = new ArrayList<>();
         salvats = new ArrayList();
-        private Espai sortida = new Espai(-1, Integer.MAX_VALUE); //el max value aqust.......
         llegirLaberint();
 
         //despres de crear tot he de indicar quines son les sales d'entrada i de sortida...
@@ -88,6 +88,16 @@ public class Laberint {
                     System.out.print(pers.get(j).getNom() + ", ");
                 }
                 System.out.println();
+            }
+
+            //prova cout pels espais de sortida:
+            for (int i = 0; i < espais.size(); i++) {
+                ArrayList<Porta> portes = espais.get(i).getPortes();
+                for (int j = 0; j < portes.size(); j++) {
+                    if (portes.get(j).altreCostat().esSortida()) {
+                        System.out.println("Espai " + espais.get(i).mostrarId() + " té porta de sortida");
+                    }
+                }
             }
         } 
         System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/....

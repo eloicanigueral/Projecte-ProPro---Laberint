@@ -9,7 +9,7 @@
  * @invariant .
  * @invariant .
  *
- * @author eloicanigueral
+ * @author arnaulloret
  */
 import java.util.ArrayList;
 public class SmartGlasses {

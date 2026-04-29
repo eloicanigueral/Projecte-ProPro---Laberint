@@ -22,6 +22,7 @@ public class Guardia extends Personatge{
     ArrayList<Integer> claus;
     public Guardia(String nom, int capacitatMemoria, ArrayList<Integer> claus){
         super(nom,capacitatMemoria);
+        this.claus = claus;
     }
     public void protegirHumans(){}
     /** aplica immunitat als humans que hi ha a la sala que entra

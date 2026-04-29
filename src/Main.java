@@ -13,8 +13,17 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         Laberint lab = new Laberint();
+        //lu de ensenyar les sales i a on hi ha la sala sortida i tal... ferho aqui tb no??
+        int torn = 1
+        while(!lab.acabat()){
+            System.out.println(" ---- Torn " + torn + " ---- ");
+            lab.seguentTorn();
+            torn++;
+        }
 
-        System.out.println("S'ha acabat l'execució.");
+        System.out.println("S'ha acabat el joc.");
+        //ensenyar els personatges salvats
+        //ensenyar els personatges morts
         sc.close();
     }
     

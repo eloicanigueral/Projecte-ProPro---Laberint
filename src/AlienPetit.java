@@ -35,7 +35,7 @@ public class AlienPetit extends Personatge{
      * 
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
-    public void matar(Personatge p){
+    public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
         //agafar les claus que no tingui!!!!!!!!!!!!! (les altres es queden al terra!!!!!!!!!)
         //sumar la memoooriaa!!!!!!!!!
         p.morir();
@@ -45,7 +45,7 @@ public class AlienPetit extends Personatge{
      * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i matar)
      */
     public void actuar(){
-        if(espaiActual.hiHaAlien()){ //emmm.. calr perooo sempre donara true pq detecta al propi alien..... com arreglar?????????????
+        if(espaiActual.hiHaAlien(this)){
             Porta seguent = escollirSeguentPorta();
             if (seguent != null) {
                 Espai desti = seguent.altreCostat();
@@ -82,7 +82,7 @@ public class AlienPetit extends Personatge{
     /**
      * @post S'escull la seguent porta
      */
-    public Porta escollirSeguentPorta(){ //la he copiat de huma... no me la he ni mirat...
+    public Porta escollirSeguentPorta(){ //la he copiat de huma... no me la he ni mirat... lha canviat..  
         ArrayList<Porta> portes = espaiActual.getPortes();
         Porta escollida = null;
         for(int i=0;i<portes.size();i++){
@@ -126,4 +126,8 @@ public class AlienPetit extends Personatge{
     //emm he de crear una que sigui per poder augmentar la memoria de lalien!!!!
     //a memoria hi tinc un augmentarCapacitat.....
 
+    @Override
+    public int nombreClaus() {
+        return claus.size();
+    }
 }

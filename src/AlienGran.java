@@ -34,7 +34,7 @@ public class AlienGran extends Personatge{
      * 
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
-    public void matar(Personatge p){
+    public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
         p.morir();
     }
 
@@ -64,6 +64,7 @@ public class AlienGran extends Personatge{
      */
     public Porta escollirSeguentPorta(){ //sha de fer aixi.. amb 3 arraylist?? arnau ho te semblant crec.. perooo es aixi???????....
         //sha de refer i revisar toot.. pqqq si canviem lu de porta de sortida un bool o algo... en comptes de altrecostat == null... ii lu altre no he mirat...
+        //si hi ha huma no sempre pot entrar... si esta plena i nomes hi ha aliens no hi pot entrar.. com tinc aixo en compte???>....
         ArrayList<Porta> portes = espaiActual.getPortes();
         ArrayList<Porta> recorda = new ArrayList<>();
         ArrayList<Porta> noRecorda = new ArrayList<>();

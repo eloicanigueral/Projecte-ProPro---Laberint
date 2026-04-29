@@ -69,6 +69,11 @@ public abstract class Personatge {
         return viu;
     }
 
+    /**@pre i @post !!!!!!! */
+    public int nombreClaus(){
+        return 0;
+    }
+
     /** 
      * @post El personatge mor */
     public void morir(){

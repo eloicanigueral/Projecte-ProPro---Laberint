@@ -22,6 +22,8 @@ import java.util.List;
 import java.io.FileNotFoundException;
 import java.time.format.SignStyle;
 import java.util.Scanner;
+import java.util.Collections;
+
 
 
 public class Laberint {
@@ -100,7 +102,7 @@ public class Laberint {
                 }
             }
         } 
-        System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/....
+        System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/.... i surt sempre
 
     }
 
@@ -268,21 +270,47 @@ public class Laberint {
         return false;
     }
 
+    private void ordenarPrioritat(){
+        Collections.sort(personatges, (a, b) -> {
+            if(b.nombreClaus() != a.nombreClaus()) return b.nombreClaus() - a.nombreClaus();
+            return a.getNom().compareTo(b.getNom());
+        })
+    }
+
     /**
      * @pre Queda algun personatge humà viu dins el laberint
      * 
      * @post Avança un torn
      */
     public void seguentTorn(){ //emmm sha de comprovar aquest pre en algun lloc no????!!!!!!!!
-        for (Personatge p : personatges) {
-            if (p.estaViu()) {
-                p.actuar();
-                //p.recollirObjecte();
+        ordenarPrioritat();
+
+        // for (int i = 0; i < personatges.size(); i++) {
+        //     personatges.get(i).actuar();
+        // }
+
+        for (int i = 0; i < personatges.size(); i++) {
+            personatges.get(i).actuar();
+            if (!personatges.get(i).estaViu()) {
+                morts.add(personatges.get(i));
+                personatges.remove(i);
+                i--;
+            } else if (personatges.get(i).haSortit()) {
+                salvats.add(personatges.get(i));
+                personatges.remove(i);
+                i--;
             }
         }
-    }  //millor fer tot aixo en una altra classe aprat.. que sigui per tota la simulacio i tal.. com un main
-
+    }
     //metode moviment...
     /// balblabal crido actuar del personatge que li toqui
     /// i dsps miro si hi ha objectes al terra, si nhi ha, recollir objecte personatge
+    
+    public boolean acabat(){
+        for (int i=0; i<personatges.size(); i++) {
+            if (personatges.get(i) instanceof Huma || personatges.get(i) instanceof Porter || personatges.get(i) instanceof Guardia) 
+                return false;
+        }
+        return true;
+    }
 }

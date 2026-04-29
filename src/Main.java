@@ -14,7 +14,7 @@ public class Main {
         
         Laberint lab = new Laberint();
         //lu de ensenyar les sales i a on hi ha la sala sortida i tal... ferho aqui tb no??
-        int torn = 1
+        int torn = 1;
         while(!lab.acabat()){
             System.out.println(" ---- Torn " + torn + " ---- ");
             lab.seguentTorn();

@@ -45,7 +45,7 @@ public class Huma extends Personatge{
         }
 
         Porta seguent = null;
-        if(espaiActual.hiHaAlien()){
+        if(espaiActual.hiHaAlien(this)){
             //seguent = escollirPortaFugida();
         }
         else{

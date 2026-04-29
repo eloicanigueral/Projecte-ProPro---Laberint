@@ -274,7 +274,7 @@ public class Laberint {
         Collections.sort(personatges, (a, b) -> {
             if(b.nombreClaus() != a.nombreClaus()) return b.nombreClaus() - a.nombreClaus();
             return a.getNom().compareTo(b.getNom());
-        })
+        });
     }
 
     /**

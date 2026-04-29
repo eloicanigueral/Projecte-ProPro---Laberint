@@ -31,6 +31,9 @@ public class Laberint {
     private ArrayList<Personatge> personatges;
     private HashMap<Integer, ArrayList<Integer>> conexions; //= new HashMap<>(); ???
 
+    private ArrayList<Personatge> morts;
+    private ArrayList<Personatge> salvats;
+
     /**
      * @post Es crea el laberint amb els espais, portes i personatges.
      */
@@ -40,6 +43,10 @@ public class Laberint {
         portes = new ArrayList<>();
         personatges = new ArrayList<>();
         conexions = new HashMap<>();
+
+        morts = new ArrayList<>();
+        salvats = new ArrayList();
+        private Espai sortida = new Espai(-1, Integer.MAX_VALUE); //el max value aqust.......
         llegirLaberint();
 
         //despres de crear tot he de indicar quines son les sales d'entrada i de sortida...
@@ -219,7 +226,10 @@ public class Laberint {
             ArrayList<Espai> arrayEspais = new ArrayList<>();
             for (int j=0; j<arrayPortes.size(); j++){
                 if (arrayPortes.get(j) != 0){
-                    arrayEspais.add(altreCostat(arrayPortes.get(j)));
+                    Espai desti = altreCostat(arrayPortes.get(j));
+                    if (desti==null) 
+                        desti = sortida;
+                    arrayEspais.add(desti);
                     //arrayEspais.add(arrayPortes.get(j).altreCostat()); //si aixo funciona deixar aixi i aixi estalvio un emtode aqui a laberint
                 }
             }

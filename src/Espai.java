@@ -27,6 +27,7 @@ public class Espai {
     private int smartGlassesTirades;
     private ArrayList<Porta> portes;
     private ArrayList<Integer> espaisConectats;
+    private boolean restesHumanes;
 
 
     public Espai(int idEspai, int maxPersonatges){
@@ -38,6 +39,7 @@ public class Espai {
         clausTirades = new ArrayList<Integer>();
         portes = new ArrayList<Porta>();
         espaisConectats = new ArrayList<Integer>();
+        restesHumanes = false;
     }
     
     public void conectarEspais(ArrayList<Espai> espaisConnectats){
@@ -136,9 +138,9 @@ public class Espai {
         return false;
     }
 
-    public boolean hiHaAlien(){
+    public boolean hiHaAlien(Personatge excepcio){
         for(int i=0; i<personatges.size(); i++){
-            if(personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit) return true;
+            if(personatges.get(i) != excepcio && (personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit)) return true;
         }
         return false;
     }
@@ -147,10 +149,15 @@ public class Espai {
         int i=0;
         while(!perillos && i<personatges.size()){
             if(personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit) perillos = true;
+            if(restesHumanes) perillos = true;
+            i++;
         }
         return perillos;
     }
 
+    public void deixarRestes(){
+        restesHumanes = true;
+    }
     public boolean esSortida(){
         return idEspai == -1;
     }

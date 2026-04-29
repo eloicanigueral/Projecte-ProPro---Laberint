@@ -68,9 +68,17 @@ public class Huma extends Personatge{
         Porta escollida = null;
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
-            if(portes.get(i).altreCostat().estaPle()) borra=true;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
             if(borra) portes.remove(i);
+        }
+        if(ulleres != null){
+            escollida = ulleres.camiRapid(espaiActual);
+            if(!portes.contains(escollida)) escollida = null;
+            if(escollida.altreCostat().esPerillos()) escollida = null;
+            if(escollida.altreCostat().esSortida()){
+                if(!claus.contains(escollida.comprovarClau())) ulleres.exclourePortaSortida(escollida); 
+            }
+            if(escollida != null) return escollida;
         }
         
         ArrayList<Porta> recorda = new ArrayList<>();
@@ -102,6 +110,11 @@ public class Huma extends Personatge{
         }
         
         return escollida; 
+    }
+
+    @Override
+    public int nombreClaus(){
+        return claus.size();
     }
     //public Porta escollirPortaFugida(){
         

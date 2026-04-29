@@ -12,6 +12,7 @@
  * @author arnaulloret
  */
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Queue;
 import java.util.LinkedList;
 public class SmartGlasses {
@@ -24,19 +25,52 @@ public class SmartGlasses {
     public Espai camiRapid(Espai origen){
        //fa un bfs per arribar a la sortida mes propera
         Queue<Espai> cua = new LinkedList<>();
-        Espai e = new Espai(1,1);
-        return e;
-       
-    }
-//     ha de rebre l'espai origen per saber des de on ha de comencar....
-// I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar() ???
+        HashMap<Espai, Espai> primerPas = new HashMap<>();
 
-    /**
-     * @pre S'ha accedit a un espai que no estava previst per la ruta de les smartGlasses
-     * 
-     * @post Recalcula la ruta tornant a buscar el camí més òptim per tal d'arribar a la sortida
-     */
-    public void recalcularRuta(){
+        ArrayList<Porta> portesOrigen = origen.getPortes();
+        for(int i=0; i<portesOrigen.size();i++){
+            Porta porta = portesOrigen.get(i);
+            if(sortidesExcloses.contains(porta)) continue;
 
+            Espai desti = porta.altreCostat();
+            if(desti.esSortida()) return null;
+            primerPas.put(desti,desti);
+            cua.add(desti);
+        }
+
+        while(!cua.isEmpty()){
+            Espai actual = cua.poll();
+            ArrayList<Porta> portes = actual.getPortes();
+            
+            for(int i=0; i<portes.size();i++){
+                Porta porta = portes.get(i);
+                if(sortidesExcloses.contains(porta)) continue;
+
+                Espai desti = porta.altreCostat();
+                if(desti.esSortida()) return primerPas.get(actual);
+                if(!primerPas.containsKey(desti)){
+                    primerPas.put(desti,primerPas.get(actual));
+                    cua.add(desti);
+                }
+            }
+        }
+        return null;
     }
+
+    
+
+    public void exclourePortaSortida(Porta p){
+        if(!sortidesExcloses.contains(p)){
+            sortidesExcloses.add(p);
+        }
+    }
+    public void inclourePortaSortida(Porta p){
+        sortidesExcloses.remove(p);
+    }
+
+    public void reiniciarUlleres(){
+        sortidesExcloses.clear();
+    }
+
+    
 }

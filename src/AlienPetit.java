@@ -39,6 +39,8 @@ public class AlienPetit extends Personatge{
         //agafar les claus que no tingui!!!!!!!!!!!!! (les altres es queden al terra!!!!!!!!!)
         //sumar la memoooriaa!!!!!!!!!
         p.morir();
+        espaiActual.sortir(p);
+        System.out.println("   -> " + nom + " MATA a " + p.getNom());
     }
 
     /**

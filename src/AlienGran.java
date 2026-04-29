@@ -36,6 +36,8 @@ public class AlienGran extends Personatge{
      */
     public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
         p.morir();
+        espaiActual.sortir(p);
+        System.out.println("   -> " + nom + " MATA a " + p.getNom());
     }
 
     /**
@@ -68,6 +70,8 @@ public class AlienGran extends Personatge{
         ArrayList<Porta> portes = espaiActual.getPortes();
         ArrayList<Porta> recorda = new ArrayList<>();
         ArrayList<Porta> noRecorda = new ArrayList<>();
+
+
         
         for (int i = 0; i < portes.size(); i++) {
             if (portes.get(i).altreCostat() == null) continue; // sortida, saltar
@@ -85,6 +89,7 @@ public class AlienGran extends Personatge{
         }
         if (noPerillosa.size() > 0) return noPerillosa.get(rand.nextInt(noPerillosa.size()));
         
+       // if (recorda.size() == 0 && noRecorda.size() == 0) return null;
         // totes perilloses, random
         return recorda.get(rand.nextInt(recorda.size()));
     }

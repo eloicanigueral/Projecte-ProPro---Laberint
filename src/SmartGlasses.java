@@ -12,14 +12,20 @@
  * @author arnaulloret
  */
 import java.util.ArrayList;
+import java.util.Queue;
 public class SmartGlasses {
+    private ArrayList<Porta> sortidesExcloses;
 
+    public SmartGlasses(){
+        sortidesExcloses = new ArrayList<>();
+    }
     /** @return Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida */
-    public Espai camiRapid(){
-       // ArrayList<Porta> portes;
-       // return new Espai(1,portes,2);
-       Espai e = new Espai(1,1);
-       return e;
+    public Espai camiRapid(Espai origen){
+       //fa un bfs per arribar a la sortida mes propera
+        Queue<Espai> cua = new LinkedList<>();
+        Espai e = new Espai(1,1);
+        return e;
+       
     }
 //     ha de rebre l'espai origen per saber des de on ha de comencar....
 // I afegir exclourePortaSortida(), inclourePortaSortida(), reinicialitzar() ???
@@ -29,5 +35,7 @@ public class SmartGlasses {
      * 
      * @post Recalcula la ruta tornant a buscar el camí més òptim per tal d'arribar a la sortida
      */
-    public void recalcularRuta(){}
+    public void recalcularRuta(){
+
+    }
 }

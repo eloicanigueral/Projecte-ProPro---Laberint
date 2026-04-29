@@ -17,7 +17,6 @@ import java.util.Random;
 
 public class Huma extends Personatge{
     private SmartGlasses ulleres;
-    private boolean teUlleres;
     private ArrayList<Integer> claus;
 
     public Huma(String nom, int capacitatMemoria, ArrayList<Integer> claus, boolean ulleres){
@@ -26,15 +25,16 @@ public class Huma extends Personatge{
             this.ulleres = new SmartGlasses();
         }
         this.claus = claus;
-        teUlleres = ulleres;
     }
-
+    
+    public boolean teUlleres(){
+        return ulleres != null;
+    }
     public void actuar(){
-        if(!teUlleres && espaiActual().hiHaSmartGlasses()){
-            teUlleres = true;
+        if(!teUlleres() && espaiActual().hiHaSmartGlasses()){
             ulleres = espaiActual().recollirSmartGlasses();
         }
-        else if (espaiActual().hiHaClaus()) {
+        if (espaiActual().hiHaClaus()) {
             ArrayList<Integer> tirades = espaiActual().veureClaus();
             for (int i = 0; i < tirades.size(); i++) {
                 if (!claus.contains(tirades.get(i))) {

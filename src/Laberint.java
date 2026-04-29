@@ -290,12 +290,15 @@ public class Laberint {
         // }
 
         for (int i = 0; i < personatges.size(); i++) {
+            System.out.println(personatges.get(i).getNom() + " actua (sala " + personatges.get(i).espaiActual().mostrarId() + ")");
             personatges.get(i).actuar();
             if (!personatges.get(i).estaViu()) {
+                System.out.println(personatges.get(i).getNom() + " ha mort!");
                 morts.add(personatges.get(i));
                 personatges.remove(i);
                 i--;
             } else if (personatges.get(i).haSortit()) {
+                System.out.println(personatges.get(i).getNom() + " ha sortit!");
                 salvats.add(personatges.get(i));
                 personatges.remove(i);
                 i--;

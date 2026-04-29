@@ -59,7 +59,9 @@ public class Huma extends Personatge{
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
+            System.out.println(nom + " es mou a sala " + desti.mostrarId());
         }
+
     }
     
 

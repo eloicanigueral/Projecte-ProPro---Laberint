@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['de_20programació_20geinf_20geb_20udg_0',['Projecte de Programació (GEINF/GEB - UdG)',['../dir_a170d9237ebdb8c6f9ee1a20a65c0128.html#autotoc_md0',1,'']]],
+  ['desprotegirhumans_1',['desprotegirHumans',['../class_guardia.html#afb6af442cd83d806d09fd726455f6984',1,'Guardia']]]
+];

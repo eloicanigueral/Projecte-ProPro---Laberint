@@ -18,7 +18,6 @@ import java.util.Random;
 
 public class AlienPetit extends Personatge{
 
-    private ArrayList<Integer> claus;
     /**
      * @pre Es crida el constructor de l'alien petit juntament amb la seva capacitat de memòria
      * 

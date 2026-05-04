@@ -125,3 +125,4 @@ public class Huma extends Personatge{
     public boolean teSmartGlasses(){
         return ulleres != null;
     }
+}

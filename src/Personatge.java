@@ -33,7 +33,7 @@ public abstract class Personatge {
     protected Personatge(String nom, int capacitatMemoria) {
         this.nom = nom;
         this.memoria = new Memoria(capacitatMemoria);
-        this.claus = null;
+        this.claus = new ArrayList<>();
         this.espaiActual = null;
     }
 
@@ -80,7 +80,8 @@ public abstract class Personatge {
 
     /**@pre i @post !!!!!!! */
     public int nombreClaus(){
-        return 0;
+        //if (claus.size() == null) return 0;
+        return claus.size();
     }
 
     /** 

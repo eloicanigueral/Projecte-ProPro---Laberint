@@ -15,6 +15,7 @@ public abstract class Personatge {
     protected boolean viu = true;
     protected Espai espaiActual; // espai o int???
     protected Memoria memoria;
+    protected ArrayList<Integer> claus;
     protected boolean haSortit = false;
 
     /**
@@ -22,9 +23,17 @@ public abstract class Personatge {
      * 
      * @post Es crea el personatge concret indicat, i s'inicialitzen els seus atributs
      */
+    protected Personatge(String nom, int capacitatMemoria, ArrayList<Integer> claus) {
+        this.nom = nom;
+        this.memoria = new Memoria(capacitatMemoria);
+        this.claus = claus;
+        this.espaiActual = null;
+    }
+
     protected Personatge(String nom, int capacitatMemoria) {
         this.nom = nom;
         this.memoria = new Memoria(capacitatMemoria);
+        this.claus = null;
         this.espaiActual = null;
     }
 
@@ -60,9 +69,9 @@ public abstract class Personatge {
      * 
      * @post S'afageix la clau a l'inventari del personatge
      */
-    public void afegirClau(int codi){
-      //  claus.add(new Clau(codi));
-    }
+    // public void afegirClau(int codi){
+    //   //  claus.add(new Clau(codi));
+    // }
 
     /** @return Retorna si el personatge esta viu o no. */
     public boolean estaViu(){
@@ -76,7 +85,13 @@ public abstract class Personatge {
 
     /** 
      * @post El personatge mor */
-    public void morir(){
+    public void morir(ArrayList<Integer> claus, boolean smartGlasses){
+        espaiActual.deixarRestes();
+        for(int i=0; i>claus.size(); i++){
+            espaiActual.deixarClau(claus.get(i));
+        }
+        if (smartGlasses)
+            espaiActual.deixarSmartGlasses();
         viu = false;
     }
 
@@ -138,5 +153,4 @@ public abstract class Personatge {
      * @post Cada personatge actua segons la seva estrategia
      */
     public abstract void actuar(); //mirar si cal.. i com ferho... pq tots tenen un actuar diferent pero tots son personatges
-
 }

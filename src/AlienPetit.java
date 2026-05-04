@@ -25,9 +25,8 @@ public class AlienPetit extends Personatge{
      * @post Es crea un alien petit amb la seva capacitat de memoria inicial
      */
     public AlienPetit(String nom, int capacitatMemoria, ArrayList<Integer> claus) {
-        super(nom, capacitatMemoria);
-        this.nom = nom;
-        this.claus = claus;
+        super(nom, capacitatMemoria, claus);
+        //this.nom = nom; //no cal no???....
     }
 
     /**
@@ -38,7 +37,8 @@ public class AlienPetit extends Personatge{
     public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
         //agafar les claus que no tingui!!!!!!!!!!!!! (les altres es queden al terra!!!!!!!!!)
         //sumar la memoooriaa!!!!!!!!!
-        p.morir();
+        p.morir(p.claus, p.teSmartGlasses()); ///mmm clar aquest teSmartGlasses no es pot no??
+        this.memoria.augmentarCapacitat(p.memoria.capacitatMemoria()); //aixo esta be???.. jujuju
         espaiActual.sortir(p);
         System.out.println("   -> " + nom + " MATA a " + p.getNom());
     }

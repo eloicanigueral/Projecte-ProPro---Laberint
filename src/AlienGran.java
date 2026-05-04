@@ -26,7 +26,7 @@ public class AlienGran extends Personatge{
      */
     public AlienGran(String nom) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
         super(nom, -1);
-        this.nom = nom;
+        //this.nom = nom; ///aixo sobra no????....
     }
 
     /**
@@ -35,7 +35,7 @@ public class AlienGran extends Personatge{
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
     public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
-        p.morir();
+        p.morir(p.claus, false); //pq no crec q es pugui fer lu de p.teSmartGlasses();
         espaiActual.sortir(p);
         System.out.println("   -> " + nom + " MATA a " + p.getNom());
     }

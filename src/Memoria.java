@@ -53,6 +53,11 @@ public class Memoria{
         espais.remove(0); 
     }  //per ferrr!!!!!!!!!!!!!!
 
+
+    public int capacitatMemoria(){
+        return capacitatMem;
+    }
+
     /**
      * @pre Es tracta d'un alien petit
      * 

@@ -1,0 +1,5 @@
+h:huma1:2:[1]:0
+ag:alien
+sala:1:(0,2,0,0):3:[huma1]
+sala:2:(1,0,3,0):3:[alien]
+pas:3:(0,1):2

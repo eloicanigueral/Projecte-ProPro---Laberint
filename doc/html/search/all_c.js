@@ -1,7 +1,7 @@
 var searchData=
 [
   ['pair_0',['Pair',['../class_pair.html',1,'']]],
-  ['personatge_1',['Personatge',['../class_personatge.html',1,'Personatge'],['../class_personatge.html#aba72ea2721069afe11cbacbaa5588021',1,'Personatge.Personatge()']]],
+  ['personatge_1',['Personatge',['../class_personatge.html',1,'Personatge'],['../class_personatge.html#a11e4d00b4b4ca572c18096237e182ac7',1,'Personatge.Personatge()']]],
   ['porta_2',['Porta',['../class_porta.html',1,'']]],
   ['porter_3',['Porter',['../class_porter.html',1,'']]],
   ['potentrarespai_4',['potEntrarEspai',['../class_personatge.html#aebc18fb1b1d991ce2023ae0c5cba2b9a',1,'Personatge']]],

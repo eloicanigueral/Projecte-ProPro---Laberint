@@ -112,16 +112,17 @@ Inheritance diagram for Personatge:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a934dbce08958d3172cdfa7578fcae72e" id="r_a934dbce08958d3172cdfa7578fcae72e"><td class="memItemLeft"><a class="el" href="class_espai.html">Espai</a>&#160;</td><td class="memItemRight"><a class="el" href="#a934dbce08958d3172cdfa7578fcae72e">espaiActual</a> ()</td></tr>
 <tr class="memitem:aebc18fb1b1d991ce2023ae0c5cba2b9a" id="r_aebc18fb1b1d991ce2023ae0c5cba2b9a"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#aebc18fb1b1d991ce2023ae0c5cba2b9a">potEntrarEspai</a> (<a class="el" href="class_espai.html">Espai</a> e)</td></tr>
-<tr class="memitem:a95fb93e35a6d9d8434efdccd8a2a7c3f" id="r_a95fb93e35a6d9d8434efdccd8a2a7c3f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a95fb93e35a6d9d8434efdccd8a2a7c3f">afegirClau</a> (int codi)</td></tr>
 <tr class="memitem:a5f50adf79f980eb92c9677f0737a79cc" id="r_a5f50adf79f980eb92c9677f0737a79cc"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#a5f50adf79f980eb92c9677f0737a79cc">estaViu</a> ()</td></tr>
 <tr class="memitem:a9651914039c8ff9ea1f7fec9984ffecb" id="r_a9651914039c8ff9ea1f7fec9984ffecb"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a9651914039c8ff9ea1f7fec9984ffecb">nombreClaus</a> ()</td></tr>
-<tr class="memitem:a3ab03bc6091e23b090767ab76a55aba5" id="r_a3ab03bc6091e23b090767ab76a55aba5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3ab03bc6091e23b090767ab76a55aba5">morir</a> ()</td></tr>
+<tr class="memitem:a3029ef4cee81548b43007a75669dc2b9" id="r_a3029ef4cee81548b43007a75669dc2b9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3029ef4cee81548b43007a75669dc2b9">morir</a> (ArrayList&lt; Integer &gt; claus, boolean smartGlasses)</td></tr>
 <tr class="memitem:af2d00b4c0d7dd5df604b653f4c90c79b" id="r_af2d00b4c0d7dd5df604b653f4c90c79b"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#af2d00b4c0d7dd5df604b653f4c90c79b">haSortit</a> ()</td></tr>
 <tr class="memitem:adeab98ee080fd00b293577206761b78e" id="r_adeab98ee080fd00b293577206761b78e"><td class="memItemLeft">abstract void&#160;</td><td class="memItemRight"><a class="el" href="#adeab98ee080fd00b293577206761b78e">actuar</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aba72ea2721069afe11cbacbaa5588021" id="r_aba72ea2721069afe11cbacbaa5588021"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aba72ea2721069afe11cbacbaa5588021">Personatge</a> (String nom, int capacitatMemoria)</td></tr>
+<tr class="memitem:a11e4d00b4b4ca572c18096237e182ac7" id="r_a11e4d00b4b4ca572c18096237e182ac7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a11e4d00b4b4ca572c18096237e182ac7">Personatge</a> (String nom, int capacitatMemoria, ArrayList&lt; Integer &gt; claus)</td></tr>
+<tr class="memitem:aba72ea2721069afe11cbacbaa5588021" id="r_aba72ea2721069afe11cbacbaa5588021"><td class="memItemLeft"><a id="aba72ea2721069afe11cbacbaa5588021" name="aba72ea2721069afe11cbacbaa5588021"></a>
+&#160;</td><td class="memItemRight"><b>Personatge</b> (String nom, int capacitatMemoria)</td></tr>
 <tr class="memitem:a4bb7db0b871c2ca8bd9804596cf943d1" id="r_a4bb7db0b871c2ca8bd9804596cf943d1"><td class="memItemLeft"><a id="a4bb7db0b871c2ca8bd9804596cf943d1" name="a4bb7db0b871c2ca8bd9804596cf943d1"></a>
 String&#160;</td><td class="memItemRight"><b>getNom</b> ()</td></tr>
 <tr class="memitem:ab23c38ce2d288f727f636391b198f96d" id="r_ab23c38ce2d288f727f636391b198f96d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab23c38ce2d288f727f636391b198f96d">canviEspai</a> (<a class="el" href="class_espai.html">Espai</a> e)</td></tr>
@@ -136,6 +137,8 @@ boolean&#160;</td><td class="memItemRight"><b>viu</b> = true</td></tr>
 <a class="el" href="class_espai.html">Espai</a>&#160;</td><td class="memItemRight"><b>espaiActual</b></td></tr>
 <tr class="memitem:a5e852067a514e1b7a9c0be07e4094a45" id="r_a5e852067a514e1b7a9c0be07e4094a45"><td class="memItemLeft"><a id="a5e852067a514e1b7a9c0be07e4094a45" name="a5e852067a514e1b7a9c0be07e4094a45"></a>
 <a class="el" href="class_memoria.html">Memoria</a>&#160;</td><td class="memItemRight"><b>memoria</b></td></tr>
+<tr class="memitem:af1611034c7ed0408f4a6fd31d7339851" id="r_af1611034c7ed0408f4a6fd31d7339851"><td class="memItemLeft"><a id="af1611034c7ed0408f4a6fd31d7339851" name="af1611034c7ed0408f4a6fd31d7339851"></a>
+ArrayList&lt; Integer &gt;&#160;</td><td class="memItemRight"><b>claus</b></td></tr>
 <tr class="memitem:a3baa0b2531f8f732f9e4f2f9ed86c9de" id="r_a3baa0b2531f8f732f9e4f2f9ed86c9de"><td class="memItemLeft"><a id="a3baa0b2531f8f732f9e4f2f9ed86c9de" name="a3baa0b2531f8f732f9e4f2f9ed86c9de"></a>
 boolean&#160;</td><td class="memItemRight"><b>haSortit</b> = false</td></tr>
 </table>
@@ -144,8 +147,8 @@ boolean&#160;</td><td class="memItemRight"><b>haSortit</b> = false</td></tr>
 <p>Hi ha diversos tipus de personatge amb capacitats/habilitats/caracteristiques diferents.</p>
 <dl class="section author"><dt>Author</dt><dd>eloicanigueral </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aba72ea2721069afe11cbacbaa5588021" name="aba72ea2721069afe11cbacbaa5588021"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba72ea2721069afe11cbacbaa5588021">&#9670;&#160;</a></span>Personatge()</h2>
+<a id="a11e4d00b4b4ca572c18096237e182ac7" name="a11e4d00b4b4ca572c18096237e182ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11e4d00b4b4ca572c18096237e182ac7">&#9670;&#160;</a></span>Personatge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +164,12 @@ boolean&#160;</td><td class="memItemRight"><b>haSortit</b> = false</td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>capacitatMemoria</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>capacitatMemoria</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ArrayList&lt; Integer &gt;</td>          <td class="paramname"><span class="paramname"><em>claus</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -202,33 +210,6 @@ boolean&#160;</td><td class="memItemRight"><b>haSortit</b> = false</td></tr>
 <dl class="section post"><dt>Postcondition</dt><dd>Cada personatge actua segons la seva estrategia </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_alien_gran.html#aaffb82aa53a3bfae5bbe64b6745e54ef">AlienGran</a>, <a class="el" href="class_alien_petit.html#a918f6d6c8f50aa4bcf9d3a2802478dbc">AlienPetit</a>, <a class="el" href="class_guardia.html#a03f607fa64f30198767b84aa92df73bb">Guardia</a>, <a class="el" href="class_huma.html#a8be3b6e4ec5d17de209e3d316ae5f773">Huma</a>, and <a class="el" href="class_porter.html#a5b30925cc18aa02cdfb5c0272dfce845">Porter</a>.</p>
-
-</div>
-</div>
-<a id="a95fb93e35a6d9d8434efdccd8a2a7c3f" name="a95fb93e35a6d9d8434efdccd8a2a7c3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95fb93e35a6d9d8434efdccd8a2a7c3f">&#9670;&#160;</a></span>afegirClau()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Personatge.afegirClau </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>codi</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>AQUEST METODE TREUREL DE AQUI I POSARLO A ALS PERSONATGES QUE TOQUI!!!!! </p><dl class="section pre"><dt>Precondition</dt><dd>S'indica el codi de la clau que el personatge ha agafat, i per tant, s'ha d'afegir al seu inventari de claus</dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>S'afageix la clau a l'inventari del personatge </dd></dl>
 
 </div>
 </div>
@@ -307,6 +288,8 @@ boolean&#160;</td><td class="memItemRight"><b>haSortit</b> = false</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>AQUEST METODE TREUREL DE AQUI I POSARLO A ALS PERSONATGES QUE TOQUI!!!!! </p><dl class="section pre"><dt>Precondition</dt><dd>S'indica el codi de la clau que el personatge ha agafat, i per tant, s'ha d'afegir al seu inventari de claus</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>S'afageix la clau a l'inventari del personatge </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Retorna si el personatge esta viu o no. </dd></dl>
 
 </div>
@@ -340,8 +323,8 @@ Retorna si el personatge ha sortit del laberint </dd></dl>
 
 </div>
 </div>
-<a id="a3ab03bc6091e23b090767ab76a55aba5" name="a3ab03bc6091e23b090767ab76a55aba5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ab03bc6091e23b090767ab76a55aba5">&#9670;&#160;</a></span>morir()</h2>
+<a id="a3029ef4cee81548b43007a75669dc2b9" name="a3029ef4cee81548b43007a75669dc2b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3029ef4cee81548b43007a75669dc2b9">&#9670;&#160;</a></span>morir()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,8 +335,12 @@ Retorna si el personatge ha sortit del laberint </dd></dl>
         <tr>
           <td class="memname">void Personatge.morir </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">ArrayList&lt; Integer &gt;</td>          <td class="paramname"><span class="paramname"><em>claus</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">boolean</td>          <td class="paramname"><span class="paramname"><em>smartGlasses</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -390,8 +377,6 @@ Retorna si el personatge ha sortit del laberint </dd></dl>
 </div><div class="memdoc">
 <dl class="section pre"><dt>Precondition</dt><dd>i </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>!!!!!!! </dd></dl>
-
-<p>Reimplemented in <a class="el" href="class_alien_petit.html#a9214aadc92ea6f97275f32d1d529fa76">AlienPetit</a>, <a class="el" href="class_guardia.html#a75fb52a3709a4b39e7cee49d0c2e1158">Guardia</a>, and <a class="el" href="class_huma.html#ac253190dafb41344b1208e3ce12b2703">Huma</a>.</p>
 
 </div>
 </div>

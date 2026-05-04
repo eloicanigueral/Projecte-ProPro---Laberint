@@ -1,6 +1,6 @@
 /**
  * @class Espai
- * @brief Classe per gestionar cada espai del laberint
+ * @brief Classe per gestionar els espais del laberint aixi com totes les accions que passen a dins d'un espai.
  *
  * @details
  * Un espai és una zona del laberint on es troben una sèrie de personatges
@@ -56,13 +56,21 @@ public class Espai {
     public void addPorta(Porta p){
         portes.add(p);
     }
+
+    
+    /**
+    @pre: --
+    @post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.
+    */
     public boolean estaPle(){
         return nPersonatges == maxPersonatges;
     }
-    /** per saber si hi cap més gent a una sala
-    @pre: --
-    @post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.*/
 
+    /** 
+    @pre: --
+    @post: si la sala no està plena, el personatge p entra a l'espai, es canvia l'espai actual del personatge 
+    * i s'incrementa en un el nombre de personatges que hi ha a l'espai.
+    */
     public void entrar(Personatge p){
         if(!estaPle()){
             personatges.add(p);
@@ -72,58 +80,102 @@ public class Espai {
         
     }
 
-    public int mostrarId(){
-        return idEspai;
-    }
-    /** fer entrar un personatge a l'espai
-    @pre: espai no és ple
-    @post: el personatge passa a estar a dins de l'espai. */
-
+    /** 
+    @pre: hi ha personatge p a l'espai.
+    @post: s'elimina el personatge de l'espai i es resta en un el nombre de personatges que hi ha.
+    */
     public void sortir(Personatge p){
         personatges.remove(p);
         nPersonatges--;
     }
-    /** fer sortir a un personatge de l'espai
-    @pre p està a dins de l'espai
-    @post el personatge deixa d'estar dins de l'espai.*/
 
+    /**
+    @pre: --
+    @post: retorna id d'aquest espai.
+    */
+    public int mostrarId(){
+        return idEspai;
+    }
+
+    /**
+    @pre: --
+    @post: retorna una ArrayList de les portes que hi ha a l'espai. 
+    *Si una porta està a l'espai es suposa que té pany per anar a l'altre costat.
+    */
     public ArrayList<Porta> getPortes(){
         return portes;
     }
-    /**per saber les portes que té aquest espai
+   
+    /**
     @pre: --
-    @post: retorna una List de totes les portes que hi ha a l'espai*/
-
-    public List<Personatge> getPersonatges(){
+    @post: retorna una ArrayList dels personatges que hi ha a l'espai.
+    */
+    public ArrayList<Personatge> getPersonatges(){
         return personatges;
     }
-    /** per saber els personatges que hi ha dins un espai
+    
+    /**
     @pre: --
-    @post: retorna una List dels personatges que hi ha actualment a l'espai. */
+    @post: retorna true si hi ha claus tirades en aquest espai. False altrament.
+    */
     public boolean hiHaClaus(){
         return clausTirades.size() > 0;
     }
+
+    /**
+    @pre: --
+    @post: retorna true si hi ha un objecte SmartGlasses tirat en aquest espai. False altrament.
+    */
     public boolean hiHaSmartGlasses(){
-        if(smartGlassesTirades > 0) return true;
-        else return false;
+        return smartGlassesTirades > 0;
     }
 
+    /**
+    @pre: --
+    @post: retorna una ArrayList de les claus que hi ha tirades en aquest espai.
+    */
     public ArrayList<Integer> veureClaus(){
         return clausTirades;
     }
 
+    /**
+    @pre: c està tirada a l'espai.
+    @post: es treu clau c de l'array list de claus tirades.
+    */
     public void agafarClau(Integer c){
         clausTirades.remove(c);
     }
+
+    /**
+    @pre: --
+    @post: retorna un objecte SmartGlasses nou i resta en un el nombre de SmartGlasses que hi ha tirades en aquest espai.
+    */
     public SmartGlasses recollirSmartGlasses(){
         SmartGlasses ulleres = new SmartGlasses();
+        smartGlassesTirades--;
         return ulleres;
     }
 
+    /**
+    @pre: --
+    @post: afageix c a la llista de claus tirades d'aquest espai.
+    */
     public void deixarClau(Integer c){
         clausTirades.add(c);
     }
 
+    /**
+    @pre: --
+    @post: suma en un el nombre de SmartGlasses que hi ha tirades en aquesta sala.
+    */
+    public void deixarSmartGlasses(){
+        smartGlassesTirades++;
+    }
+
+    /**
+    @pre: --
+    @post: retorna true si hi ha algun humà en aquest espai. false altrament.
+    */
     public boolean hiHaHuma(){
         for(int i=0; i<personatges.size();i++){
             if(personatges.get(i) instanceof Huma) return true;
@@ -131,6 +183,10 @@ public class Espai {
         return false;
     }
 
+    /**
+    @pre: --
+    @post: retorna true si hi ha algun guàrdia en aquest espai. false altrament.
+    */
     public boolean hiHaGuardia(){
         for(int i=0; i<personatges.size();i++){
             if(personatges.get(i) instanceof Guardia) return true;
@@ -138,12 +194,21 @@ public class Espai {
         return false;
     }
 
+    /**
+    @pre: --
+    @post: retorna true si hi ha algun alien petit o alien gran en aquest espai. false altrament.
+    */
     public boolean hiHaAlien(Personatge excepcio){
         for(int i=0; i<personatges.size(); i++){
             if(personatges.get(i) != excepcio && (personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit)) return true;
         }
         return false;
     }
+
+    /**
+    @pre: --
+    @post: retorna true si hi ha algun alien petit o alien gran en aquest espai o hi ha restes humanes. false altrament.
+    */
     public boolean esPerillos(){
         boolean perillos = false;
         int i=0;
@@ -155,9 +220,18 @@ public class Espai {
         return perillos;
     }
 
+    /**
+    @pre: --
+    @post: canvia boolean d'aquest espai que hi han restes humanes.
+    */
     public void deixarRestes(){
         restesHumanes = true;
     }
+
+    /**
+    @pre: --
+    @post: retorna ture si aquest espai és l'exterior. false altrament.
+    */ 
     public boolean esSortida(){
         return idEspai == -1;
     }

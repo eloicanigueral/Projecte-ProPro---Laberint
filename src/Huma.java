@@ -17,10 +17,9 @@ import java.util.Random;
 
 public class Huma extends Personatge{
     private SmartGlasses ulleres;
-    private ArrayList<Integer> claus;
 
     public Huma(String nom, int capacitatMemoria, ArrayList<Integer> claus, boolean ulleres){
-        super(nom,capacitatMemoria);
+        super(nom,capacitatMemoria,claus);
         if(ulleres){
             this.ulleres = new SmartGlasses();
         }
@@ -118,33 +117,11 @@ public class Huma extends Personatge{
     public int nombreClaus(){
         return claus.size();
     }
-    //public Porta escollirPortaFugida(){
-        
-    //}
-    /** aplica l'algoritme per escollir la segÜent millor sala
-    @pre: --
-    @post: retorna la millor Sala per anar aquest humà. */
 
-    
-}
+    public ArrayList<Integer> veureClaus(){
+        return claus;
+    }
 
-/*
-for(int i=0; i<portes.size();i++){
-            if(!claus.contains(portes.get(i).getCodi()) && !portes.get(i).estaOberta()){
-                portes.remove(i);
-            }
-        }
-        ArrayList<Porta> perilloses, segures;
-        if(portes.size() > 0){
-           for(int i=0; i<portes.size();i++){
-                if(memoria.esPerillos(portes.get(i).altreCostat())){
-                    perilloses.add(portes.get(i));
-                }
-                else segures.add(portes.get(i));
-            }
-            if(segures.size() > 0){
-                
-            } 
-        }
-
-*/
+    public boolean teSmartGlasses(){
+        return ulleres != null;
+    }

@@ -98,10 +98,8 @@ public class Guardia extends Personatge{
         return escollida;
 
     }
-    @Override
-    public int nombreClaus(){
-        return claus.size();
-    }
+
+    
     /** tria a quina sala vol anar, desprotegeix els humans de la sala actual, es mou de sala, protegeix els humans de la sala nova
     @pre: --
     @post: s'han desprotegit els humans de la sala actual, s'ha escollit la millor porta, s'ha mogut de sala i s'han protegit els nous humans.

@@ -113,11 +113,6 @@ public class Huma extends Personatge{
         return escollida; 
     }
 
-    @Override
-    public int nombreClaus(){
-        return claus.size();
-    }
-
     public ArrayList<Integer> veureClaus(){
         return claus;
     }

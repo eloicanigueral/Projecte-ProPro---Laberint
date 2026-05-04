@@ -127,9 +127,4 @@ public class AlienPetit extends Personatge{
 
     //emm he de crear una que sigui per poder augmentar la memoria de lalien!!!!
     //a memoria hi tinc un augmentarCapacitat.....
-
-    @Override
-    public int nombreClaus() {
-        return claus.size();
-    }
 }

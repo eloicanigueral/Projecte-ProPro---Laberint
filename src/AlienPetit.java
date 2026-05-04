@@ -107,7 +107,7 @@ public class AlienPetit extends Personatge{
                 else noPerillosa.add(recorda.get(i));
             }
             if(noPerillosa.size() == 0 && !espaiActual.esPerillos()){}
-            else if(noPerillosa.size() == 0 && espaiActual.esPerillos()){
+            else if(perillosa.size() > 0 && espaiActual.esPerillos()){
                 Random rand = new Random();
                 escollida = perillosa.get(rand.nextInt(perillosa.size()));
             }

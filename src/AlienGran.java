@@ -89,8 +89,9 @@ public class AlienGran extends Personatge{
         }
         if (noPerillosa.size() > 0) return noPerillosa.get(rand.nextInt(noPerillosa.size()));
         
-       // if (recorda.size() == 0 && noRecorda.size() == 0) return null;
+       if (recorda.size() == 0 && noRecorda.size() == 0) return null;
         // totes perilloses, random
+        System.out.println(recorda.size());
         return recorda.get(rand.nextInt(recorda.size()));
     }
 

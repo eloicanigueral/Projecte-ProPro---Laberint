@@ -35,7 +35,7 @@ public class AlienGran extends Personatge{
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
     public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
-        p.morir(p.claus, false); //pq no crec q es pugui fer lu de p.teSmartGlasses();
+        p.morir(p.claus, p.teSmartGlasses());
         espaiActual.sortir(p);
         System.out.println("   -> " + nom + " MATA a " + p.getNom());
     }
@@ -67,14 +67,15 @@ public class AlienGran extends Personatge{
     public Porta escollirSeguentPorta(){ //sha de fer aixi.. amb 3 arraylist?? arnau ho te semblant crec.. perooo es aixi???????....
         //sha de refer i revisar toot.. pqqq si canviem lu de porta de sortida un bool o algo... en comptes de altrecostat == null... ii lu altre no he mirat...
         //si hi ha huma no sempre pot entrar... si esta plena i nomes hi ha aliens no hi pot entrar.. com tinc aixo en compte???>....
-        ArrayList<Porta> portes = espaiActual.getPortes();
+        ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         ArrayList<Porta> recorda = new ArrayList<>();
         ArrayList<Porta> noRecorda = new ArrayList<>();
 
 
         
         for (int i = 0; i < portes.size(); i++) {
-            if (portes.get(i).altreCostat() == null) continue; // sortida, saltar
+            if (portes.get(i).altreCostat().esSortida()) continue; // sortida, saltar //oooo aquest?? quin dels dos?
+            if (portes.get(i).altreCostat().estaPle() && !portes.get(i).altreCostat().hiHaHuma()) continue;
             if (memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
             else noRecorda.add(portes.get(i));
         }

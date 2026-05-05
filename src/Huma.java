@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Huma extends Personatge{
-    private SmartGlasses ulleres;
 
     public Huma(String nom, int capacitatMemoria, ArrayList<Integer> claus, boolean ulleres){
         super(nom,capacitatMemoria,claus);
@@ -53,7 +52,11 @@ public class Huma extends Personatge{
 
         if(seguent != null){
             Espai desti = seguent.altreCostat();
-            if(!desti.estaPle()){
+            if(desti.esSortida()){ //ARNAUUU TEH AFEGIT AIXOO!!!
+                haSortit = true;
+                espaiActual.sortir(this);
+                System.out.println("   -> " + nom + " HA SORTIT DEL LABERINT!");
+            }else if(!desti.estaPle()){
                 //memoria.recordarEspai(espaiAcutal,true);
                 espaiActual.sortir(this);
                 desti.entrar(this);
@@ -64,8 +67,8 @@ public class Huma extends Personatge{
     }
     
 
-    public Porta escollirSeguentPorta(){
-        ArrayList<Porta> portes = espaiActual.getPortes();
+    public Porta escollirSeguentPorta(){ //eloi: tho he canviat una mica pq funiconi... nose fins a quin punt tb sha de canviar guardia i porter.. no mho he mirat...
+        ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes()); //espaiActual.getPortes(); the tret aixo pq pillava les portes de veritat...
         Porta escollida = null;
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
@@ -117,7 +120,8 @@ public class Huma extends Personatge{
         return claus;
     }
 
+    @Override
     public boolean teSmartGlasses(){
-        return ulleres != null;
+        return this.ulleres != null;
     }
 }

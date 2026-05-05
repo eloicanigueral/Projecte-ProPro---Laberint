@@ -16,6 +16,8 @@ public abstract class Personatge {
     protected Espai espaiActual; // espai o int???
     protected Memoria memoria;
     protected ArrayList<Integer> claus;
+    protected SmartGlasses ulleres;
+
     protected boolean haSortit = false;
 
     /**
@@ -88,7 +90,7 @@ public abstract class Personatge {
      * @post El personatge mor */
     public void morir(ArrayList<Integer> claus, boolean smartGlasses){
         espaiActual.deixarRestes();
-        for(int i=0; i>claus.size(); i++){
+        for(int i=0; i<claus.size(); i++){
             espaiActual.deixarClau(claus.get(i));
         }
         if (smartGlasses)
@@ -154,4 +156,8 @@ public abstract class Personatge {
      * @post Cada personatge actua segons la seva estrategia
      */
     public abstract void actuar(); //mirar si cal.. i com ferho... pq tots tenen un actuar diferent pero tots son personatges
+
+    public boolean teSmartGlasses(){
+        return ulleres != null; //OOO RETURN FALSE???
+    }
 }

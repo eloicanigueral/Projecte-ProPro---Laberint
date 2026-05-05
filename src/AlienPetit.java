@@ -36,9 +36,21 @@ public class AlienPetit extends Personatge{
     public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
         //agafar les claus que no tingui!!!!!!!!!!!!! (les altres es queden al terra!!!!!!!!!)
         //sumar la memoooriaa!!!!!!!!!
-        p.morir(p.claus, false); ///mmm clar aquest teSmartGlasses no es pot no??
+        p.morir(p.claus, p.teSmartGlasses());
         this.memoria.augmentarCapacitat(p.memoria.capacitatMemoria()); //aixo esta be???.. jujuju
         espaiActual.sortir(p);
+
+        //aqui lu de agafar les claus....
+        //faig un if abans com a Huma per a veure si hi ha claus a lespai actual???
+        ArrayList<Integer> tirades = espaiActual().veureClaus();
+        for (int i = 0; i<tirades.size(); i++) {
+            if (!claus.contains(tirades.get(i))) {
+                claus.add(tirades.get(i));
+                espaiActual().agafarClau(tirades.get(i));
+                i--; //l'arnau no el te!!! perooo.. si s'agafa una clau tirada es resta un a l'array.. per tant sino ens saltem una... ooo no s'actualitza tirades??
+            }
+        }
+    
         System.out.println("   -> " + nom + " MATA a " + p.getNom());
     }
 
@@ -84,13 +96,17 @@ public class AlienPetit extends Personatge{
      * @post S'escull la seguent porta
      */
     public Porta escollirSeguentPorta(){ //la he copiat de huma... no me la he ni mirat... lha canviat..  
-        ArrayList<Porta> portes = espaiActual.getPortes();
+        ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         Porta escollida = null;
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
+            if (portes.get(i).altreCostat().esSortida()) borra = true;
             if(portes.get(i).altreCostat().estaPle()) borra=true;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
-            if(borra) portes.remove(i);
+            if(borra) {
+                portes.remove(i);
+                i--; //he afegit aixo del de larnauu!!!!!!!!!!!!!!!!!
+            }
         }
         
         ArrayList<Porta> recorda = new ArrayList<>();

@@ -59,7 +59,7 @@ public class Guardia extends Personatge{
 
     }
     public Porta escollirSeguentPorta(){
-        ArrayList<Porta> portes = espaiActual.getPortes();
+        ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         Porta escollida = null;
         for(int i=0;i<portes.size();i++){
             boolean borra = false;

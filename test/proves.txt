@@ -1,0 +1,3 @@
+quan li dones ulleres a un personatge peta 
+nou lab_3 huma1 no s'escapa tinguent clau i sortida (es torna a quedar en bucle)
+el joc sha dacabar quan els humans han mort (lab4)

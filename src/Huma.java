@@ -22,7 +22,6 @@ public class Huma extends Personatge{
         if(ulleres){
             this.ulleres = new SmartGlasses();
         }
-        this.claus = claus;
     }
     
     public boolean teUlleres(){
@@ -44,24 +43,26 @@ public class Huma extends Personatge{
 
         Porta seguent = null;
         if(espaiActual.hiHaAlien(this)){
-            //seguent = escollirPortaFugida();
+            seguent = escollirSeguentPorta();
         }
         else{
             seguent = escollirSeguentPorta();
         }
 
         if(seguent != null){
+            Espai origen = espaiActual;
             Espai desti = seguent.altreCostat();
             if(desti.esSortida()){ //ARNAUUU TEH AFEGIT AIXOO!!!
                 haSortit = true;
                 espaiActual.sortir(this);
                 System.out.println("   -> " + nom + " HA SORTIT DEL LABERINT!");
-            }else if(!desti.estaPle()){
+            }
+            else if(!desti.estaPle()){
                 //memoria.recordarEspai(espaiAcutal,true);
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
-            System.out.println("   -> " + nom + " es mou de sala " + espaiActual.mostrarId() + " a sala " + desti.mostrarId());
+            System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
         }
 
     }
@@ -70,10 +71,13 @@ public class Huma extends Personatge{
     public Porta escollirSeguentPorta(){ //eloi: tho he canviat una mica pq funiconi... nose fins a quin punt tb sha de canviar guardia i porter.. no mho he mirat...
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes()); //espaiActual.getPortes(); the tret aixo pq pillava les portes de veritat...
         Porta escollida = null;
+        //for(int i=0;i<claus.size();i++) System.out.println(claus.get(i));
         for(int i=0;i<portes.size();i++){
+            //System.out.println(portes.get(i).getCodi()); //comprovar
             boolean borra = false;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
             if(borra) portes.remove(i);
+            //System.out.println(portes.get(i).altreCostat().mostrarId()); //comprovar
         }
         if(ulleres != null){
             escollida = ulleres.camiRapid(espaiActual);
@@ -90,6 +94,7 @@ public class Huma extends Personatge{
         for(int i=0; i<portes.size(); i++){
             if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
             else noRecorda.add(portes.get(i));
+            if(portes.get(i).altreCostat().esSortida()) return portes.get(i);
         }
         if(noRecorda.size() == 0){
             ArrayList<Porta> perillosa = new ArrayList<>();

@@ -28,9 +28,10 @@ public class Espai {
     private ArrayList<Porta> portes;
     private ArrayList<Integer> espaisConectats;
     private boolean restesHumanes;
+    private boolean esSortida;
 
 
-    public Espai(int idEspai, int maxPersonatges){
+    public Espai(int idEspai, int maxPersonatges,boolean esSortida){
         this.idEspai = idEspai;
         nPersonatges=0;
         smartGlassesTirades=0;
@@ -40,6 +41,7 @@ public class Espai {
         portes = new ArrayList<Porta>();
         espaisConectats = new ArrayList<Integer>();
         restesHumanes = false;
+        this.esSortida = esSortida;
     }
     
     public void conectarEspais(ArrayList<Espai> espaisConnectats){
@@ -233,8 +235,11 @@ public class Espai {
     @post: retorna ture si aquest espai és l'exterior. false altrament.
     */ 
     public boolean esSortida(){
-        return idEspai == -1;
+        return esSortida;
     }
     
+    public void canviarId(int nouid){
+        this.idEspai = nouid;
+    }
 
 }

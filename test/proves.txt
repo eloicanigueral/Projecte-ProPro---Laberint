@@ -1,3 +1,4 @@
-quan li dones ulleres a un personatge peta 
-nou lab_3 huma1 no s'escapa tinguent clau i sortida (es torna a quedar en bucle)
-el joc sha dacabar quan els humans han mort (lab4)
+// solucionat // quan li dones ulleres a un personatge peta 
+// solucionat // nou lab_3 huma1 no s'escapa tinguent clau i sortida (es torna a quedar en bucle). --> vale aixo passa perque quan huma mira si te clau per la sortida comprova idEspai==idClau i clar no es igual perque espai es -1.
+// solucionat // espai.esSortida no pot ser ==-1 perque sha canviat el -1 per espais.size()+1 a laberint. potser posar boolean esSortida??
+el joc sha dacabar quan els humans han mort (lab4) i peta per algo ns

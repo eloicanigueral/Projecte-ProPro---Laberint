@@ -35,13 +35,13 @@ public class Laberint {
 
     private ArrayList<Personatge> morts;
     private ArrayList<Personatge> salvats;
-    private Espai sortida = new Espai(-1, Integer.MAX_VALUE); //el max value aqust.......
+    private Espai sortida;  
 
     /**
      * @post Es crea el laberint amb els espais, portes i personatges.
      */
     public Laberint() {
-
+        sortida = new Espai(-1, Integer.MAX_VALUE,true);  //el max value aqust.......
         espais = new ArrayList<>();
         portes = new ArrayList<>();
         personatges = new ArrayList<>();
@@ -50,6 +50,7 @@ public class Laberint {
         morts = new ArrayList<>();
         salvats = new ArrayList();
         llegirLaberint();
+        
 
         //despres de crear tot he de indicar quines son les sales d'entrada i de sortida...
         //amb un random o algo aixi... o tb podria ser que el constructor del laberint rebés com a paràmetre un fitxer amb la configuració del laberint i així ja es crearia tot a partir d'això... (aixo seria lo millor) (però ara per ara ho
@@ -79,6 +80,9 @@ public class Laberint {
             }
             System.out.println("Fora while");
 
+            //he afegit aixo dema texplico
+            int id = espais.size()+1;
+            sortida.canviarId(id);
             connectarEspais();
 
             //prova cout per veure personatges:
@@ -103,7 +107,6 @@ public class Laberint {
             }
         } 
         System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/.... i surt sempre
-
     }
 
     private void llegirLinia(String linia) {
@@ -206,7 +209,7 @@ public class Laberint {
 
             Scanner personatgeScanner = new Scanner(punter.next().replace("[", "").replace("]", ""));
             personatgeScanner.useDelimiter(",");
-            Espai e = new Espai(id, max);
+            Espai e = new Espai(id, max,false);
             espais.add(e);
             
             while (personatgeScanner.hasNext()) { //existeix?? sjjssj !!!!!!!!!!!!!!!!!!!!!!! FEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR!!!!!
@@ -222,7 +225,7 @@ public class Laberint {
             }
 
         } else if (tipus.equals("pas")) {
-            Espai p = new Espai(id, max);
+            Espai p = new Espai(id, max,false);
             espais.add(p);
         }
     }
@@ -288,6 +291,8 @@ public class Laberint {
         // for (int i = 0; i < personatges.size(); i++) {
         //     personatges.get(i).actuar();
         // }
+        //comprovar
+        //for(int i=0;i<espais.size();i++) System.out.println(espais.size());
 
         for (int i = 0; i < personatges.size(); i++) {
             System.out.println(">> " + personatges.get(i).getNom() + " [" + personatges.get(i).getClass().getSimpleName() + "] a sala " + personatges.get(i).espaiActual().mostrarId());
@@ -303,6 +308,7 @@ public class Laberint {
                 personatges.remove(i);
                 i--;
             }
+            //try { Thread.sleep(1000); } catch (Exception e) {} //per fer anar lent el programa
         }
     }
     //metode moviment...

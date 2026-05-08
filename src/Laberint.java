@@ -322,7 +322,7 @@ public class Laberint {
     
     public boolean acabat(){
         for (int i=0; i<personatges.size(); i++) {
-            if (personatges.get(i) instanceof Huma || personatges.get(i) instanceof Porter) 
+            if (personatges.get(i) instanceof Huma) 
                 return false;
         }
         return true;

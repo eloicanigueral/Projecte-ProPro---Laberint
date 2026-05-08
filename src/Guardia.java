@@ -49,12 +49,14 @@ public class Guardia extends Personatge{
         }
 
         if(seguent != null){
+            Espai origen = espaiActual;
             Espai desti = seguent.altreCostat();
             if(!desti.estaPle()){
-                //memoria.recordarEspai(espaiAcutal,true);
+                memoria.recordarEspai(espaiActual,espaiActual.esPerillos());
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
+            System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
         }
 
     }

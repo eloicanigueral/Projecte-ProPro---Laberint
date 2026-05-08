@@ -58,7 +58,7 @@ public class Huma extends Personatge{
                 System.out.println("   -> " + nom + " HA SORTIT DEL LABERINT!");
             }
             else if(!desti.estaPle()){
-                //memoria.recordarEspai(espaiAcutal,true);
+                memoria.recordarEspai(espaiActual,espaiActual.esPerillos());
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
@@ -82,8 +82,8 @@ public class Huma extends Personatge{
         if(ulleres != null){
             escollida = ulleres.camiRapid(espaiActual);
             if(!portes.contains(escollida)) escollida = null;
-            if(escollida.altreCostat().esPerillos()) escollida = null;
-            if(escollida.altreCostat().esSortida()){
+            if(escollida!=null && escollida.altreCostat().esPerillos()) escollida = null;
+            if(escollida!=null && escollida.altreCostat().esSortida()){
                 if(!claus.contains(escollida.comprovarClau())) ulleres.exclourePortaSortida(escollida); 
             }
             if(escollida != null) return escollida;

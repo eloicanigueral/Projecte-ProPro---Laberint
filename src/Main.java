@@ -22,7 +22,7 @@ public class Main {
         }
 
         System.out.println("S'ha acabat el joc.");
-        //ensenyar els personatges salvats
+        lab.mostrarResultats();
         //ensenyar els personatges morts
         sc.close();
     }

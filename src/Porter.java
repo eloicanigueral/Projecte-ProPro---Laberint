@@ -20,6 +20,9 @@ public class Porter extends Personatge{
     }
     public void actuar(){
         Porta escollida = escollirSeguentPorta();
+        escollida.obrir();
+        Espai origen = espaiActual;
+        Espai desti = escollida.altreCostat();
     }
 
     public Porta escollirSeguentPorta(){

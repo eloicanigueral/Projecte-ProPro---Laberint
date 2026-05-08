@@ -48,7 +48,7 @@ public class Laberint {
         conexions = new HashMap<>();
 
         morts = new ArrayList<>();
-        salvats = new ArrayList();
+        salvats = new ArrayList<>();
         llegirLaberint();
         
 
@@ -70,7 +70,7 @@ public class Laberint {
         System.out.println("començant a llegir el laberint..."); //........... borrarr!!!!
 
         //if else? que fa try i catch
-        // que polles fa scanner
+        // que polles fa scanner iiii els he de tancar1!!
         try (Scanner punter = new Scanner(System.in)) {
             while (punter.hasNextLine()) {
                 String linia = punter.nextLine();

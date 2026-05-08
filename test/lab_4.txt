@@ -1,35 +1,24 @@
-h:Ripley:5:[2,3,6,9]:1
-h:John Connor:4:[1,5,7]:0
-h:Ripley:5:[2,3,6,9]:1
-h:John Connor:4:[1,5,7]:0
-h:Ellen Hicks:3:[1,4,8]:0
-h:Marcus Wright:4:[3,5,9]:1
-h:Sarah Connor:5:[2,6,7,8]:1
-h:Kyle Reese:3:[1,3,6]:0
-h:Amanda Ripley:4:[4,7,9]:0
-h:Dwayne Hicks:5:[1,2,5,8]:1
-h:Bishop:3:[3,6,9]:0
-h:Carter Burke:2:[2,4,7]:0
-h:Newt:2:[1,5,8]:0
-h:Hudson:3:[2,3,6]:0
-h:Vasquez:4:[1,4,7,9]:1
-h:Gorman:3:[3,5,8]:0
-h:Ferro:2:[2,6,9]:0
-h:Spunkmeyer:2:[1,4,8]:0
-h:Drake:3:[3,5,7]:0
-h:Frost:2:[2,6,9]:0
-h:Wierzbowski:3:[1,4,8]:1
-h:Dietrich:2:[3,5,7]:0
+h:Ripley:5:[2,3,8,10,14]:1
+h:Sarah Connor:4:[7,9,11,14]:1
+h:Vasquez:3:[10,12,14]:0
+h:Bishop:3:[8,10,14]:0
+h:Newt:2:[8,14]:0
+h:Hudson:3:[7,9,14]:0
 ag:xenomorf
-ap:predator_caçador:3:[1,3,4,7]
-ap:predator_vigilant:2:[2,5,6]
+ap:predator_caçador:3:[7,8,13]
+ap:predator_vigilant:2:[9,11,13]
 p:robot_porter:5
-g:guardia_androide:4:[3,6,9]
-sala:1:(8,4,2,0):4:[Ripley,predator_caçador]
-sala:2:(1,0,3,5):3:[John Connor]
-sala:3:(0,2,6,0):5:[xenomorf,guardia_androide]
-sala:4:(9,1,0,7):3:[predator_vigilant]
-sala:5:(2,0,0,6):2:[robot_porter]
-pas:6:(3,5):2
-pas:7:(4,0):1
-pas:8:(0,1):3
+g:guardia_androide:3:[10,12,13]
+sala:1:(0,7,8,0):4:[Ripley,predator_caçador,Newt,Bishop]
+sala:2:(7,0,9,13):3:[Sarah Connor,Hudson,Vasquez]
+sala:3:(8,11,0,0):4:[xenomorf,guardia_androide,predator_vigilant,robot_porter]
+sala:4:(0,9,14,11):3:[xenomorf]
+sala:5:(10,0,12,0):3:[]
+sala:6:(13,12,0,10):3:[]
+pas:7:(1,2):3
+pas:8:(1,3):2
+pas:9:(2,4):2
+pas:10:(3,5):2
+pas:11:(3,4):2
+pas:12:(5,6):2
+pas:13:(2,6):2

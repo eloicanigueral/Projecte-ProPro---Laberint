@@ -105,8 +105,10 @@ public class Huma extends Personatge{
             }
             if(noPerillosa.size() == 0 && !espaiActual.esPerillos()){}
             else if(noPerillosa.size() == 0 && espaiActual.esPerillos()){
-                Random rand = new Random();
-                escollida = perillosa.get(rand.nextInt(perillosa.size()));
+                if(perillosa.size() > 0){
+                    Random rand = new Random();
+                    escollida = perillosa.get(rand.nextInt(perillosa.size()));
+                }
             }
             else if(noPerillosa.size() > 0){
                 Random rand = new Random();

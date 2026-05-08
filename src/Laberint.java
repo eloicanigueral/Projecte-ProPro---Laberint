@@ -329,18 +329,24 @@ public class Laberint {
     }
 
     public void mostrarResultats() {
+        if(salvats.size()>0){
+            System.out.println("Personatges salvats:");
+            for (int i=0; i<salvats.size(); i++) {
+                Personatge p = salvats.get(i);
+                System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
+            }
+        }
+        else System.out.println("No s'ha salvat cap humà");
         
-        System.out.println("Personatges salvats:");
-        for (int i=0; i<salvats.size(); i++) {
-            Personatge p = salvats.get(i);
-            System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
+        if(morts.size()>0){
+            System.out.println("Personatges morts:");
+            for (int i=0; i<morts.size(); i++) {
+                Personatge p = morts.get(i);
+                System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
+            }
         }
-
-        System.out.println("Personatges morts:");
-        for (int i=0; i<morts.size(); i++) {
-            Personatge p = morts.get(i);
-            System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
-        }
+        else System.out.println("No ha mort ningú");
+        
 
     }
 }

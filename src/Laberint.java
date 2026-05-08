@@ -294,7 +294,7 @@ public class Laberint {
         //comprovar
         //for(int i=0;i<espais.size();i++) System.out.println(espais.size());
 
-        for (int i = 0; i < personatges.size(); i++) {
+        for (int i = 0; i < personatges.size(); i++) { //arrgelar quan surten les sortides de quan mor algu i talque surt com tard i raro....
             System.out.println(">> " + personatges.get(i).getNom() + " [" + personatges.get(i).getClass().getSimpleName() + "] a sala " + personatges.get(i).espaiActual().mostrarId());
             personatges.get(i).actuar();
             if (!personatges.get(i).estaViu()) {
@@ -309,6 +309,11 @@ public class Laberint {
                 i--;
             }
             //try { Thread.sleep(1000); } catch (Exception e) {} //per fer anar lent el programa
+            //baixar comptador de portes O(n)?? es pot fer millor??
+            for (int j = 0; j<portes.size(); j++){
+                if (portes.get(j).estaOberta())
+                    portes.get(j).baixarComptador();
+            }
         }
     }
     //metode moviment...
@@ -322,4 +327,19 @@ public class Laberint {
         }
         return true;
     }
-}
+
+    public void mostrarResultats() {
+        
+        System.out.println("Personatges salvats:");
+        for (int i=0; i<salvats.size(); i++) {
+            Personatge p = salvats.get(i);
+            System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
+        }
+
+        System.out.println("Personatges morts:");
+        for (int i=0; i<morts.size(); i++) {
+            Personatge p = morts.get(i);
+            System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
+        }
+
+    }

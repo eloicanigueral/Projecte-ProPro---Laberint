@@ -24,9 +24,18 @@ public class Huma extends Personatge{
         }
     }
     
+    /**
+    @pre: --
+    @post: retorna true si l'humà té SmartGlasses. false altrament.
+    */
     public boolean teUlleres(){
         return ulleres != null;
     }
+
+    /**
+    @pre: --
+    @post: mètode principal perquè el personatge actui.
+    */
     public void actuar(){
         if(!teUlleres() && espaiActual().hiHaSmartGlasses()){
             ulleres = espaiActual().recollirSmartGlasses();
@@ -67,17 +76,20 @@ public class Huma extends Personatge{
 
     }
     
-
-    public Porta escollirSeguentPorta(){ //eloi: tho he canviat una mica pq funiconi... nose fins a quin punt tb sha de canviar guardia i porter.. no mho he mirat...
-        ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes()); //espaiActual.getPortes(); the tret aixo pq pillava les portes de veritat...
+    /**
+    @pre: --
+    @post: retorna la seguent porta escollida per l'algorisme de com actua un personatge.
+    */
+    public Porta escollirSeguentPorta(){ 
+        ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         Porta escollida = null;
-        //for(int i=0;i<claus.size();i++) System.out.println(claus.get(i));
         for(int i=0;i<portes.size();i++){
-            //System.out.println(portes.get(i).getCodi()); //comprovar
             boolean borra = false;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
-            if(borra) portes.remove(i);
-            //System.out.println(portes.get(i).altreCostat().mostrarId()); //comprovar
+            if(borra){
+                portes.remove(i);
+                i--;
+            }
         }
         if(ulleres != null){
             escollida = ulleres.camiRapid(espaiActual);
@@ -123,6 +135,10 @@ public class Huma extends Personatge{
         return escollida; 
     }
 
+    /**
+    @pre: --
+    @post: retorna l'array list de claus qeu té aquest huma
+    */
     public ArrayList<Integer> veureClaus(){
         return claus;
     }

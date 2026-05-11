@@ -15,8 +15,10 @@ import java.util.Random;
  */
 
 public class Porter extends Personatge{
+    Random rand;
     public Porter(String nom, int capacitatMemoria){
         super(nom,capacitatMemoria);
+        rand = new Random();
     }
     public void actuar(){
         Porta escollida = escollirSeguentPorta();
@@ -25,6 +27,7 @@ public class Porter extends Personatge{
             Espai origen = espaiActual;
             Espai desti = escollida.altreCostat();
             if(!desti.estaPle()){
+                memoria.recordarEspai(origen,origen.esPerillos());
                 espaiActual.sortir(this);
                 desti.entrar(this);
                 System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
@@ -35,15 +38,26 @@ public class Porter extends Personatge{
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         Porta escollida=null;
+        ArrayList<Porta> perillosa = new ArrayList<>();
+        ArrayList<Porta> noPerillosa = new ArrayList<>();
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(portes.get(i).altreCostat().esSortida()) borra=true;
-            //if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
-            if(borra) portes.remove(i);
+            if(memoria.esPerillos(portes.get(i).altreCostat()) && !espaiActual.esPerillos()) borra=true;
+            if(borra){
+                portes.remove(i);
+                i--;
+            }
         }
-        if(portes.size()>0){
-            Random rand = new Random();
-            escollida = portes.get(rand.nextInt(portes.size()));
+        for(int i=0;i<portes.size();i++){
+            if(memoria.esPerillos(portes.get(i).altreCostat())) perillosa.add(portes.get(i));
+            else noPerillosa.add(portes.get(i));
+        }
+        if(noPerillosa.size()>0){
+            escollida = portes.get(rand.nextInt(noPerillosa.size()));
+        }
+        else{
+            escollida = portes.get(rand.nextInt(perillosa.size()));
         }
         return escollida;
     }

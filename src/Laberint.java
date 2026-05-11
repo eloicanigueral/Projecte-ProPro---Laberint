@@ -31,17 +31,17 @@ public class Laberint {
     private ArrayList<Espai> espais;
     private ArrayList<Porta> portes;
     private ArrayList<Personatge> personatges;
-    private HashMap<Integer, ArrayList<Integer>> conexions; //= new HashMap<>(); ???
+    private HashMap<Integer, ArrayList<Integer>> conexions;
 
     private ArrayList<Personatge> morts;
     private ArrayList<Personatge> salvats;
-    private Espai sortida;  
+    private ArrayList<Espai> sortides;  
 
     /**
      * @post Es crea el laberint amb els espais, portes i personatges.
      */
     public Laberint() {
-        sortida = new Espai(-1, Integer.MAX_VALUE,true);  //el max value aqust.......
+        sortides = new ArrayList<>(); //-1, Integer.MAX_VALUE, true
         espais = new ArrayList<>();
         portes = new ArrayList<>();
         personatges = new ArrayList<>();
@@ -50,11 +50,6 @@ public class Laberint {
         morts = new ArrayList<>();
         salvats = new ArrayList<>();
         llegirLaberint();
-        
-
-        //despres de crear tot he de indicar quines son les sales d'entrada i de sortida...
-        //amb un random o algo aixi... o tb podria ser que el constructor del laberint rebés com a paràmetre un fitxer amb la configuració del laberint i així ja es crearia tot a partir d'això... (aixo seria lo millor) (però ara per ara ho
-
     }
 
 
@@ -63,26 +58,20 @@ public class Laberint {
      * @pre: Es crida el metode juntament amb el nom del fitxer amb la configuració inicial del laberint
      * @post: Es crea el laberint a partir de la configuració del fitxer
      */
-    public void llegirLaberint() {
-
-        //suposo que es aqui on he de fer tot lu de new Hashmap i aquestes coses???
-        
-        System.out.println("començant a llegir el laberint..."); //........... borrarr!!!!
-
+    public void llegirLaberint() {        
         //if else? que fa try i catch
-        // que polles fa scanner iiii els he de tancar1!!
+        // que fa scanner iiii els he de tancar1!!
         try (Scanner punter = new Scanner(System.in)) {
             while (punter.hasNextLine()) {
                 String linia = punter.nextLine();
-                System.out.println("Llegint línia: " + linia); //........... borrarr!!!!
 
                 llegirLinia(linia);
             }
-            System.out.println("Fora while");
 
-            //he afegit aixo dema texplico
+            //he afegit aixo dema texplico ////////////////////////////////////////////////////////////////
             int id = espais.size()+1;
-            sortida.canviarId(id);
+
+            //sortida.canviarId(id);
             connectarEspais();
 
             //prova cout per veure personatges:
@@ -243,7 +232,9 @@ public class Laberint {
                 if (arrayPortes.get(j) != 0){
                     Espai desti = altreCostat(arrayPortes.get(j));
                     if (desti==null) 
-                        desti = sortida;
+                        desti = new Espai(arrayPortes.get(j), Integer.MAX_VALUE, true);
+                        sortides.add(desti); //emmm bueno en vd no necesito arraylist de sortides no?? o si????... mirar....
+                        //desti = sortida; //no existeix sortida.. ara es una rraylist pq nhi pot haver mes d una
                     arrayEspais.add(desti);
                     //arrayEspais.add(arrayPortes.get(j).altreCostat()); //si aixo funciona deixar aixi i aixi estalvio un emtode aqui a laberint
                 }

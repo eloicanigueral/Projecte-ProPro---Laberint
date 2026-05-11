@@ -20,22 +20,31 @@ public class Porter extends Personatge{
     }
     public void actuar(){
         Porta escollida = escollirSeguentPorta();
-        escollida.obrir();
-        Espai origen = espaiActual;
-        Espai desti = escollida.altreCostat();
+        if(escollida != null){
+            escollida.obrir();
+            Espai origen = espaiActual;
+            Espai desti = escollida.altreCostat();
+            if(!desti.estaPle()){
+                espaiActual.sortir(this);
+                desti.entrar(this);
+                System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
+            }
+        }
     }
 
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
-        Porta escollida;
+        Porta escollida=null;
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
-            if(portes.get(i).altreCostat().estaPle()) borra=true;
+            if(portes.get(i).altreCostat().esSortida()) borra=true;
             //if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
             if(borra) portes.remove(i);
         }
-        Random rand = new Random();
-        escollida = portes.get(rand.nextInt(portes.size()));
+        if(portes.size()>0){
+            Random rand = new Random();
+            escollida = portes.get(rand.nextInt(portes.size()));
+        }
         return escollida;
     }
     /** canvia de sala

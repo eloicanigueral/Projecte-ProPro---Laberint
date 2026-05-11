@@ -30,18 +30,20 @@ public class Laberint {
 
     private ArrayList<Espai> espais;
     private ArrayList<Porta> portes;
-    private ArrayList<Personatge> personatges;
-    private HashMap<Integer, ArrayList<Integer>> conexions;
+    private ArrayList<Personatge> personatges; //tots els personatges VIUS que queden dins del laberint
+    private HashMap<Integer, ArrayList<Integer>> conexions; //mapa que conte, segons la id de cada espai, un arraylist de les sales amb les que conecta (les portes que te), en vd s'hauria de borrar pq nomes la fem servir al principi... mirar
 
-    private ArrayList<Personatge> morts;
-    private ArrayList<Personatge> salvats;
-    private ArrayList<Espai> sortides;  
+    private ArrayList<Personatge> morts; //personatges que han mort
+    private ArrayList<Personatge> salvats; //personatges que s'han salvat
+
+    //private ArrayList<Espai> sortides;   tot sortdies comentat pq crec q en vd no ho necesito.. si tot funciona correctament borrar tot lu que faci servir sortides (que stara comentat)
 
     /**
+     * @pre --
      * @post Es crea el laberint amb els espais, portes i personatges.
      */
     public Laberint() {
-        sortides = new ArrayList<>(); //-1, Integer.MAX_VALUE, true
+        //sortides = new ArrayList<>(); //-1, Integer.MAX_VALUE, true
         espais = new ArrayList<>();
         portes = new ArrayList<>();
         personatges = new ArrayList<>();
@@ -54,7 +56,6 @@ public class Laberint {
 
 
     /**
-     * 
      * @pre: Es crida el metode juntament amb el nom del fitxer amb la configuració inicial del laberint
      * @post: Es crea el laberint a partir de la configuració del fitxer
      */
@@ -68,82 +69,65 @@ public class Laberint {
                 llegirLinia(linia);
             }
 
-            //he afegit aixo dema texplico ////////////////////////////////////////////////////////////////
-            int id = espais.size()+1;
-
-            //sortida.canviarId(id);
             connectarEspais();
 
-            //prova cout per veure personatges:
-            System.out.println();
-            for (int i = 0; i<espais.size(); i++){
-                List<Personatge> pers = espais.get(i).getPersonatges();
-                System.out.println("Sala: " + espais.get(i).mostrarId());
-                for(int j=0; j<pers.size(); j++){
-                    System.out.print(pers.get(j).getNom() + ", ");
-                }
-                System.out.println();
-            }
-
-            //prova cout pels espais de sortida:
-            for (int i = 0; i < espais.size(); i++) {
-                ArrayList<Porta> portes = espais.get(i).getPortes();
-                for (int j = 0; j < portes.size(); j++) {
-                    if (portes.get(j).altreCostat().esSortida()) {
-                        System.out.println("Espai " + espais.get(i).mostrarId() + " té porta de sortida");
-                    }
-                }
-            }
         } 
-        System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/.... i surt sempre
+        System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/.... i surt sempre .. suposo que va amb lu del try que vaig canviar algo.. mirar exemple laberint classe!!!....
     }
 
+    /**
+     * @pre: Es crida aquest metode amb la linia a llegir
+     * @post: Si aquesta no esta buida, es llegeix i es guarda la informacio rellevant corresponent segons pertoqui (ja sigui per un personatge, o per un espai)
+     */
     private void llegirLinia(String linia) {
-      if (linia.isEmpty()) return;
+        if (linia.isEmpty()) return;
 
-      Scanner punter = new Scanner(linia);
-      punter.useDelimiter(":");
+        Scanner punter = new Scanner(linia);
+        punter.useDelimiter(":");
     
-      String tipus = punter.next();
+        String tipus = punter.next();
 
-      switch(tipus) {
-        case "h":
-          llegirPersonatge(tipus, punter);
-          break;
-
-        case "ag":
-          String nom = punter.next();
-          AlienGran ag = new AlienGran(nom);
-          personatges.add(ag);
-          break;
-
-        case "ap":
-          llegirPersonatge(tipus, punter);
-          break;
-
-        case "g":
-          llegirPersonatge(tipus, punter);
-          break;
-        case "p":
-          llegirPersonatge(tipus, punter);
-          break;
-
-        case "sala":
-            llegirEspai(tipus, punter);
+        switch(tipus) {
+            case "h":
+            llegirPersonatge(tipus, punter);
             break;
-          //la primera sala es la de entrada, +la ultima es de sortida???????
-        case "pas":
-            llegirEspai(tipus, punter);
-            break; 
-      }
+
+            case "ag":
+            String nom = punter.next();
+            AlienGran ag = new AlienGran(nom);
+            personatges.add(ag);
+            break;
+
+            case "ap":
+            llegirPersonatge(tipus, punter);
+            break;
+
+            case "g":
+            llegirPersonatge(tipus, punter);
+            break;
+
+            case "p":
+            llegirPersonatge(tipus, punter);
+            break;
+
+            case "sala":
+                llegirEspai(tipus, punter);
+                break;
+
+                case "pas":
+                llegirEspai(tipus, punter);
+                break; 
+        }
 
     }
 
-    /** fer pre i post!!!! */
+    /** 
+     * @pre: Es tracta d'un tipus de personatge del laberint, entrat correctament segons el format d'entrada de personatges
+     * @post: Es llegeix el personatge, i depenguent del seu tipus, es guarda la informacio corresponent, creant aquest mateix i afegint-lo a l'array de personatges del laberint
+     */
     private void llegirPersonatge(String tipus, Scanner punter) {
         String nom = punter.next();
         int memoria = punter.nextInt();
-
 
         if (tipus.equals("h")) {
             ArrayList<Integer> claus = llegirClaus(punter);
@@ -169,48 +153,60 @@ public class Laberint {
         }
     }
 
-    //FER PRE I POSSTT!!!!!!!!!!!!!!!!!!!!!
+    /** 
+     * @pre: S'entra un "punter" a una llista de claus en format [x,y,z,...] on x,y,z son numeros enters que corresponen a la clau d'alguna sala (o sortida)
+     * @post: Es llegeix i retorna aquesta llista en fomrat ArrayList<> sense els []
+    */
     private ArrayList<Integer> llegirClaus(Scanner punter){
         ArrayList<Integer> claus = new ArrayList<>();
-        Scanner clausScanner = new Scanner(punter.next().replace("[", "").replace("]", "")); //mirar els .replace aquests....
+        Scanner clausScanner = new Scanner(punter.next().replace("[", "").replace("]", ""));
         clausScanner.useDelimiter(",");
+        
         while (clausScanner.hasNextInt()) {
             claus.add(clausScanner.nextInt());
         }
+
         return claus;
     }
 
-    /** fer pre i post!!!! */
+    /** 
+     * @pre: Es tracta d'un espai del laberint (ja sigui una sala o un passadis), entrat corresponentment segons el fomrat d'entrada indicat. Els personatges que s'indiquin que estan a aquest espai, cal que s'hagin creat previament (han d'existir abans de crear l'espai).
+     * @post: Es llegeix i crea l'espai, es guarda la informacio necessaria, s'afageixen als personatges si escau, i s'afegeix a l'array d'espais del Laberint. Tambe es guarda un arraylist amb les conexions corresponents a altres espais lligat al seu id (amb un HashMap)
+     */
     private void llegirEspai(String tipus, Scanner punter) {
         int id = punter.nextInt();
 
         ArrayList<Integer> portesEspai = new ArrayList<>();
         Scanner portaScanner = new Scanner(punter.next().replace("(", "").replace(")", ""));
-        portaScanner.useDelimiter(","); //abans he de llegir el ()...??
+        portaScanner.useDelimiter(",");
+
+        //es llegeixen les portes de l'espai i es guarden en l'arraylist portesEspai
         while (portaScanner.hasNextInt()) {
-           portesEspai.add(portaScanner.nextInt()); //porta.add(new Porta(portaScanner.nextInt())); ... hi ha errror amb lu de les portes.. comsabem els espais....
+            portesEspai.add(portaScanner.nextInt());
         }
+
+        //s'afageix al Hashmap, que segons l'id d'un espai, te tot l'arraylist de portes on connecta
         conexions.put(id, portesEspai);
 
         int max = punter.nextInt();
 
         if (tipus.equals("sala")) {
-
             Scanner personatgeScanner = new Scanner(punter.next().replace("[", "").replace("]", ""));
             personatgeScanner.useDelimiter(",");
-            Espai e = new Espai(id, max,false);
+
+            //crea l'espai (false perque no es sortida), i l'afageix a l'arrayList d'espais del laberint
+            Espai e = new Espai(id, max, false);
             espais.add(e);
             
-            while (personatgeScanner.hasNext()) { //existeix?? sjjssj !!!!!!!!!!!!!!!!!!!!!!! FEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR!!!!!
-                String nom = personatgeScanner.next();        //canviar nom        //buscar a personatges el que tingui aquest nom i afegirlo a la sala
+            //llegeix els personatges que comencen en aquest espai i els afegeix/mou
+            while (personatgeScanner.hasNext()) {
+                String nom = personatgeScanner.next();
+                //buscar a personatges el que tingui aquest nom i afegirlo a la sala
                 for (int i=0; i<personatges.size(); i++){
-                    if (personatges.get(i).nom.equals(nom)){ //fua.. que raro.. aixo es pot????
+                    if (personatges.get(i).nom.equals(nom)){
                         e.entrar(personatges.get(i));
                     }
                 }
-                //i fer personatges[i].setEspaiActual(sala) o algo aixi
-                // no fa res, cal buscar el personatge per nom i afegir-lo a la sala. 
-                // Però l'espai es crea després del while, així que has de guardar els noms i afegir-los un cop creat l'espai
             }
 
         } else if (tipus.equals("pas")) {
@@ -220,50 +216,49 @@ public class Laberint {
     }
     
     /**
-     * fer PRE I POST....!!!!!!!!!!!!!!!!!!!
-     * @param id
-     * @return
+     * @pre: --
+     * @post: Es connecten les portes de cada espai. La porta d'un espai, que tingui de desti l'altre espai corresponent
      */
     private void connectarEspais(){
         for (int i=0; i<espais.size(); i++){
-            ArrayList<Integer> arrayPortes = conexions.get(espais.get(i).mostrarId()); //dins del get aixo__??... 
-            ArrayList<Espai> arrayEspais = new ArrayList<>();
+            ArrayList<Integer> arrayPortes = conexions.get(espais.get(i).mostrarId()); //arrayList que es queda amb els id de les portes de l'espai a la posicio espais[i] -> es lios... pero pilla l'arrayList de portes que te l'espai amb id=espais[i]  
+            ArrayList<Espai> arrayEspais = new ArrayList<>(); //son els espais amb què es conecta la sala espais[i]
+            //per a cada porta, busca l'espai amb el que s'ha de connectar (i si no existeix, vol dir que connecta amb una sortida)
             for (int j=0; j<arrayPortes.size(); j++){
                 if (arrayPortes.get(j) != 0){
                     Espai desti = altreCostat(arrayPortes.get(j));
-                    if (desti==null) 
+                    if (desti==null){
                         desti = new Espai(arrayPortes.get(j), Integer.MAX_VALUE, true);
-                        sortides.add(desti); //emmm bueno en vd no necesito arraylist de sortides no?? o si????... mirar....
-                        //desti = sortida; //no existeix sortida.. ara es una rraylist pq nhi pot haver mes d una
+                        //sortides.add(desti); //emmm bueno en vd no necesito arraylist de sortides no?? o si????... mirar....
+                    }
                     arrayEspais.add(desti);
-                    //arrayEspais.add(arrayPortes.get(j).altreCostat()); //si aixo funciona deixar aixi i aixi estalvio un emtode aqui a laberint
                 }
             }
             espais.get(i).conectarEspais(arrayEspais);
         }
     }
 
-    //mirarrr...................... el for no magrada.. metode per fer srvir a porta...
-    //retorna la sala a la que conecta
+    /**
+     * @return: Busca dins dels espais guardats del laberint, quin te el id=id i retorna aquest Espai, si no existeix (voldra dir que es un id de sortida), retorna null
+     */
     public Espai altreCostat(int id) {
-        for (Espai e : espais) {
-            if (e.mostrarId() == id) return e;
+        for (int i=0; i<espais.size(); i++){
+            if(espais.get(i).mostrarId() == id) return espais.get(i);
         }
-        return null; //o tirar excepcio o algo aixi
+        return null;
     }
 
-
-    /** @return La sala de sortida d'aquest laberint. */
-    public Espai salaSortida(Espai s) {
-        return s;
-    }
-
-
-    /** @return El laberint és buit (sense cap sala). */
+    /** @return El laberint és buit (sense cap sala). 
+     * suposo que el puc borrar.... crec que no el fem servir enlloc................................................
+    */
     public boolean buit() {
-        return false;
+        return espais.size()<=0;
     }
 
+    /**
+     * @pre: Hi ha personatges al laberint (a l'arraylist  personatges)
+     * @post: S'ordena l'arraylist personatges segons la prioritat de moviment de cada un, on a la posicio 0 hi queda el que mes prioritat te, i a la ultima el que menys
+     */
     private void ordenarPrioritat(){
         Collections.sort(personatges, (a, b) -> {
             if(b.nombreClaus() != a.nombreClaus()) return b.nombreClaus() - a.nombreClaus();
@@ -273,44 +268,49 @@ public class Laberint {
 
     /**
      * @pre Queda algun personatge humà viu dins el laberint
-     * 
-     * @post Avança un torn
+     * @post Avança un torn: on cada personatge que quedi viu actua (segons l'ordre de prioritat = ordre que estan a l'arrayList personatges), es mostra per pantalla el que ha passat en el torn i es baixa el comptador de la porta oberta (si es que n'hi ha)
      */
-    public void seguentTorn(){ //emmm sha de comprovar aquest pre en algun lloc no????!!!!!!!!
+    public void seguentTorn(){ //falta arreglar la sortida!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!...................... iii mirar lu de comptador de la porta...
+//         La sortida incloura els diferents moviments (un per l´ınia) descrits de la forma seguent.
+//              nom:[c1,c2,..]:u:p:[nyam]
+        // • nom es el nom del personatge que es mou.
+        // • [c1,c2,..] son les claus recollides abans de moure’s (ordenades per codi).
+        // • u es un 1 o un 0, depenent de si ha recollit ulleres o no a la sala abans de moure’s.
+        // • p es el numero de l’espai on ha entrat; -p (negatiu) si ha obert la porta pero no ha entrat; 0 per indicar que no ha obert cap porta.
+        // • nyam es el nom del personatge que s’ha menjat, en el cas que ho faci; buit sino.
         ordenarPrioritat();
 
-        // for (int i = 0; i < personatges.size(); i++) {
-        //     personatges.get(i).actuar();
-        // }
-        //comprovar
-        //for(int i=0;i<espais.size();i++) System.out.println(espais.size());
-
-        for (int i = 0; i < personatges.size(); i++) { //arrgelar quan surten les sortides de quan mor algu i talque surt com tard i raro....
+        for (int i=0; i<personatges.size(); i++) {
+            //sha de borrar la seguent....
             System.out.println(">> " + personatges.get(i).getNom() + " [" + personatges.get(i).getClass().getSimpleName() + "] a sala " + personatges.get(i).espaiActual().mostrarId());
+            
             personatges.get(i).actuar();
             if (!personatges.get(i).estaViu()) {
+                //el personatge ha mort:
                 System.out.println(personatges.get(i).getNom() + " ha mort!");
                 morts.add(personatges.get(i));
                 personatges.remove(i);
                 i--;
             } else if (personatges.get(i).haSortit()) {
+                //el personatge s'ha salvat
                 System.out.println(personatges.get(i).getNom() + " ha sortit!");
                 salvats.add(personatges.get(i));
                 personatges.remove(i);
                 i--;
             }
-            //try { Thread.sleep(1000); } catch (Exception e) {} //per fer anar lent el programa
-            //baixar comptador de portes O(n)?? es pot fer millor??
+
+            //esta dins del for per tant son X moviments de personatges diferents, no pas X torns diferents, nomes els primers en moure's veuran la porta oberta
+            //per baixar comptador de portes O(n)?? es pot fer millor?? pq clar aqui miro absolutament totes les portes si estan obertes.. una per una.. aligual guardar a un array o algo... on les obra???
             for (int j = 0; j<portes.size(); j++){
                 if (portes.get(j).estaOberta())
                     portes.get(j).baixarComptador();
             }
         }
     }
-    //metode moviment...
-    /// balblabal crido actuar del personatge que li toqui
-    /// i dsps miro si hi ha objectes al terra, si nhi ha, recollir objecte personatge
     
+    /**
+     * @return Retorna true si el joc ja s'ha acabat -> que no queda cap huma viu dins del laberint
+     */
     public boolean acabat(){
         for (int i=0; i<personatges.size(); i++) {
             if (personatges.get(i) instanceof Huma) 
@@ -319,21 +319,30 @@ public class Laberint {
         return true;
     }
 
-    public void mostrarResultats() {
+    /**
+     * @pre: El joc s'ha acabat
+     * @post: Es mostren els resultats (de la gent que ha mort, la que s'ha salvat, etc
+     */
+    public void mostrarResultats() { //emmm aixo nose pas si sha de fer..... pq no ho posa enllco, pero queda be per veureho millor a verue qui sha salvat i qui ha mort.. preguntar!!!
+        System.out.println();
+        System.out.println(" ---- Resultats ---- ");
+
         if(salvats.size()>0){
             System.out.println("Personatges salvats:");
             for (int i=0; i<salvats.size(); i++) {
                 Personatge p = salvats.get(i);
-                System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
+                System.out.println("   - " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
             }
         }
         else System.out.println("No s'ha salvat cap humà");
         
+        System.out.println(); //aixi es fa per imprimir un "intro?" endl;
+
         if(morts.size()>0){
             System.out.println("Personatges morts:");
             for (int i=0; i<morts.size(); i++) {
                 Personatge p = morts.get(i);
-                System.out.println("- " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
+                System.out.println("   - " + p.getNom() + " [" + p.getClass().getSimpleName() + "]");
             }
         }
         else System.out.println("No ha mort ningú");

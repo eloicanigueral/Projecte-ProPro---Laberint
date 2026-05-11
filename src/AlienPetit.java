@@ -63,20 +63,21 @@ public class AlienPetit extends Personatge{
             if (seguent != null) {
                 Espai desti = seguent.altreCostat();
                 if(!desti.estaPle()){
-                    //memoria.recordarEspai(espaiAcutal,true);
+                    memoria.recordarEspai(espaiActual, espaiActual.esPerillos());
                     espaiActual.sortir(this);
                     desti.entrar(this);
                 }
             }
-            return; //no macaba de molar el return aquest.................. (aques ho puc arreglar amb un else a sota...)
-        }
-
-        if (!espaiActual.hiHaGuardia()){
+        } else if (!espaiActual.hiHaGuardia()){
+           // int i = 0;
+           // boolean haMatat = false;
+            //fer amb el while aquest aixi.... i despres fer un else per lu seguent.... (com la cerca dicotomica (+-../))
+            
             for(int i=0; i<espaiActual.getPersonatges().size(); i++){
                 Personatge p = espaiActual.getPersonatges().get(i);
                 if (p instanceof Huma || p instanceof Porter){
                     matar(p);
-                    return; //no magrada aquest return................
+                    return; //no magrada aquest return................ 
                 }
             }
         }

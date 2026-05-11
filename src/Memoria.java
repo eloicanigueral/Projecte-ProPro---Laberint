@@ -37,7 +37,7 @@ public class Memoria{
      * indicant si aquest és o no perillós (s'ha vist algun alien o restes humanes)
      */
     public void recordarEspai(Espai e, boolean esPerillos){
-        if (espais.size()>=capacitatMem) {
+        if (capacitatMem>0 && espais.size()>=capacitatMem) {
             espais.remove(0); 
         }
         espais.add(new Pair<>(e, esPerillos));

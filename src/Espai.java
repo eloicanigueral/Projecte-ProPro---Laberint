@@ -176,11 +176,12 @@ public class Espai {
 
     /**
     @pre: --
-    @post: retorna true si hi ha algun humà en aquest espai. false altrament.
+    @post: retorna true si hi ha algun humà o porter (que son les possibles victimes dels aliens) en aquest espai. false altrament.
     */
-    public boolean hiHaHuma(){
+    public boolean hiHaVictimes(){
         for(int i=0; i<personatges.size();i++){
-            if(personatges.get(i) instanceof Huma) return true;
+            Personatge p = personatges.get(i);
+            if(p instanceof Huma || p instanceof Porter) return true;
         }
         return false;
     }

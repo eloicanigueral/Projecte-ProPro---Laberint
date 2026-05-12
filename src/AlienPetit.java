@@ -14,7 +14,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class AlienPetit extends Personatge{
 
@@ -25,7 +24,6 @@ public class AlienPetit extends Personatge{
      */
     public AlienPetit(String nom, int capacitatMemoria, ArrayList<Integer> claus) {
         super(nom, capacitatMemoria, claus);
-        //this.nom = nom; //no cal no???....
     }
 
     /**
@@ -33,32 +31,51 @@ public class AlienPetit extends Personatge{
      * 
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
-    public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
-        //agafar les claus que no tingui!!!!!!!!!!!!! (les altres es queden al terra!!!!!!!!!)
-        //sumar la memoooriaa!!!!!!!!!
-        p.morir(p.claus, p.teSmartGlasses());
-        this.memoria.augmentarCapacitat(p.memoria.capacitatMemoria()); //aixo esta be???.. jujuju
+    public void matar(Personatge p){
+        p.morir(p.claus, p.teSmartGlasses()); //personatge mor
         espaiActual.sortir(p);
+        this.memoria.augmentarCapacitat(p.memoria.capacitatMemoria()); //alien suma la capacitat memoria
 
-        //aqui lu de agafar les claus....
-        //faig un if abans com a Huma per a veure si hi ha claus a lespai actual???
+        //faig un if abans com a Huma per a veure si hi ha claus a lespai actual???/..... revisar ......................................
         ArrayList<Integer> tirades = espaiActual().veureClaus();
         for (int i = 0; i<tirades.size(); i++) {
             if (!claus.contains(tirades.get(i))) {
                 claus.add(tirades.get(i));
                 espaiActual().agafarClau(tirades.get(i));
-                i--; //l'arnau no el te!!! perooo.. si s'agafa una clau tirada es resta un a l'array.. per tant sino ens saltem una... ooo no s'actualitza tirades??
+                i--;
             }
         }
     
-        System.out.println("   -> " + nom + " MATA a " + p.getNom());
+        System.out.println("   -> " + nom + " MATA a " + p.getNom()); //s'ha de borrar
     }
 
     /**
-     * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i matar)
+     * @pre --
+     * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i/o matar)
      */
     public void actuar(){
-        if(espaiActual.hiHaAlien(this)){
+        
+        if (!espaiActual.hiHaAlien(this) && !espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //si no hi ha guardia, pot matar (si hi ha alguna victima -> huma o porter)
+            int i = 0;
+            boolean haMatat = false;
+            while(i<espaiActual.getPersonatges().size() && !haMatat){
+                Personatge p = espaiActual.getPersonatges().get(i);
+                if(p instanceof Huma || p instanceof Porter){
+                    matar(p);
+                    haMatat = true;
+                }
+                i++;
+            }
+                    
+            // for(int i=0; i<espaiActual.getPersonatges().size(); i++){
+            //     Personatge p = espaiActual.getPersonatges().get(i);
+            //     if (p instanceof Huma || p instanceof Porter){
+            //         matar(p);
+            //         return; //no magrada aquest return................ 
+            //     }
+            // }
+
+        } else{ //si hi ha un altre alien (a part de ell...) o no pot matar -> es comporta com un huma
             Porta seguent = escollirSeguentPorta();
             if (seguent != null) {
                 Espai desti = seguent.altreCostat();
@@ -67,28 +84,7 @@ public class AlienPetit extends Personatge{
                     espaiActual.sortir(this);
                     desti.entrar(this);
                 }
-            }
-        } else if (!espaiActual.hiHaGuardia()){
-           // int i = 0;
-           // boolean haMatat = false;
-            //fer amb el while aquest aixi.... i despres fer un else per lu seguent.... (com la cerca dicotomica (+-../))
-            
-            for(int i=0; i<espaiActual.getPersonatges().size(); i++){
-                Personatge p = espaiActual.getPersonatges().get(i);
-                if (p instanceof Huma || p instanceof Porter){
-                    matar(p);
-                    return; //no magrada aquest return................ 
-                }
-            }
-        }
-
-        Porta seguent = escollirSeguentPorta();
-        if (seguent != null) {
-            Espai desti = seguent.altreCostat();
-            if(!desti.estaPle()){
-                //memoria.recordarEspai(espaiAcutal,true);
-                espaiActual.sortir(this);
-                desti.entrar(this);
+                //si esta ple i no ha pogut entrar ha de ser la sala pero en negatiu.. mirar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
             }
         }
     }
@@ -125,16 +121,16 @@ public class AlienPetit extends Personatge{
             }
             if(noPerillosa.size() == 0 && !espaiActual.esPerillos()){}
             else if(perillosa.size() > 0 && espaiActual.esPerillos()){
-                Random rand = new Random();
+                //Random rand = new Random();
                 escollida = perillosa.get(rand.nextInt(perillosa.size()));
             }
             else if(noPerillosa.size() > 0){
-                Random rand = new Random();
+                //Random rand = new Random();
                 escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
             }
         }
         else{
-            Random rand = new Random();
+            //Random rand = new Random();
             escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
         }
         

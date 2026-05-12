@@ -8,7 +8,7 @@
  */
 
 import java.util.ArrayList;
-
+import java.util.Random;
 public abstract class Personatge {
 
     protected String nom;
@@ -18,7 +18,7 @@ public abstract class Personatge {
     protected ArrayList<Integer> claus;
     protected SmartGlasses ulleres;
     protected boolean haSortit = false;
-    protected Random rand;
+    protected Random rand = new Random();
     /**
      * @pre Des de la classe corresponent al personatge, es crida el cosntructor indicant el seu tipus i capacitat de memoria
      * 
@@ -29,7 +29,6 @@ public abstract class Personatge {
         this.memoria = new Memoria(capacitatMemoria);
         this.claus = claus;
         this.espaiActual = null;
-        rand = new Random();
     }
 
     protected Personatge(String nom, int capacitatMemoria) {

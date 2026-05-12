@@ -13,7 +13,6 @@
  * @author arnaulloret
  */
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Huma extends Personatge{
 
@@ -46,6 +45,7 @@ public class Huma extends Personatge{
                 if (!claus.contains(tirades.get(i))) {
                     claus.add(tirades.get(i));
                     espaiActual().agafarClau(tirades.get(i));
+                    i--;
                 }
             }
         }

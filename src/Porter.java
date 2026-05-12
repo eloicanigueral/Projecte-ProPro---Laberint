@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Random;
+
 
 /**
  * @class Porter
@@ -54,9 +54,11 @@ public class Porter extends Personatge{
         if(noPerillosa.size()>0){
             escollida = portes.get(rand.nextInt(noPerillosa.size()));
         }
-        else{
-            escollida = portes.get(rand.nextInt(perillosa.size()));
+        else if(perillosa.size()>0){
+           escollida = portes.get(rand.nextInt(perillosa.size())); 
         }
+           
+        
         return escollida;
     }
     /** canvia de sala

@@ -14,7 +14,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class AlienGran extends Personatge{
@@ -75,12 +74,12 @@ public class AlienGran extends Personatge{
         
         for (int i = 0; i < portes.size(); i++) {
             if (portes.get(i).altreCostat().esSortida()) continue; // sortida, saltar //oooo aquest?? quin dels dos?
-            if (portes.get(i).altreCostat().estaPle() && !portes.get(i).altreCostat().hiHaHuma()) continue;
+            if (portes.get(i).altreCostat().estaPle() && !portes.get(i).altreCostat().hiHaVictimes()) continue;
             if (memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
             else noRecorda.add(portes.get(i));
         }
         
-        Random rand = new Random();
+        //Random rand = new Random();
         if (noRecorda.size() > 0) return noRecorda.get(rand.nextInt(noRecorda.size()));
         
         // totes visitades, va a una de no perillosa

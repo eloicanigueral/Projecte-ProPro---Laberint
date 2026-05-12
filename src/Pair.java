@@ -14,4 +14,10 @@ public class Pair<S,T> {
 	first = x;
 	second = y;
     }
+
+    public boolean equals(Object o) {
+        if (!(o instanceof Pair)) return false;
+        Pair p = (Pair) o;
+        return first.equals(p.first);
+    }
 }

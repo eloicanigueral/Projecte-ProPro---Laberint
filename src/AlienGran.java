@@ -23,9 +23,8 @@ public class AlienGran extends Personatge{
      * 
      * @post Es crea l'alien gran amb la seva capacitat de memoria determinada
      */
-    public AlienGran(String nom) { //oooo aquest tenia memoria per a tot el laberint??????? //aqui capacitat = nombre_espais crecc
+    public AlienGran(String nom) {
         super(nom, -1);
-        //this.nom = nom; ///aixo sobra no????....
     }
 
     /**
@@ -33,34 +32,55 @@ public class AlienGran extends Personatge{
      * 
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
-    public void matar(Personatge p){ //cridar Espai.restesHumanes (o algo aixi...)
+    public void matar(Personatge p){
         p.morir(p.claus, p.teSmartGlasses());
         espaiActual.sortir(p);
-        System.out.println("   -> " + nom + " MATA a " + p.getNom());
+        System.out.println("   -> " + nom + " MATA a " + p.getNom()); //per borrarrr!!!
     }
 
     /**
+     * @pre --
      * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i matar)
      */
-    public void actuar(){
-        if (!espaiActual.hiHaGuardia()){
-            for(int i=0; i<espaiActual.getPersonatges().size(); i++){ //seria mes facil mirar si hi ha huma i/o porter abans de fer tot aquest for.....
+    public void actuar(){ //revisar actuar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (!espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //ha de matar
+            int i = 0;
+            boolean haMatat = false;
+            while(i<espaiActual.getPersonatges().size() && !haMatat){
                 Personatge p = espaiActual.getPersonatges().get(i);
-                if (p instanceof Huma || p instanceof Porter){ //sha de fer aixi de llarg??????.....
+                if(p instanceof Huma || p instanceof Porter){
                     matar(p);
-                    return; //no magrada aquest return................
+                    haMatat = true;
                 }
+                i++;
             }
-        }
+            
+            
+            
+            // for(int i=0; i<espaiActual.getPersonatges().size(); i++){ //seria mes facil mirar si hi ha huma i/o porter abans de fer tot aquest for.....
+            //     Personatge p = espaiActual.getPersonatges().get(i);
+            //     if (p instanceof Huma || p instanceof Porter){
+            //         matar(p);
+            //         return; //no magrada aquest return................
+            //     }
+            // }
+        } else { //si no pot matar.. s'ha de moure ----------------- mirar com tinc a alienpetit
+            Porta seguent = escollirSeguentPorta();
+            if (seguent != null){
+                Espai origen = espaiActual;
+                Espai desti = seguent.altreCostat();
+                memoria.recordarEspai(espaiActual, espaiActual.esPerillos()); //alien gran havia de tenir memoria?????
 
-        Porta seguent = escollirSeguentPorta();
-        if (seguent != null){
-            espaiActual.sortir(this);
-            seguent.altreCostat().entrar(this);
+                espaiActual.sortir(this);
+                seguent.altreCostat().entrar(this);
+                System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
+
+            }
         }
     }
 
-    /**
+    /**  ----------------------------------------- per ferrrr i revsiarr!!!!!!!!!!!!!!!!!!!11 .. mirar com el tinc a alienpetit i quiens diferencies ha de tenir!
+     * @pre --
      * @post S'escull la seguent porta
      */
     public Porta escollirSeguentPorta(){ //sha de fer aixi.. amb 3 arraylist?? arnau ho te semblant crec.. perooo es aixi???????....
@@ -89,7 +109,7 @@ public class AlienGran extends Personatge{
         }
         if (noPerillosa.size() > 0) return noPerillosa.get(rand.nextInt(noPerillosa.size()));
         
-       if (recorda.size() == 0 && noRecorda.size() == 0) return null;
+        if (recorda.size() == 0 && noRecorda.size() == 0) return null;
         // totes perilloses, random
         System.out.println(recorda.size());
         return recorda.get(rand.nextInt(recorda.size()));

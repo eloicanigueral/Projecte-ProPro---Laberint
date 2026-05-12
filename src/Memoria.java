@@ -16,18 +16,16 @@ import java.util.ArrayList;
 public class Memoria{
 
     private int capacitatMem=0;
-    private ArrayList<Pair<Espai, Boolean>> espais; //llista amb lespai i si es segur o no.. (mirar si true es perillos o es segur...)
-                    //es crida aixi:  new Pair<Boolean,Ruta>(trobat,r)
-
-
+    private ArrayList<Pair<Espai, Boolean>> espais; //llista amb lespai i si es perillos o no..
 
     /**
+     *  @pre S'entra un enter (>0) amb la capacitat de memoria, si el personatge no te limit de memoria s'entra -1 (alien gran)
      *  @post: Constructor amb la capacitat de memoria del personatge
      * 
     */
     public Memoria(int mem){
         espais = new ArrayList<>();
-        capacitatMem=mem; //si mem es -1 .. pues que el capacitat aquest sigui el nombre de sales no???
+        capacitatMem=mem; //si mem es -1 .. pues que el capacitat aquest sigui el nombre de sales no??? com  ho puc fer??... mirar vale no en vd no cal.. pq a recordar ja comprovo si es >0
     }
 
     /**
@@ -37,23 +35,25 @@ public class Memoria{
      * indicant si aquest és o no perillós (s'ha vist algun alien o restes humanes)
      */
     public void recordarEspai(Espai e, boolean esPerillos){
-        if (capacitatMem>0 && espais.size()>=capacitatMem) {
-            espais.remove(0); 
+        espais.remove(new Pair<>(e, esPerillos)); //si troba que l'espai e ja existeix, l'esborra
+        if (capacitatMem>=0 && espais.size()>=capacitatMem) {
+            oblidarEspai();
         }
         espais.add(new Pair<>(e, esPerillos));
     }
-    // recordarEspai(e, esPerillos) i recordaComAPerillos(e)
 
+    /**
+     * @pre --
+     * @post S'elimina de memoria l'espai visitat fa més temps (el primer de la cua)
+     */
+    public void oblidarEspai(){
+        espais.remove(0); 
+    }
 
 
     /**
-     * @post S'elimina de memoria l'espai visitat fa més temps (el primer de la cua)
+     * @return retorna la capacitat de memoria del personatge
      */
-    public void oblidarEspai(){ //cal??????????????/
-        espais.remove(0); 
-    }  //per ferrr!!!!!!!!!!!!!!
-
-
     public int capacitatMemoria(){
         return capacitatMem;
     }
@@ -65,8 +65,11 @@ public class Memoria{
      */
     public void augmentarCapacitat(int x){
         capacitatMem += x;
-    }  //per ferrr!!!!!!!!!!!!!!
+    }
 
+    /**
+     * @return Retorna true si el personatge recorde l'espai e com a perillos
+     */
     public boolean esPerillos(Espai e){
         for (int i=0; i<espais.size(); i++) {
             if (espais.get(i).first == e) {
@@ -75,6 +78,10 @@ public class Memoria{
         }
         return false;
     }
+
+    /**
+     * @return Retorna true si el personatge recorda l'espai
+     */
     public boolean recorda(Espai e){
         for (int i=0; i<espais.size(); i++) {
             if (espais.get(i).first == e) {

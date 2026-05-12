@@ -78,11 +78,13 @@ public class AlienPetit extends Personatge{
         } else{ //si hi ha un altre alien (a part de ell...) o no pot matar -> es comporta com un huma
             Porta seguent = escollirSeguentPorta();
             if (seguent != null) {
+                Espai origen = espaiActual;
                 Espai desti = seguent.altreCostat();
                 if(!desti.estaPle()){
                     memoria.recordarEspai(espaiActual, espaiActual.esPerillos());
                     espaiActual.sortir(this);
                     desti.entrar(this);
+                    System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
                 }
                 //si esta ple i no ha pogut entrar ha de ser la sala pero en negatiu.. mirar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
             }
@@ -90,19 +92,19 @@ public class AlienPetit extends Personatge{
     }
 
     /**
+     * @pre --
      * @post S'escull la seguent porta
      */
-    public Porta escollirSeguentPorta(){ //la he copiat de huma... no me la he ni mirat... lha canviat..  
+    public Porta escollirSeguentPorta(){ //la he copiat de huma... es igual a la majoria no??... la posem a personatges????? a no pq ulleres...  
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         Porta escollida = null;
-        for(int i=0;i<portes.size();i++){
+        for(int i=0; i<portes.size(); i++){
             boolean borra = false;
             if (portes.get(i).altreCostat().esSortida()) borra = true;
-            if(portes.get(i).altreCostat().estaPle()) borra=true;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
             if(borra) {
                 portes.remove(i);
-                i--; //he afegit aixo del de larnauu!!!!!!!!!!!!!!!!!
+                i--;
             }
         }
         
@@ -119,24 +121,17 @@ public class AlienPetit extends Personatge{
                 if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
                 else noPerillosa.add(recorda.get(i));
             }
-            if(noPerillosa.size() == 0 && !espaiActual.esPerillos()){}
-            else if(perillosa.size() > 0 && espaiActual.esPerillos()){
-                //Random rand = new Random();
+            if(perillosa.size()>0 && espaiActual.esPerillos()){ //aixo esta malament..mirar1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! sha de moure buscant les perilloses.
                 escollida = perillosa.get(rand.nextInt(perillosa.size()));
             }
-            else if(noPerillosa.size() > 0){
-                //Random rand = new Random();
+            else if(noPerillosa.size() == 0){ //si totes son perilloses, es mou random??... i si no que fa?? mirar... he posat jo ==
                 escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
             }
         }
         else{
-            //Random rand = new Random();
             escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
         }
         
         return escollida; 
     }
-
-    //emm he de crear una que sigui per poder augmentar la memoria de lalien!!!!
-    //a memoria hi tinc un augmentarCapacitat.....
 }

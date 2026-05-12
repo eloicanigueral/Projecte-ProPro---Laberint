@@ -85,7 +85,6 @@ public class Guardia extends Personatge{
             }
             if(espaiActual.esPerillos()) escollida = null;
             if(!espaiActual.esPerillos() && perillosa.size() > 0){
-                Random rand = new Random();
                 escollida = perillosa.get(rand.nextInt(perillosa.size()));
             }
             if(espaiActual.esPerillos() && perillosa.size() == 0){
@@ -93,7 +92,6 @@ public class Guardia extends Personatge{
             }
         }
         else{
-            Random rand = new Random();
             escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
         }
         

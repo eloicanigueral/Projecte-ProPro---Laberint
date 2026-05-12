@@ -115,8 +115,8 @@ public class Huma extends Personatge{
                 if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
                 else noPerillosa.add(recorda.get(i));
             }
-            if(noPerillosa.size() == 0 && !espaiActual.esPerillos()){}
-            else if(noPerillosa.size() == 0 && espaiActual.esPerillos()){
+            
+            if(noPerillosa.size() == 0 && espaiActual.esPerillos()){
                 if(perillosa.size() > 0){
                     escollida = perillosa.get(rand.nextInt(perillosa.size()));
                 }

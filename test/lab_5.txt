@@ -4,7 +4,7 @@ h:C:10:[3,5,8,12,13,16,20]:1
 p:robot:5
 ag:Aliengran
 ap:alienpetit:3:[1,3,5,7,8,9]
-ap:alientpetit2:3:[3,7,8,12,5]
+ap:alientpetit2:3:[3,7,8,15,12,5]
 sala:1:(0,10,11,0):4:[]
 sala:2:(12,13,0,11):4:[robot]
 sala:3:(0,14,0,21):3:[]

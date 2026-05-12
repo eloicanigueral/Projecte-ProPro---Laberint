@@ -124,7 +124,7 @@ public class AlienPetit extends Personatge{
             if(perillosa.size()>0 && espaiActual.esPerillos()){ //aixo esta malament..mirar1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! sha de moure buscant les perilloses.
                 escollida = perillosa.get(rand.nextInt(perillosa.size()));
             }
-            else if(noPerillosa.size() == 0){ //si totes son perilloses, es mou random??... i si no que fa?? mirar... he posat jo ==
+            else if(noPerillosa.size() > 0){ //si totes son perilloses, es mou random??... i si no que fa?? mirar...
                 escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
             }
         }

@@ -19,9 +19,8 @@ public abstract class Personatge {
     protected Memoria memoria;
     protected ArrayList<Integer> claus;
     protected SmartGlasses ulleres;
-
     protected boolean haSortit = false;
-
+    protected Random rand;
     /**
      * @pre Des de la classe corresponent al personatge, es crida el cosntructor indicant el seu tipus i capacitat de memoria
      * 
@@ -32,6 +31,7 @@ public abstract class Personatge {
         this.memoria = new Memoria(capacitatMemoria);
         this.claus = claus;
         this.espaiActual = null;
+        rand = new Random();
     }
 
     protected Personatge(String nom, int capacitatMemoria) {

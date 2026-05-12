@@ -15,10 +15,8 @@ import java.util.Random;
  */
 
 public class Porter extends Personatge{
-    Random rand;
     public Porter(String nom, int capacitatMemoria){
         super(nom,capacitatMemoria);
-        rand = new Random();
     }
     public void actuar(){
         Porta escollida = escollirSeguentPorta();

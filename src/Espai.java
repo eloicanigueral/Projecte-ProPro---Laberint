@@ -45,14 +45,10 @@ public class Espai {
     }
     
     public void conectarEspais(ArrayList<Espai> espaisConnectats){
-        System.out.println("Ha entrat a conectar espais (espais)");
         for(int i=0; i<espaisConnectats.size(); i++){
             Porta p = new Porta(espaisConnectats.get(i).mostrarId(),this,espaisConnectats.get(i));
             portes.add(p);
 
-        }
-        for(int i=0; i<portes.size();i++){
-            System.out.println(portes.get(i).getCodi());
         }
     }
     public void addPorta(Porta p){

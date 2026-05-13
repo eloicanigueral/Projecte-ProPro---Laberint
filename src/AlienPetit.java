@@ -40,7 +40,7 @@ public class AlienPetit extends Personatge{
         ArrayList<Integer> tirades = espaiActual().veureClaus();
         for (int i = 0; i<tirades.size(); i++) {
             if (!claus.contains(tirades.get(i))) {
-                claus.add(tirades.get(i));
+                claus.add(tirades.get(i)); //tots aquests de claus.add i tal.. cridar el metode de la classe personatge afegirClau?? si no?? (ara el tinc comentat...)
                 espaiActual().agafarClau(tirades.get(i));
                 i--;
             }

@@ -13,14 +13,16 @@ public abstract class Personatge {
 
     protected String nom;
     protected boolean viu = true;
-    protected Espai espaiActual; // espai o int???
+    protected Espai espaiActual;
     protected Memoria memoria;
     protected ArrayList<Integer> claus;
     protected SmartGlasses ulleres;
     protected boolean haSortit = false;
     protected Random rand = new Random();
+
+
     /**
-     * @pre Des de la classe corresponent al personatge, es crida el cosntructor indicant el seu tipus i capacitat de memoria
+     * @pre Des de la classe corresponent al personatge, es crida el cosntructor indicant el seu nom, capacitat de memoria i ArayList de claus
      * 
      * @post Es crea el personatge concret indicat, i s'inicialitzen els seus atributs
      */
@@ -31,14 +33,20 @@ public abstract class Personatge {
         this.espaiActual = null;
     }
 
+    /**
+     * @pre Des de la classe corresponent al personatge, es crida el cosntructor indicant el seu nom i capacitat de memoria
+     * 
+     * @post Es crea el personatge concret indicat, i s'inicialitzen els seus atributs
+     */
     protected Personatge(String nom, int capacitatMemoria) {
         this.nom = nom;
         this.memoria = new Memoria(capacitatMemoria);
-        this.claus = new ArrayList<>();
+        this.claus = new ArrayList<>(); //buit ... es pot posar un null o algo?? (bueno no crec qserveix despres pel nombre de claus.. que tonri 0)
         this.espaiActual = null;
     }
 
-    protected String getNom(){
+    /** @return Retorna el nom del Personatge */
+    protected String getNom(){ //canviar el nom de get no?? psoar algo diferent...
         return nom;
     }
 
@@ -48,13 +56,13 @@ public abstract class Personatge {
         return espaiActual;
     }
 
-    /**
+    /**     //mirar aquest metode!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! crec q no cal ja pero nose mirar i fer igual.. pq llavors lu que tenim de estaPle() que mirem a cad personatge de que serveix??
+     * sino es podria deixar aixi nomes amb aqeust i no posar lu de estaPle.. ii com que aquest comprova si esta ple, si no pot, retorna algo en especial, per arreglar el  problema que teniem per la sortida de si no pot entrar en negatiu
      * @pre S'indica l'espai al que es vol canviar
      * 
      * @post Si el personatge pot entrar a l'espai, hi canvia i s'actualitza l'espai actual, si no, es mante al mateix espai //AIXO HA DE SER AIXI??????
-     * //SI NO POT ENTRAR A AUN HA DE ANAR PROVANTA  VERUE SIKK ESS  POT CANVIAR NO??? O KLK....
      */
-    protected void canviEspai(Espai e){ //amb un bool i si no es pot doncs tornar a profvar una altra porta aligual no millor???
+    protected void canviEspai(Espai e){
         if (potEntrarEspai(e)) espaiActual = e;
     }
     
@@ -62,7 +70,7 @@ public abstract class Personatge {
      * @return Retorna si el personatge pot entrar a l'espai indicat
      */
     public boolean potEntrarEspai(Espai e) {
-        return !e.estaPle(); // || (tipusPersonatge=="a_gran" && e.hiHaHuma()); //ben feta aquesta funcio??
+        return !e.estaPle(); // || (tipusPersonatge=="a_gran" && e.hiHaVictimes()); //ben feta aquesta funcio??
     }
 
     /** AQUEST METODE TREUREL DE AQUI I POSARLO A ALS PERSONATGES QUE TOQUI!!!!!
@@ -74,30 +82,9 @@ public abstract class Personatge {
     //   //  claus.add(new Clau(codi));
     // }
 
-    /** @return Retorna si el personatge esta viu o no. */
-    public boolean estaViu(){
-        return viu;
-    }
 
-    /**@pre i @post !!!!!!! */
-    public int nombreClaus(){
-        //if (claus.size() == null) return 0;
-        return claus.size();
-    }
 
-    /** 
-     * @post El personatge mor */
-    public void morir(ArrayList<Integer> claus, boolean smartGlasses){
-        espaiActual.deixarRestes();
-        for(int i=0; i<claus.size(); i++){
-            espaiActual.deixarClau(claus.get(i));
-        }
-        if (smartGlasses)
-            espaiActual.deixarSmartGlasses();
-        viu = false;
-    }
-
-    /** AQUESTA IGUAL... NOMES LA NECESSITA HUMA. II ALIEN LA PART D ABAIX ---------------------------------
+        /** AQUESTA IGUAL... NOMES LA NECESSITA HUMA. II ALIEN LA PART D ABAIX ---------------------------------
      * @post Recull l'objecte del terra i se'l guarda  */
     //tb m falta tot lu de memoria.. un que retorni la quantitat de memoria??? iii un que vaigi guardant per a aquest personatge... (un "recordar..." o afegirmemoria o algo aixi saes?)
     
@@ -119,12 +106,10 @@ public abstract class Personatge {
         
     // }
 
-
-
     // falta boolean de potObrirPorta(){envio tot larray de claus a potObrirPorta(claus) !!!!!
     //per cada porta crida el potObrir aquest.. iii }
-    //LU MATEIX QUE ABANS.. NOMES LES NECESITEN ALGUNES.... HUMA I ALIENPETIT....
-        /**
+
+    /**
      * @return Retorna si el personatge té la clau amb el codi indicat, o si és un porter o l'alien gran (que poden obrir totes les portes)
      */
     //  public boolean teClau(int codi){
@@ -142,12 +127,39 @@ public abstract class Personatge {
     // }
 
 
+
+    /** @return Retorna si el personatge esta viu o no. */
+    public boolean estaViu(){
+        return viu;
+    }
+
+    /**@pre --
+     * @post retorna el nombre de claus que te el personatge
+     */
+    public int nombreClaus(){
+        //if (claus.size() == null) return 0; //es pot fer aixo?? iii aixi al constructor sense claus posar null??
+        return claus.size();
+    }
+
+    /** 
+     * @pre El personatge estava viu
+     * @post El personatge mor i deixa al terra les restes, i els seus objectes (claus i SmartGlasses si escau)
+     */
+    public void morir(ArrayList<Integer> claus, boolean smartGlasses){
+        espaiActual.deixarRestes();
+        for(int i=0; i<claus.size(); i++){
+            espaiActual.deixarClau(claus.get(i));
+        }
+        if (smartGlasses)
+            espaiActual.deixarSmartGlasses();
+        viu = false;
+    }
+
+
     /** @return Retorna si el personatge ha sortit del laberint */
     public boolean haSortit(){
         return haSortit;
     }
-
-
 
     /**
      * @pre Personatge viu, i es el seu torn
@@ -156,7 +168,10 @@ public abstract class Personatge {
      */
     public abstract void actuar(); //mirar si cal.. i com ferho... pq tots tenen un actuar diferent pero tots son personatges
 
+
+
+    // REVISAR AQUEST.................... EL TENIM DUPLICAT.. HUMA TE -> teUlleres ..... ii aque aquest.. no cal 2.. nomes 1.. mirar si el deixem a huma o si el posem aqui
     public boolean teSmartGlasses(){
-        return ulleres != null; //OOO RETURN FALSE???
+        return ulleres != null; //OOO RETURN FALSE??? (a huma )
     }
 }

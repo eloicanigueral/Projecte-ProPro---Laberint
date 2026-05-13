@@ -42,8 +42,8 @@ public class AlienGran extends Personatge{
      * @pre --
      * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i matar)
      */
-    public void actuar(){ //revisar actuar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (!espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //ha de matar
+    public void actuar(){
+        if (!espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //si no h i ha guardia i hi ha victimes, ha de matar
             int i = 0;
             boolean haMatat = false;
             while(i<espaiActual.getPersonatges().size() && !haMatat){
@@ -54,65 +54,95 @@ public class AlienGran extends Personatge{
                 }
                 i++;
             }
-            
-            
-            
-            // for(int i=0; i<espaiActual.getPersonatges().size(); i++){ //seria mes facil mirar si hi ha huma i/o porter abans de fer tot aquest for.....
-            //     Personatge p = espaiActual.getPersonatges().get(i);
-            //     if (p instanceof Huma || p instanceof Porter){
-            //         matar(p);
-            //         return; //no magrada aquest return................
-            //     }
-            // }
         } else { //si no pot matar.. s'ha de moure ----------------- mirar com tinc a alienpetit
             Porta seguent = escollirSeguentPorta();
             if (seguent != null){
                 Espai origen = espaiActual;
-                Espai desti = seguent.altreCostat();
-                memoria.recordarEspai(espaiActual, espaiActual.esPerillos()); //alien gran havia de tenir memoria?????
-
-                espaiActual.sortir(this);
-                seguent.altreCostat().entrar(this);
-                System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
-
+                Espai desti = seguent.altreCostat(); //revisar aixo de desti i tal.. ---------- mirar com ho te l'arnau pq nose pas si comprova limits.... (millor mirar el d alienpetit)
+                if(!desti.estaPle() || desti.hiHaVictimes()){ //encara que estigui plena la sala, si hi ha alguna victima pot entrar (per matarla despres)???
+                    memoria.recordarEspai(espaiActual, espaiActual.esPerillos());
+                    espaiActual.sortir(this);
+                    desti.entrar(this);
+                    System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
+                }
+                //else {} que es quan s'ha intentat moure peroo no ha pogut!!!!!!!!!!!!!!!!
             }
         }
     }
 
-    /**  ----------------------------------------- per ferrrr i revsiarr!!!!!!!!!!!!!!!!!!!11 .. mirar com el tinc a alienpetit i quiens diferencies ha de tenir!
+    /**  ----------------------------------------- revsiarr!!!!!!!!!!!!!!!!!!!11 ha de ser igual que la de huma.. comprarar amb l'arnau 
+     * lu unic que he de canviar es que trii una porta que no sigui sortida.. (com alien petit)
+     * mirar tambe la de alien petit pq hi ha posat comentaris que li poden servir a l'arnau...
      * @pre --
      * @post S'escull la seguent porta
      */
-    public Porta escollirSeguentPorta(){ //sha de fer aixi.. amb 3 arraylist?? arnau ho te semblant crec.. perooo es aixi???????....
-        //sha de refer i revisar toot.. pqqq si canviem lu de porta de sortida un bool o algo... en comptes de altrecostat == null... ii lu altre no he mirat...
-        //si hi ha huma no sempre pot entrar... si esta plena i nomes hi ha aliens no hi pot entrar.. com tinc aixo en compte???>....
+    public Porta escollirSeguentPorta(){ //s'ha de moure com huma, excepte que ha de triar una que NO sigui sortida
+
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
+        
         ArrayList<Porta> recorda = new ArrayList<>();
         ArrayList<Porta> noRecorda = new ArrayList<>();
 
+        Porta escollida = null;
 
-        
-        for (int i = 0; i < portes.size(); i++) {
-            if (portes.get(i).altreCostat().esSortida()) continue; // sortida, saltar //oooo aquest?? quin dels dos?
-            if (portes.get(i).altreCostat().estaPle() && !portes.get(i).altreCostat().hiHaVictimes()) continue;
-            if (memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
-            else noRecorda.add(portes.get(i));
-        }
-        
-        //Random rand = new Random();
-        if (noRecorda.size() > 0) return noRecorda.get(rand.nextInt(noRecorda.size()));
-        
-        // totes visitades, va a una de no perillosa
+        for(int i=0; i<portes.size(); i++){
+            boolean borra = false;
+            if (portes.get(i).altreCostat().esSortida()) borra = true;
+            if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
+            if(borra) {
+                portes.remove(i);
+                i--;
+            } else{
+                if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
+                else noRecorda.add(portes.get(i));
+            }
+        }       
+                
+        ArrayList<Porta> perillosa = new ArrayList<>();
         ArrayList<Porta> noPerillosa = new ArrayList<>();
-        for (int i = 0; i < recorda.size(); i++) {
-            if (!memoria.esPerillos(recorda.get(i).altreCostat())) noPerillosa.add(recorda.get(i));
+        for(int i=0; i<recorda.size(); i++){
+            if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
+            else noPerillosa.add(recorda.get(i));
         }
-        if (noPerillosa.size() > 0) return noPerillosa.get(rand.nextInt(noPerillosa.size()));
         
-        if (recorda.size() == 0 && noRecorda.size() == 0) return null;
-        // totes perilloses, random
-        System.out.println(recorda.size());
-        return recorda.get(rand.nextInt(recorda.size()));
+        
+        //aquesta part de aqui: subt6utiur perl comentari???
+        ArrayList<Porta> perillosa = new ArrayList<>();
+        ArrayList<Porta> noPerillosa = new ArrayList<>();
+        for(int i=0; i<recorda.size(); i++){
+            if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
+            else noPerillosa.add(recorda.get(i));
+        }
+
+        if(noPerillosa.size()>0 /*&& espaiActual.esPerillos() //si hi ha no perilloses.. directe random de ls noves.. no cal quedarse al mateix lloc, per tant no cal comprovar si lactual es o no es eprills*/){ //actuen evitant els altres aliens, per tant, evitant espais perillosos
+            escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
+        } else if(noPerillosa.size()==0 && !espaiActual.esPerillos()){ //totes son perilloses excepte l'espai actual, no es mou
+            escollida = null; //ooo espaiActual???.. llavors com indico que no sha mogut???....
+        } else if(noPerillosa.size()==0){ //si totes son perilloses i la actual tambe, es mou random
+            escollida = perillosa.get(rand.nextInt(perillosa.size()));
+        } //jo crec q no cal else.. acabar d emirar i comprovar peroo... (lultim else if podria ser else tal qual i ja esta...)
     }
+    else{
+        escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
+    }
+    
+    return escollida; 
+
+
+        //-------------------MIRAR AIXO.. INTENTAR ADAPTAR EL DE ABAIX: AIXI ENS ESTALVIEM UN ARRAYLIST!!!!!!!!!!!!!!!! -------------
+        // if (noRecorda.size() > 0) return noRecorda.get(rand.nextInt(noRecorda.size()));
+        
+        // // totes visitades, va a una de no perillosa
+        // ArrayList<Porta> noPerillosa = new ArrayList<>();
+        // for (int i = 0; i < recorda.size(); i++) {
+        //     if (!memoria.esPerillos(recorda.get(i).altreCostat())) noPerillosa.add(recorda.get(i));
+        // }
+        // if (noPerillosa.size() > 0) return noPerillosa.get(rand.nextInt(noPerillosa.size()));
+        
+        // if (recorda.size() == 0 && noRecorda.size() == 0) return null;
+        // // totes perilloses, random
+        // System.out.println(recorda.size());
+        // return recorda.get(rand.nextInt(recorda.size()));
+    //}
 
 }

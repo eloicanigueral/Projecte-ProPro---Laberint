@@ -87,7 +87,7 @@ public abstract class Personatge {
         if (menjat != null){
             System.out.print(menjat);
         }
-        System.out.print("]" \n); //o aqust
+        System.out.println("]"); //o aqust
 
     }
 

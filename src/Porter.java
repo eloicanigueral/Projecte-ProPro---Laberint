@@ -39,7 +39,7 @@ public class Porter extends Personatge{
         else{
             idDesti = 0;
         }
-        mostrarMoviment(ArrayList<Integer>(),false,idDesti,null);
+        mostrarMoviment(new ArrayList<Integer>(),false,idDesti,null);
     }
 
     public Porta escollirSeguentPorta(){

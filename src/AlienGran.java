@@ -73,7 +73,7 @@ public class AlienGran extends Personatge{
                 }
             }
         }
-        mostrarMoviment(ArrayList<Integer>(), false, idDesti, mataA);
+        mostrarMoviment(new ArrayList<Integer>(), false, idDesti, mataA);
 
     }
 
@@ -120,7 +120,7 @@ public class AlienGran extends Personatge{
                 if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
                 else noPerillosa.add(recorda.get(i));
             }
-            
+
             if(noPerillosa.size()>0 ){
                 escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
             } else if(noPerillosa.size()==0 && !espaiActual.esPerillos()){ //totes son perilloses excepte l'espai actual, no es mou

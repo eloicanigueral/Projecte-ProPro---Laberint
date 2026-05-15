@@ -63,20 +63,25 @@ public class Guardia extends Personatge{
     }
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
+
         Porta escollida = null;
+        ArrayList<Porta> recorda = new ArrayList<>();
+        ArrayList<Porta> noRecorda = new ArrayList<>();
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(portes.get(i).altreCostat().estaPle()) borra=true; //si volem que guardia entri a sales plenes treure aixo
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
-            if(borra) portes.remove(i);
+            if(borra){
+                portes.remove(i);
+                i--;
+            } 
+            else{
+                if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
+                else noRecorda.add(portes.get(i));
+            }
+            
         }
 
-        ArrayList<Porta> recorda = new ArrayList<>();
-        ArrayList<Porta> noRecorda = new ArrayList<>();
-        for(int i=0; i<portes.size(); i++){
-            if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
-            else noRecorda.add(portes.get(i));
-        }
         if(noRecorda.size() == 0){
             ArrayList<Porta> perillosa = new ArrayList<>();
             ArrayList<Porta> noPerillosa = new ArrayList<>();

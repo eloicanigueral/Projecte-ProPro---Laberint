@@ -64,10 +64,10 @@ public class Porter extends Personatge{
             else noPerillosa.add(portes.get(i));
         }
         if(noPerillosa.size()>0){
-            escollida = portes.get(rand.nextInt(noPerillosa.size()));
+            escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
         }
         else if(perillosa.size()>0){
-           escollida = portes.get(rand.nextInt(perillosa.size())); 
+           escollida = perillosa.get(rand.nextInt(perillosa.size())); 
         }
            
         

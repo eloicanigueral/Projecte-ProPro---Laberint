@@ -103,15 +103,7 @@ public class AlienGran extends Personatge{
                 if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
                 else noRecorda.add(portes.get(i));
             }
-        }       
-                
-        ArrayList<Porta> perillosa = new ArrayList<>();
-        ArrayList<Porta> noPerillosa = new ArrayList<>();
-        for(int i=0; i<recorda.size(); i++){
-            if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
-            else noPerillosa.add(recorda.get(i));
-        }
-        
+        }               
 
         if(noRecorda.size() == 0){
             ArrayList<Porta> perillosa = new ArrayList<>();

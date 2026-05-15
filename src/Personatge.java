@@ -16,7 +16,7 @@ public abstract class Personatge {
     protected Espai espaiActual;
     protected Memoria memoria;
     protected ArrayList<Integer> claus;
-    protected SmartGlasses ulleres = false;
+    protected SmartGlasses ulleres;
     protected boolean haSortit = false;
     protected Random rand = new Random();
 
@@ -99,8 +99,7 @@ public abstract class Personatge {
     
     public boolean recollirSmartGlasses(){
         boolean agafat = false;
-        if (!smartGlasses && espaiActual.hiHaSmartGlasses()) {
-            smartGlasses = true;
+        if (ulleres==null && espaiActual.hiHaSmartGlasses()) {
             ulleres = espaiActual.recollirSmartGlasses();
             agafat = true;
         }
@@ -110,7 +109,7 @@ public abstract class Personatge {
     public ArrayList<Integer> recollirClaus(){
         ArrayList<Integer> recollides = new ArrayList<>();
         if (espaiActual.hiHaClaus()) {
-            ArrayList<Clau> tirades = espaiActual.veureClaus();
+            ArrayList<Integer> tirades = espaiActual.veureClaus();
             for (int i = 0; i<tirades.size(); i++) {
                 if (!claus.contains(tirades.get(i))) {
                     claus.add(tirades.get(i));
@@ -191,6 +190,6 @@ public abstract class Personatge {
      * @post:
      */
     public boolean teSmartGlasses(){
-        return ulleres;
+        return ulleres!=null;
     }
 }

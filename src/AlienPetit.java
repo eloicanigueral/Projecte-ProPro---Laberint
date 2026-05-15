@@ -67,13 +67,13 @@ public class AlienPetit extends Personatge{
             while(i<espaiActual.getPersonatges().size() && !haMatat){
                 Personatge p = espaiActual.getPersonatges().get(i);
                 if(p instanceof Huma || p instanceof Porter){
-                    matar(p);
+                    matar(p); //posar tb larray i que es sumin les claus que pilli????
                     haMatat = true;
                     mataA = p.getNom();
                 }
                 i++;
             }
-            mostrarMoviment();
+            mostrarMoviment(clausRecollides, false, idDesti, mataA);
 
         } else{ //si hi ha un altre alien (a part de ell...) o no pot matar -> es comporta com un huma
             Porta seguent = escollirSeguentPorta();

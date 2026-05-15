@@ -33,25 +33,26 @@ public class Guardia extends Personatge{
     @post: els altres personatges de la sala deixen de tenir immunitat amb els aliens */
 
     public void actuar(){
-        ArrayList<Interger>clausRecollides = new ArrayList<>();
+        ArrayList<Integer>clausRecollides = new ArrayList<>();
         clausRecollides = recollirClaus();
 
         Porta seguent = null;
         if(!espaiActual.hiHaAlien(this)){
             seguent = escollirSeguentPorta();
         }
-
+        Espai origen = espaiActual;
+        Espai desti = null;
+        int idDesti = 0;
         if(seguent != null){
-            Espai origen = espaiActual;
-            Espai desti = seguent.altreCostat();
-            int idDesti = 0;
+            desti = seguent.altreCostat();
+            idDesti = desti.mostrarId();
             if(!desti.estaPle()){
                 memoria.recordarEspai(espaiActual,espaiActual.esPerillos());
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
             else{
-                iDesti*=-1;
+                idDesti*=-1;
             }
         }
         else{

@@ -34,12 +34,14 @@ public class Huma extends Personatge{
 
         Porta seguent = null;
         seguent = escollirSeguentPorta();
+
         int idDesti = 0;
+        Espai origen = espaiActual;
+        Espai desti = null;
         //Si ha retornat una porta per continuar
         if(seguent != null){
-            Espai origen = espaiActual;
-            Espai desti = seguent.altreCostat();
-            desti=desti.mostrarId();
+            desti = seguent.altreCostat();
+            idDesti=desti.mostrarId();
 
             if(desti.esSortida()){ 
                 haSortit = true;
@@ -52,7 +54,7 @@ public class Huma extends Personatge{
                 desti.entrar(this);
             }
             else if(desti.estaPle()){
-                idDest*=-1;
+                idDesti*=-1;
             }
         }  
         //No es mou a cap sala

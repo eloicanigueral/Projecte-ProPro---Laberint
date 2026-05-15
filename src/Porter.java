@@ -23,10 +23,13 @@ public class Porter extends Personatge{
         escollida = escollirSeguentPorta();
         
         int idDesti = 0;
+        Espai origen = espaiActual;
+        Espai desti = null;
         if(escollida != null){
             escollida.obrir();
-            Espai origen = espaiActual;
-            Espai desti = escollida.altreCostat();
+            desti = escollida.altreCostat();
+            idDesti = desti.mostrarId();
+            
             if(!desti.estaPle()){
                 memoria.recordarEspai(origen,origen.esPerillos());
                 espaiActual.sortir(this);

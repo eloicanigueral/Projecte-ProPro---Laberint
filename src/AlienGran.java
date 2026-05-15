@@ -95,7 +95,6 @@ public class AlienGran extends Personatge{
         for(int i=0; i<portes.size(); i++){
             boolean borra = false;
             if (portes.get(i).altreCostat().esSortida()) borra = true;
-            if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
             if(borra) {
                 portes.remove(i);
                 i--;

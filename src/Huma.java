@@ -22,58 +22,45 @@ public class Huma extends Personatge{
             this.ulleres = new SmartGlasses();
         }
     }
-    
-    /**
-    @pre: --
-    @post: retorna true si l'humà té SmartGlasses. false altrament.
-    */
-    public boolean teUlleres(){
-        return ulleres != null;
-    }
 
     /**
     @pre: --
     @post: mètode principal perquè el personatge actui.
     */
     public void actuar(){
-        if(!teUlleres() && espaiActual().hiHaSmartGlasses()){
-            ulleres = espaiActual().recollirSmartGlasses();
-        }
-        if (espaiActual().hiHaClaus()) {
-            ArrayList<Integer> tirades = espaiActual().veureClaus();
-            for (int i = 0; i < tirades.size(); i++) {
-                if (!claus.contains(tirades.get(i))) {
-                    claus.add(tirades.get(i));
-                    espaiActual().agafarClau(tirades.get(i));
-                    i--;
-                }
-            }
-        }
+        ArrayList<Integer> clausRecollides = new ArrayList<>();
+        clausRecollides = recollirClaus();
+        boolean ulleresRecollides = recollirSmartGlasses();
 
         Porta seguent = null;
-        if(espaiActual.hiHaAlien(this)){
-            seguent = escollirSeguentPorta();
-        }
-        else{
-            seguent = escollirSeguentPorta();
-        }
-
+        seguent = escollirSeguentPorta();
+        int idDesti = 0;
+        //Si ha retornat una porta per continuar
         if(seguent != null){
             Espai origen = espaiActual;
             Espai desti = seguent.altreCostat();
-            if(desti.esSortida()){ //ARNAUUU TEH AFEGIT AIXOO!!!
+            desti=desti.mostrarId();
+
+            if(desti.esSortida()){ 
                 haSortit = true;
                 espaiActual.sortir(this);
-                System.out.println("   -> " + nom + " HA SORTIT DEL LABERINT!");
+                desti.entrar(this);
             }
             else if(!desti.estaPle()){
                 memoria.recordarEspai(espaiActual,espaiActual.esPerillos());
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
-            System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
+            else if(desti.estaPle()){
+                idDest*=-1;
+            }
+        }  
+        //No es mou a cap sala
+        else{
+            idDesti=0;
         }
-
+        mostrarMoviment(clausRecollides,ulleresRecollides,desti.mostrarId(),null);    
+        
     }
     
     /**
@@ -81,14 +68,23 @@ public class Huma extends Personatge{
     @post: retorna la seguent porta escollida per l'algorisme de com actua un personatge.
     */
     public Porta escollirSeguentPorta(){ 
+        //Agafa les portes de l'espai
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
+
         Porta escollida = null;
+        ArrayList<Porta> recorda = new ArrayList<>();
+        ArrayList<Porta> noRecorda = new ArrayList<>();
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
             if(borra){
                 portes.remove(i);
                 i--;
+            }
+            else{
+                if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
+                else noRecorda.add(portes.get(i));
+                if(portes.get(i).altreCostat().esSortida()) return portes.get(i);
             }
         }
         if(ulleres != null){
@@ -101,13 +97,6 @@ public class Huma extends Personatge{
             if(escollida != null) return escollida;
         }
         
-        ArrayList<Porta> recorda = new ArrayList<>();
-        ArrayList<Porta> noRecorda = new ArrayList<>();
-        for(int i=0; i<portes.size(); i++){
-            if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
-            else noRecorda.add(portes.get(i));
-            if(portes.get(i).altreCostat().esSortida()) return portes.get(i);
-        }
         if(noRecorda.size() == 0){
             ArrayList<Porta> perillosa = new ArrayList<>();
             ArrayList<Porta> noPerillosa = new ArrayList<>();
@@ -140,8 +129,4 @@ public class Huma extends Personatge{
         return claus;
     }
 
-    @Override
-    public boolean teSmartGlasses(){
-        return this.ulleres != null;
-    }
 }

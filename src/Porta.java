@@ -67,6 +67,11 @@ public class Porta {
     @pre: --
     @post: retorna el codi identificador de la porta. */
 
+    /**
+     * @pre --
+     * @post retorna l'espai que hi ha a l'altre costat de la porta
+     * @return
+     */
     public Espai altreCostat(){
         return desti;
     }

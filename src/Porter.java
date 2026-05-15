@@ -19,7 +19,10 @@ public class Porter extends Personatge{
         super(nom,capacitatMemoria);
     }
     public void actuar(){
-        Porta escollida = escollirSeguentPorta();
+        Porta escollida = null;
+        escollida = escollirSeguentPorta();
+        
+        int idDesti = 0;
         if(escollida != null){
             escollida.obrir();
             Espai origen = espaiActual;
@@ -28,9 +31,15 @@ public class Porter extends Personatge{
                 memoria.recordarEspai(origen,origen.esPerillos());
                 espaiActual.sortir(this);
                 desti.entrar(this);
-                System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
+            }
+            else{
+               idDesti*=-1; 
             }
         }
+        else{
+            idDesti = 0;
+        }
+        mostrarMoviment(ArrayList<Integer>(),false,idDesti,null);
     }
 
     public Porta escollirSeguentPorta(){

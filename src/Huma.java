@@ -61,7 +61,7 @@ public class Huma extends Personatge{
         else{
             idDesti=0;
         }
-        mostrarMoviment(clausRecollides,ulleresRecollides,desti.mostrarId(),null);    
+        mostrarMoviment(clausRecollides,ulleresRecollides,idDesti,null);    
         
     }
     

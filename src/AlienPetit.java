@@ -121,7 +121,7 @@ public class AlienPetit extends Personatge{
             }
         }
 
-        if(noRecorda.size() == 0){
+        if(noRecorda.size() == 0 && recorda.size()>0){
             ArrayList<Porta> perillosa = new ArrayList<>();
             ArrayList<Porta> noPerillosa = new ArrayList<>();
             for(int i=0; i<recorda.size(); i++){
@@ -133,15 +133,19 @@ public class AlienPetit extends Personatge{
                 escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
             } else if(noPerillosa.size()==0 && !espaiActual.esPerillos()){ //totes son perilloses excepte l'espai actual, no es mou
                 escollida = null;
-            } else if(noPerillosa.size()==0){ //si totes son perilloses i la actual tambe, es mou random
+            } else if(noPerillosa.size()==0 && perillosa.size()>0){ //si totes son perilloses i la actual tambe, es mou random
                 escollida = perillosa.get(rand.nextInt(perillosa.size()));
             }
             else{
-                escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
+                escollida = recorda.get(rand.nextInt(recorda.size()));
             }
-        } else {
+        } else if (noRecorda.size()>0){
             escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
-        } 
+        }
+        else {
+            escollida = null;
+            System.out.println("es burru i no recorda res");
+        }
 
         return escollida; 
     }

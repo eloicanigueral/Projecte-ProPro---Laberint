@@ -298,12 +298,14 @@ public class Laberint {
                 personatges.remove(i);
                 i--;
             }
+            //FER AQUI IF PORTAESTAOBERTA. PUES LA POSO A LARRAYLIST...
 
             //esta dins del for per tant son X moviments de personatges diferents, no pas X torns diferents, nomes els primers en moure's veuran la porta oberta
             //per baixar comptador de portes O(n)?? es pot fer millor?? pq clar aqui miro absolutament totes les portes si estan obertes.. una per una.. aligual guardar a un array o algo... on les obra???
             for (int j = 0; j<portes.size(); j++){
-                if (portes.get(j).estaOberta())
+                if (portes.get(j).estaOberta()) //AIXO BORRAR
                     portes.get(j).baixarComptador();
+                    //III AQUI FER EL ESTAOBERTA SI DONA FALSE, TREURE DE LARRAYLIST
             }
         }
     }

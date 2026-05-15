@@ -16,7 +16,7 @@ public abstract class Personatge {
     protected Espai espaiActual;
     protected Memoria memoria;
     protected ArrayList<Integer> claus;
-    protected SmartGlasses ulleres;
+    protected SmartGlasses ulleres = false;
     protected boolean haSortit = false;
     protected Random rand = new Random();
 
@@ -73,38 +73,55 @@ public abstract class Personatge {
         return !e.estaPle(); // || (tipusPersonatge=="a_gran" && e.hiHaVictimes()); //ben feta aquesta funcio??
     }
 
-    /** AQUEST METODE TREUREL DE AQUI I POSARLO A ALS PERSONATGES QUE TOQUI!!!!!
-     * @pre S'indica el codi de la clau que el personatge ha agafat, i per tant, s'ha d'afegir al seu inventari de claus
-     * 
-     * @post S'afageix la clau a l'inventari del personatge
+
+    /**
+     * @pre:
+     * @post:
      */
-    // public void afegirClau(int codi){
-    //   //  claus.add(new Clau(codi));
-    // }
+    public void mostrarMoviment(ArrayList<Integer> clausRecollides, boolean haAgafatUlleres, int desti, String menjat){
+        System.out.print(this.nom + ":["); //print ln aquest
+        for(int i=0; i<clausRecollides.size(); i++){
+            System.out.print(clausRecollides.get(i) + ",");
+        }
+        System.out.print("]:" + haAgafatUlleres + ":" + desti + ":[");
+        if (menjat != null){
+            System.out.print(menjat);
+        }
+        System.out.print("]" \n); //o aqust
+
+    }
 
 
-
+//-------------------------- tot aixo ho tenia comentat -------------------------------------------
         /** AQUESTA IGUAL... NOMES LA NECESSITA HUMA. II ALIEN LA PART D ABAIX ---------------------------------
      * @post Recull l'objecte del terra i se'l guarda  */
     //tb m falta tot lu de memoria.. un que retorni la quantitat de memoria??? iii un que vaigi guardant per a aquest personatge... (un "recordar..." o afegirmemoria o algo aixi saes?)
     
-    // public void recollirObjecte(){
-    //     if (!smartGlasses && espaiActual.hiHaSmartGlasses()) {
-    //         smartGlasses = true;
-    //         ulleres = espaiActual.recollirSmartGlasses();
-    //     }
+    public boolean recollirSmartGlasses(){
+        boolean agafat = false;
+        if (!smartGlasses && espaiActual.hiHaSmartGlasses()) {
+            smartGlasses = true;
+            ulleres = espaiActual.recollirSmartGlasses();
+            agafat = true;
+        }
+        return agafat;
+    }
 
-    //     if (espaiActual.hiHaClaus()) {
-    //         ArrayList<Clau> tirades = espaiActual.veureClaus();
-    //         for (int i = 0; i < tirades.size(); i++) {
-    //             if (!claus.contains(tirades.get(i))) {
-    //                 claus.add(tirades.get(i));
-    //                 espaiActual.agafarClau(tirades.get(i));
-    //             }
-    //         }
-    //     }
-        
-    // }
+    public ArrayList<Integer> recollirClaus(){
+        ArrayList<Integer> recollides = new ArrayList<>();
+        if (espaiActual.hiHaClaus()) {
+            ArrayList<Clau> tirades = espaiActual.veureClaus();
+            for (int i = 0; i<tirades.size(); i++) {
+                if (!claus.contains(tirades.get(i))) {
+                    claus.add(tirades.get(i));
+                    recollides.add(tirades.get(i));
+                    espaiActual.agafarClau(tirades.get(i));
+                    i--; //revisar si cal
+                } 
+            }
+        }
+        return recollides;      
+    }
 
     // falta boolean de potObrirPorta(){envio tot larray de claus a potObrirPorta(claus) !!!!!
     //per cada porta crida el potObrir aquest.. iii }
@@ -126,7 +143,7 @@ public abstract class Personatge {
     //     return trobat;
     // }
 
-
+// --------------------------------- fins aqui lu comentat -----------------------------------
 
     /** @return Retorna si el personatge esta viu o no. */
     public boolean estaViu(){
@@ -169,9 +186,11 @@ public abstract class Personatge {
     public abstract void actuar(); //mirar si cal.. i com ferho... pq tots tenen un actuar diferent pero tots son personatges
 
 
-
-    // REVISAR AQUEST.................... EL TENIM DUPLICAT.. HUMA TE -> teUlleres ..... ii aque aquest.. no cal 2.. nomes 1.. mirar si el deixem a huma o si el posem aqui
+    /**
+     * @pre:
+     * @post:
+     */
     public boolean teSmartGlasses(){
-        return ulleres != null; //OOO RETURN FALSE??? (a huma )
+        return ulleres;
     }
 }

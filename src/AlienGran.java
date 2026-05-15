@@ -43,6 +43,9 @@ public class AlienGran extends Personatge{
      * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i matar)
      */
     public void actuar(){
+        int idDesti = 0;
+        String mataA = null;
+
         if (!espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //si no h i ha guardia i hi ha victimes, ha de matar
             int i = 0;
             boolean haMatat = false;
@@ -51,10 +54,11 @@ public class AlienGran extends Personatge{
                 if(p instanceof Huma || p instanceof Porter){
                     matar(p);
                     haMatat = true;
+                    mataA = p.getNom();
                 }
                 i++;
             }
-        } else { //si no pot matar.. s'ha de moure ----------------- mirar com tinc a alienpetit
+        } else { /// he de afegir aqui quee... si es mou a una sala que hi ha humans.. ha de matar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Porta seguent = escollirSeguentPorta();
             if (seguent != null){
                 Espai origen = espaiActual;
@@ -64,19 +68,22 @@ public class AlienGran extends Personatge{
                     espaiActual.sortir(this);
                     desti.entrar(this);
                     System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
+                } else {
+                    idDesti*=-1;
                 }
-                //else {} que es quan s'ha intentat moure peroo no ha pogut!!!!!!!!!!!!!!!!
             }
         }
+        mostrarMoviment(ArrayList<Integer>(), false, idDesti, mataA);
+
     }
 
-    /**  ----------------------------------------- revsiarr!!!!!!!!!!!!!!!!!!!11 ha de ser igual que la de huma.. comprarar amb l'arnau 
+    /**
      * lu unic que he de canviar es que trii una porta que no sigui sortida.. (com alien petit)
      * mirar tambe la de alien petit pq hi ha posat comentaris que li poden servir a l'arnau...
      * @pre --
      * @post S'escull la seguent porta
      */
-    public Porta escollirSeguentPorta(){ //s'ha de moure com huma, excepte que ha de triar una que NO sigui sortida
+    public Porta escollirSeguentPorta(){
 
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         
@@ -105,44 +112,30 @@ public class AlienGran extends Personatge{
             else noPerillosa.add(recorda.get(i));
         }
         
-        
-        //aquesta part de aqui: subt6utiur perl comentari???
-        ArrayList<Porta> perillosa = new ArrayList<>();
-        ArrayList<Porta> noPerillosa = new ArrayList<>();
-        for(int i=0; i<recorda.size(); i++){
-            if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
-            else noPerillosa.add(recorda.get(i));
+
+        if(noRecorda.size() == 0){
+            ArrayList<Porta> perillosa = new ArrayList<>();
+            ArrayList<Porta> noPerillosa = new ArrayList<>();
+            for(int i=0; i<recorda.size(); i++){
+                if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
+                else noPerillosa.add(recorda.get(i));
+            }
+            
+            if(noPerillosa.size()>0 ){
+                escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
+            } else if(noPerillosa.size()==0 && !espaiActual.esPerillos()){ //totes son perilloses excepte l'espai actual, no es mou
+                escollida = null;
+            } else if(noPerillosa.size()==0){ //si totes son perilloses i la actual tambe, es mou random
+                escollida = perillosa.get(rand.nextInt(perillosa.size()));
+            }
+            else{
+                escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
+            }
+        } else {
+            escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
         }
-
-        if(noPerillosa.size()>0 /*&& espaiActual.esPerillos() //si hi ha no perilloses.. directe random de ls noves.. no cal quedarse al mateix lloc, per tant no cal comprovar si lactual es o no es eprills*/){ //actuen evitant els altres aliens, per tant, evitant espais perillosos
-            escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
-        } else if(noPerillosa.size()==0 && !espaiActual.esPerillos()){ //totes son perilloses excepte l'espai actual, no es mou
-            escollida = null; //ooo espaiActual???.. llavors com indico que no sha mogut???....
-        } else if(noPerillosa.size()==0){ //si totes son perilloses i la actual tambe, es mou random
-            escollida = perillosa.get(rand.nextInt(perillosa.size()));
-        } //jo crec q no cal else.. acabar d emirar i comprovar peroo... (lultim else if podria ser else tal qual i ja esta...)
-    }
-    else{
-        escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
-    }
-    
-    return escollida; 
-
-
-        //-------------------MIRAR AIXO.. INTENTAR ADAPTAR EL DE ABAIX: AIXI ENS ESTALVIEM UN ARRAYLIST!!!!!!!!!!!!!!!! -------------
-        // if (noRecorda.size() > 0) return noRecorda.get(rand.nextInt(noRecorda.size()));
         
-        // // totes visitades, va a una de no perillosa
-        // ArrayList<Porta> noPerillosa = new ArrayList<>();
-        // for (int i = 0; i < recorda.size(); i++) {
-        //     if (!memoria.esPerillos(recorda.get(i).altreCostat())) noPerillosa.add(recorda.get(i));
-        // }
-        // if (noPerillosa.size() > 0) return noPerillosa.get(rand.nextInt(noPerillosa.size()));
-        
-        // if (recorda.size() == 0 && noRecorda.size() == 0) return null;
-        // // totes perilloses, random
-        // System.out.println(recorda.size());
-        // return recorda.get(rand.nextInt(recorda.size()));
-    //}
+        return escollida; 
+    }
 
 }

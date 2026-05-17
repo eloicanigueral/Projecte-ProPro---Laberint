@@ -36,16 +36,9 @@ public class AlienPetit extends Personatge{
         espaiActual.sortir(p);
         this.memoria.augmentarCapacitat(p.memoria.capacitatMemoria()); //alien suma la capacitat memoria
 
-        //faig un if abans com a Huma per a veure si hi ha claus a lespai actual???/..... revisar ......................................
-        ArrayList<Integer> tirades = espaiActual().veureClaus();
-        for (int i = 0; i<tirades.size(); i++) {
-            if (!claus.contains(tirades.get(i))) {
-                claus.add(tirades.get(i)); //tots aquests de claus.add i tal.. cridar el metode de la classe personatge afegirClau?? si no?? (ara el tinc comentat...)
-                espaiActual().agafarClau(tirades.get(i));
-                i--;
-            }
-        }
-    
+        ArrayList<Integer> clausRecollides = new ArrayList<>();
+        clausRecollides = recollirClaus();
+        mostrarMoviment(clausRecollides, false, 0, p.getNom()); //aixo aqui aixi tal qual??? si aixi va be pues puc borrar el mataA i el mostrarmoviment altres.. nose mirar...
         System.out.println("   -> " + nom + " MATA a " + p.getNom()); //s'ha de borrar
     }
 
@@ -73,7 +66,6 @@ public class AlienPetit extends Personatge{
                 }
                 i++;
             }
-            mostrarMoviment(clausRecollides, false, idDesti, mataA);
 
         } else{ //si hi ha un altre alien (a part de ell...) o no pot matar -> es comporta com un huma
             Porta seguent = escollirSeguentPorta();

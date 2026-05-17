@@ -30,6 +30,7 @@ public class Laberint {
 
     private ArrayList<Espai> espais;
     private ArrayList<Porta> portes;
+    private ArrayList<Porta> portesObertes;
     private ArrayList<Personatge> personatges; //tots els personatges VIUS que queden dins del laberint
     private HashMap<Integer, ArrayList<Integer>> conexions; //mapa que conte, segons la id de cada espai, un arraylist de les sales amb les que conecta (les portes que te), en vd s'hauria de borrar pq nomes la fem servir al principi... mirar
 
@@ -46,6 +47,7 @@ public class Laberint {
         //sortides = new ArrayList<>(); //-1, Integer.MAX_VALUE, true
         espais = new ArrayList<>();
         portes = new ArrayList<>();
+        portesObertes = new ArrayList<>();
         personatges = new ArrayList<>();
         conexions = new HashMap<>();
 
@@ -298,14 +300,15 @@ public class Laberint {
                 personatges.remove(i);
                 i--;
             }
-            //FER AQUI IF PORTAESTAOBERTA. PUES LA POSO A LARRAYLIST...
+            //FER AQUI IF PORTAESTAOBERTA. PUES LA POSO A LARRAYLIST... ES POT FER??? QUAN ES QUE AFEGAIXO LA PORTA A LARRAY????
 
             //esta dins del for per tant son X moviments de personatges diferents, no pas X torns diferents, nomes els primers en moure's veuran la porta oberta
-            //per baixar comptador de portes O(n)?? es pot fer millor?? pq clar aqui miro absolutament totes les portes si estan obertes.. una per una.. aligual guardar a un array o algo... on les obra???
-            for (int j = 0; j<portes.size(); j++){
-                if (portes.get(j).estaOberta()) //AIXO BORRAR
-                    portes.get(j).baixarComptador();
-                    //III AQUI FER EL ESTAOBERTA SI DONA FALSE, TREURE DE LARRAYLIST
+            for (int j = 0; j<portesObertes.size(); j++){
+                portesObertes.get(j).baixarComptador();
+                if (!portesObertes.get(j).estaOberta()) {
+                    portesObertes.remove(j);
+                    j--;
+                }
             }
         }
     }

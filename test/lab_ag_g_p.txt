@@ -1,0 +1,7 @@
+h:huma1:3:[3]:0
+h:huma2:5:[3]:0
+g:guardia:3:[3]
+p:porter:4
+ag:alien
+sala:1:(0,2,0,0):4:[huma1,huma2,guardia,porter]
+sala:2:(0,1,0,3):2:[alien]

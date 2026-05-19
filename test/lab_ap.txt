@@ -1,0 +1,5 @@
+h:huma1:3:[3]:0
+h:huma2:5:[3]:0
+ap:alienpetit:2:[1]
+sala:1:(0,0,0,0):2:[huma1,huma2]
+sala:2:(0,1,0,3):2:[alienpetit]

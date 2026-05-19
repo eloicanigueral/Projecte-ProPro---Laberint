@@ -33,18 +33,18 @@ public class Laberint {
     private ArrayList<Porta> portesObertes;
     private ArrayList<Personatge> personatges; //tots els personatges VIUS que queden dins del laberint
     private HashMap<Integer, ArrayList<Integer>> conexions; //mapa que conte, segons la id de cada espai, un arraylist de les sales amb les que conecta (les portes que te), en vd s'hauria de borrar pq nomes la fem servir al principi... mirar
+    //fer conexions.clear() o algo aixi?? .. borrar i mirar
 
     private ArrayList<Personatge> morts; //personatges que han mort
     private ArrayList<Personatge> salvats; //personatges que s'han salvat
 
-    //private ArrayList<Espai> sortides;   tot sortdies comentat pq crec q en vd no ho necesito.. si tot funciona correctament borrar tot lu que faci servir sortides (que stara comentat)
+    
 
     /**
      * @pre --
      * @post Es crea el laberint amb els espais, portes i personatges.
      */
     public Laberint() {
-        //sortides = new ArrayList<>(); //-1, Integer.MAX_VALUE, true
         espais = new ArrayList<>();
         portes = new ArrayList<>();
         portesObertes = new ArrayList<>();
@@ -231,7 +231,6 @@ public class Laberint {
                     Espai desti = altreCostat(arrayPortes.get(j));
                     if (desti==null){
                         desti = new Espai(arrayPortes.get(j), Integer.MAX_VALUE, true);
-                        //sortides.add(desti); //emmm bueno en vd no necesito arraylist de sortides no?? o si????... mirar....
                     }
                     arrayEspais.add(desti);
                 }
@@ -250,8 +249,8 @@ public class Laberint {
         return null;
     }
 
-    /** @return El laberint és buit (sense cap sala). 
-     * suposo que el puc borrar.... crec que no el fem servir enlloc................................................
+    /** 
+     * @return El laberint és buit (sense cap sala). 
     */
     public boolean buit() {
         return espais.size()<=0;
@@ -272,33 +271,21 @@ public class Laberint {
      * @pre Queda algun personatge humà viu dins el laberint
      * @post Avança un torn: on cada personatge que quedi viu actua (segons l'ordre de prioritat = ordre que estan a l'arrayList personatges), es mostra per pantalla el que ha passat en el torn i es baixa el comptador de la porta oberta (si es que n'hi ha)
      */
-    public void seguentTorn(){ //falta arreglar la sortida!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!...................... iii mirar lu de comptador de la porta...
-//         La sortida incloura els diferents moviments (un per l´ınia) descrits de la forma seguent.
-//              nom:[c1,c2,..]:u:p:[nyam]
-        // • nom es el nom del personatge que es mou.
-        // • [c1,c2,..] son les claus recollides abans de moure’s (ordenades per codi).
-        // • u es un 1 o un 0, depenent de si ha recollit ulleres o no a la sala abans de moure’s.
-        // • p es el numero de l’espai on ha entrat; -p (negatiu) si ha obert la porta pero no ha entrat; 0 per indicar que no ha obert cap porta.
-        // • nyam es el nom del personatge que s’ha menjat, en el cas que ho faci; buit sino.
+    public void seguentTorn(){ 
         ordenarPrioritat();
 
-        for (int i=0; i<personatges.size(); i++) {  
-            
-            if (!personatges.get(i).estaViu()) {
-                morts.add(personatges.get(i));
-                personatges.remove(i);
-                i--;
-                continue;
-            }
-            
+        for (int i=0; i<personatges.size(); i++) {              
             personatges.get(i).actuar();
+            
             if (personatges.get(i) instanceof Porter){ //si porter s'ha mogut, afegir porta oberta
                 Porta oberta = personatges.get(i).ultimaPortaOberta;
-                if (portesObertes.contains(oberta)){
-                    oberta.obrir(); //comprovar si funciona
-                }
-                else{
-                    portesObertes.add(oberta);
+                if (oberta != null){
+                    if (portesObertes.contains(oberta)){
+                        oberta.obrir(); //comprovar si funciona
+                    }
+                    else{
+                        portesObertes.add(oberta);
+                    }
                 }
             }
             if (!personatges.get(i).estaViu()) {

@@ -35,14 +35,13 @@ public class AlienGran extends Personatge{
     public void matar(Personatge p){
         p.morir(p.claus, p.teSmartGlasses());
         p.espaiActual().sortir(p);
-        System.out.println("   -> " + nom + " MATA a " + p.getNom()); //per borrarrr!!!
     }
 
     /**
      * @pre: --
      * @post: Busca una victima en la sala actual i la mata (retornant el seu nom)
      */
-    public String buscarVictima(Espai e){ // en vd.. podria fer un for amb un return  dins no???
+    public String buscarVictima(Espai e){
         int i = 0;
         String victima = null;
         boolean haMatat = false;
@@ -66,24 +65,13 @@ public class AlienGran extends Personatge{
         int idDesti = 0;
         String mataA = null;
 
-        if (!espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //si no h i ha guardia i hi ha victimes, ha de matar
-            // int i = 0;
-            // boolean haMatat = false;
-            // while(i<espaiActual.getPersonatges().size() && !haMatat){
-            //     Personatge p = espaiActual.getPersonatges().get(i);
-            //     if(p instanceof Huma || p instanceof Porter){
-            //         matar(p);
-            //         haMatat = true;
-            //         mataA = p.getNom();
-            //     }
-            //     i++;
-            // }
+        if (!espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //si no h i ha guardia i hi ha victimes, ha de matar  
             mataA = buscarVictima(espaiActual); //si funcona.. aixi estalvio codi
-        } else { /// he de afegir aqui quee... si es mou a una sala que hi ha humans.. ha de matar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        } else {
             Porta seguent = escollirSeguentPorta();
             if (seguent != null){
                 Espai origen = espaiActual;
-                Espai desti = seguent.altreCostat(); //revisar aixo de desti i tal.. ---------- mirar com ho te l'arnau pq nose pas si comprova limits.... (millor mirar el d alienpetit)
+                Espai desti = seguent.altreCostat();
                 idDesti = desti.mostrarId();
                 boolean potEntrar = !desti.estaPle() || (desti.hiHaVictimes() && !desti.hiHaGuardia());
                 
@@ -160,8 +148,7 @@ public class AlienGran extends Personatge{
         else if(recorda.size()>0){
             escollida = recorda.get(rand.nextInt(recorda.size()));
         }
-        else{ //cal???????????????????????????????????????????????????????????????????????????
-            System.out.println("es burru i no recorda res");
+        else{ 
             escollida = null;
         }
         

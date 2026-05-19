@@ -9,6 +9,7 @@
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Collections;
 public abstract class Personatge {
 
     protected String nom;
@@ -81,11 +82,21 @@ public abstract class Personatge {
      * @post:
      */
     public void mostrarMoviment(ArrayList<Integer> clausRecollides, boolean haAgafatUlleres, int desti, String menjat){
+        int agafaUlleres = 0;
+        if (haAgafatUlleres) agafaUlleres = 1;
+        
+        
         System.out.print(this.nom + ":["); //print ln aquest
-        for(int i=0; i<clausRecollides.size(); i++){
-            System.out.print(clausRecollides.get(i) + ",");
+        if (clausRecollides.size()>0){
+            
+            Collections.sort(clausRecollides);
+            for(int i=0; i<clausRecollides.size()-1; i++){
+                System.out.print(clausRecollides.get(i) + ",");
+            }
+            System.out.print(clausRecollides.get(clausRecollides.size()-1)); ///com mostro la ultimaa!!!!!!!!!!!!!!!!
         }
-        System.out.print("]:" + haAgafatUlleres + ":" + desti + ":[");
+
+        System.out.print("]:" + agafaUlleres + ":" + desti + ":[");
         if (menjat != null){
             System.out.print(menjat);
         }

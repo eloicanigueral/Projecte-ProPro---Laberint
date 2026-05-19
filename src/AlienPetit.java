@@ -31,26 +31,20 @@ public class AlienPetit extends Personatge{
      * 
      * @post Elimina / mata a un personatge que estigui a la mateixa sala que ell en el seu torn
      */
-    public void matar(Personatge p){ //aquiii lud e pillar claus he de agafar lu que tin  apersonatge crec... mriar aqueset....!!!!!!!!!!!!
+    public ArrayList<Integer> matar(Personatge p){
         p.morir(p.claus, p.teSmartGlasses()); //personatge mor
         p.espaiActual().sortir(p);
         this.memoria.augmentarCapacitat(p.memoria.capacitatMemoria()); //alien suma la capacitat memoria
 
-        ArrayList<Integer> clausRecollides = new ArrayList<>();
-        clausRecollides = recollirClaus();
-        mostrarMoviment(clausRecollides, false, 0, p.getNom()); //aixo aqui aixi tal qual??? si aixi va be pues puc borrar el mataA i el mostrarmoviment altres.. nose mirar...
-        System.out.println("   -> " + nom + " MATA a " + p.getNom()); //s'ha de borrar
+        return recollirClaus();
     }
 
     /**
      * @pre --
      * @post es decideix quina accio fara l'alien (moure's de sala / quedar-se i/o matar)
      */
-    public void actuar(){ //emmm dona la prioritat a l'alien gran????? hihaalien mira els dos...
-        //revisar l'if aquest.. pq si es el primer q entra si q te prioritat per matar.. pero a la que entri un altre.. aixo donara false.. ii igualment pot continuar matant (a no ser que entri l'alien gros)
-        
-        ArrayList<Integer> clausRecollides = new ArrayList<>();
-        clausRecollides = recollirClaus();
+    public void actuar(){        
+        ArrayList<Integer> clausRecollides = recollirClaus();
         int idDesti = 0;
         String mataA = null;
         
@@ -60,7 +54,7 @@ public class AlienPetit extends Personatge{
             while(i<espaiActual.getPersonatges().size() && !haMatat){
                 Personatge p = espaiActual.getPersonatges().get(i);
                 if(p instanceof Huma || p instanceof Porter){
-                    matar(p); //posar tb larray i que es sumin les claus que pilli????
+                    clausRecollides.addAll(matar(p));
                     haMatat = true;
                     mataA = p.getNom();
                 }
@@ -69,7 +63,7 @@ public class AlienPetit extends Personatge{
 
         } else{ //si hi ha un altre alien (a part de ell...) o no pot matar -> es comporta com un huma
             Porta seguent = escollirSeguentPorta();
-            if (seguent != null) { //si decideix no moure-s...hauria de tenir un seguent = espaiActual() oa glo aixi no??? ooo indico com si s mou igual???
+            if (seguent != null) {
                 Espai origen = espaiActual;
                 Espai desti = seguent.altreCostat();
                 idDesti = desti.mostrarId();
@@ -136,7 +130,6 @@ public class AlienPetit extends Personatge{
         }
         else {
             escollida = null;
-            System.out.println("es burru i no recorda res");
         }
 
         return escollida; 

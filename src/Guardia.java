@@ -23,19 +23,6 @@ public class Guardia extends Personatge{
         super(nom,capacitatMemoria,claus);
     }
 
-    /** aplica immunitat als humans que hi ha a la sala que entra
-    @pre: --
-    @post: els altres personatges humans de la sala actual del guardia passen a tenir immunitat 
-    */
-    public void protegirHumans(){}
-    
-    /** treu la immunitat quan el guardia marxa de la sala
-    @pre: --
-    @post: els altres personatges de la sala deixen de tenir immunitat amb els aliens 
-    */
-    public void desprotegirHumans(){}
-    
-
     /**
     @pre: --
     @post: mètode principal perquè el personatge actui. Primer recull les claus del terra (no agafa repetides)

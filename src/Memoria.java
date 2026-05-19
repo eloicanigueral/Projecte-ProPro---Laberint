@@ -25,7 +25,7 @@ public class Memoria{
     */
     public Memoria(int mem){
         espais = new ArrayList<>();
-        capacitatMem=mem; //si mem es -1 .. pues que el capacitat aquest sigui el nombre de sales no??? com  ho puc fer??... mirar vale no en vd no cal.. pq a recordar ja comprovo si es >0
+        capacitatMem=mem;
     }
 
     /**
@@ -35,8 +35,9 @@ public class Memoria{
      * indicant si aquest és o no perillós (s'ha vist algun alien o restes humanes)
      */
     public void recordarEspai(Espai e, boolean esPerillos){
+        if (capacitatMem == 0) return;
         espais.remove(new Pair<>(e, esPerillos)); //si troba que l'espai e ja existeix, l'esborra
-        if (capacitatMem>=0 && espais.size()>=capacitatMem) {
+        if (capacitatMem>0 && espais.size()>=capacitatMem) {
             oblidarEspai();
         }
         espais.add(new Pair<>(e, esPerillos));

@@ -72,9 +72,11 @@ public class Laberint {
             }
 
             connectarEspais();
+            conexions.clear();
 
-        } 
-        System.out.println("No s'ha trobat el fitxer"); //aixo nomes si no sha pogut obrir/.... i surt sempre .. suposo que va amb lu del try que vaig canviar algo.. mirar exemple laberint classe!!!....
+        } catch (Exception e) {
+            System.out.println("No s'ha trobat el fitxer");
+        }
     }
 
     /**
@@ -274,7 +276,9 @@ public class Laberint {
     public void seguentTorn(){ 
         ordenarPrioritat();
 
-        for (int i=0; i<personatges.size(); i++) {              
+        for (int i=0; i<personatges.size(); i++) {    
+            //he de mirar si sha mort en aquest torn???... reviar aixo pq crec q actua igualment
+            //suposo que he de fer lu de if !.estaviu.... mortsadd ... remove .. perooo clar llavors sobra lu d sota? o que?          
             personatges.get(i).actuar();
             
             if (personatges.get(i) instanceof Porter){ //si porter s'ha mogut, afegir porta oberta

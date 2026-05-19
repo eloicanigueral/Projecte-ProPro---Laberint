@@ -25,7 +25,8 @@ public class Huma extends Personatge{
 
     /**
     @pre: --
-    @post: mètode principal perquè el personatge actui.
+    @post: mètode principal perquè el personatge actui. Primer recull les claus del terra (no agafa repetides), recull smartglasses 
+    * i es mou o no de sala depenent del retorn del mètode escollirSeguentPorta.
     */
     public void actuar(){
         ArrayList<Integer> clausRecollides = new ArrayList<>();
@@ -67,7 +68,7 @@ public class Huma extends Personatge{
     
     /**
     @pre: --
-    @post: retorna la seguent porta escollida per l'algorisme de com actua un personatge.
+    @post: retorna la seguent porta escollida per l'algorisme de com actua un humà.
     */
     public Porta escollirSeguentPorta(){ 
         //Agafa les portes de l'espai
@@ -76,6 +77,7 @@ public class Huma extends Personatge{
         Porta escollida = null;
         ArrayList<Porta> recorda = new ArrayList<>();
         ArrayList<Porta> noRecorda = new ArrayList<>();
+        //Borra les portes que no té la clau i que no estan obertes
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
@@ -83,12 +85,15 @@ public class Huma extends Personatge{
                 portes.remove(i);
                 i--;
             }
+            //Separa les portes en funció de si les recorda o no. Si ha trobat la porta de sortida retorna directament aquesta porta.
             else{
                 if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
                 else noRecorda.add(portes.get(i));
                 if(portes.get(i).altreCostat().esSortida()) return portes.get(i);
             }
         }
+        //Si té unes SmartGlasses: crida el mètode de SmartGlasses que li retorna la següent millor porta.
+        //Si la porta retornada no té la clau i no està oberta la descarta. Si l'altre costat és perillos el descarta. Si és la sortida i no té clau exclou aquella porta de les ulleres.
         if(ulleres != null){
             escollida = ulleres.camiRapid(espaiActual);
             if(!portes.contains(escollida)) escollida = null;
@@ -98,8 +103,9 @@ public class Huma extends Personatge{
             }
             if(escollida != null) return escollida;
         }
-        
+        //Si recorda totes les sales que pot anar:
         if(noRecorda.size() == 0){
+            //Separa entre perilloses i no perilloses:
             ArrayList<Porta> perillosa = new ArrayList<>();
             ArrayList<Porta> noPerillosa = new ArrayList<>();
             for(int i=0; i<recorda.size(); i++){
@@ -107,15 +113,18 @@ public class Huma extends Personatge{
                 else noPerillosa.add(recorda.get(i));
             }
             
+            //Si totes son perillos i l'espai actual també és perillos va a una sala aleatòria.
             if(noPerillosa.size() == 0 && espaiActual.esPerillos()){
                 if(perillosa.size() > 0){
                     escollida = perillosa.get(rand.nextInt(perillosa.size()));
                 }
             }
+            //Si n'hi ha alguna de no perillosa: escull aleatoriament entre les no perilloses.
             else if(noPerillosa.size() > 0){
                 escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
             }
         }
+        //Si hi ha alguna sala que no recorda tria aleatoriament entre les que no recorda.
         else{
             escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
         }

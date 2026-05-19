@@ -22,16 +22,26 @@ public class Guardia extends Personatge{
     public Guardia(String nom, int capacitatMemoria, ArrayList<Integer> claus){
         super(nom,capacitatMemoria,claus);
     }
-    public void protegirHumans(){}
+
     /** aplica immunitat als humans que hi ha a la sala que entra
     @pre: --
-    @post: els altres personatges humans de la sala actual del guardia passen a tenir immunitat */
-
-    public void desprotegirHumans(){}
+    @post: els altres personatges humans de la sala actual del guardia passen a tenir immunitat 
+    */
+    public void protegirHumans(){}
+    
     /** treu la immunitat quan el guardia marxa de la sala
     @pre: --
-    @post: els altres personatges de la sala deixen de tenir immunitat amb els aliens */
+    @post: els altres personatges de la sala deixen de tenir immunitat amb els aliens 
+    */
+    public void desprotegirHumans(){}
+    
 
+    /**
+    @pre: --
+    @post: mètode principal perquè el personatge actui. Primer recull les claus del terra (no agafa repetides)
+    * i es mou o no de sala depenent del retorn del mètode escollirSeguentPorta. Si es mou desprotegeix els humans de la sala actual
+    * es mou i protegeix els humans de la sala nova.
+    */
     public void actuar(){
         ArrayList<Integer>clausRecollides = new ArrayList<>();
         clausRecollides = recollirClaus();
@@ -61,6 +71,11 @@ public class Guardia extends Personatge{
         mostrarMoviment(clausRecollides,false,idDesti,null);
 
     }
+
+    /** 
+    @pre: --
+    @post: aplica l'estratègia per triar la millor porta segons el seu criteri.
+    */
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
 
@@ -106,8 +121,5 @@ public class Guardia extends Personatge{
     }
 
     
-    /** tria a quina sala vol anar, desprotegeix els humans de la sala actual, es mou de sala, protegeix els humans de la sala nova
-    @pre: --
-    @post: s'han desprotegit els humans de la sala actual, s'ha escollit la millor porta, s'ha mogut de sala i s'han protegit els nous humans.
-    */
+    
 }

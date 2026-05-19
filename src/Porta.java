@@ -24,6 +24,7 @@ public class Porta {
     private int comptadorMoviments;
     private boolean oberta;
     Espai origen, desti;
+    public static final int MOVIMENTS_PORTA_OBERTA = 3;
 
     public Porta(int codi, Espai o, Espai d){
         this.codi = codi;
@@ -33,44 +34,51 @@ public class Porta {
         desti = d;
     }
 
+    /**
+     * @pre --
+     * @post retorna el codi de la porta
+     */
     public int getCodi(){
         return codi;
     }
-    /** per saber si un personatge podrà obrir una porta des d'un espai determinat.
-    @pre: p està a l'espai origen.
-    @post retorna true si el personatge pot obrir la porta (té la clau), false altrament. */
-
+    
+    /**
+     * @pre --
+     * @post la porta queda oberta durant el nombre de moviemnts configurat.
+     */
     public void obrir(){
-        comptadorMoviments=3;
+        comptadorMoviments=MOVIMENTS_PORTA_OBERTA;
         oberta = true;
     }
-    /** obre la porta
-    @pre: --
-    @post: la porta s'obre. */
+    
+    /**
+     * @pre --
+     * @post baixa en 1 el comptador de moviments. Si aquest ha arribat a 0 tanca la porta.
+     */
     public void baixarComptador(){
         comptadorMoviments--;
         if(comptadorMoviments <= 0) oberta = false;
     }
 
+    /** indica si la porta està oberta
+    @pre --
+    @post retorna true si la porta està oberta, false altrament. 
+    */
     public boolean estaOberta(){
         return oberta;
     }
-    /** indica si la porta està oberta
-    @pre: --
-    @post: retorna true si la porta està oberta, false altrament. */
-
-
+    
+    /**
+     * @pre --
+     * @post retorna el codi de la porta
+     */
     public int comprovarClau(){
         return codi;
     }
-    /** per saber el codi de la porta
-    @pre: --
-    @post: retorna el codi identificador de la porta. */
-
+    
     /**
      * @pre --
      * @post retorna l'espai que hi ha a l'altre costat de la porta
-     * @return
      */
     public Espai altreCostat(){
         return desti;

@@ -21,7 +21,11 @@ public class SmartGlasses {
     public SmartGlasses(){
         sortidesExcloses = new ArrayList<>();
     }
-    /** @return Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida */
+    
+    /**
+     * @pre cert
+     * @post calcula el camí més ràpid cap a una sortida no excloa i retorna la següent porta per seguir el cami més ràpid fins a la sortida.
+     */
     public Porta camiRapid(Espai origen){
        //fa un bfs per arribar a la sortida mes propera
         Queue<Espai> cua = new LinkedList<>();
@@ -58,16 +62,28 @@ public class SmartGlasses {
     }
 
     
-
+    /**
+     * @pre p és una porta de sortida
+     * @post la porta p s'exclou de l'algorisme de camí ràpid.
+     */
     public void exclourePortaSortida(Porta p){
         if(!sortidesExcloses.contains(p)){
             sortidesExcloses.add(p);
         }
     }
+
+    /**
+     * @pre p s'ha exclós anteriorment
+     * @post la porta p s'inclou a l'algorisme de camí ràpid.
+     */
     public void inclourePortaSortida(Porta p){
         sortidesExcloses.remove(p);
     }
 
+    /**
+     * @pre --
+     * @post s'esborra list de sortides excloses perquè seguent personatge no tingui res a les ulleres.
+     */
     public void reiniciarUlleres(){
         sortidesExcloses.clear();
     }

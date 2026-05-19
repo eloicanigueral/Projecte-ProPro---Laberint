@@ -44,18 +44,25 @@ public class Espai {
         this.esSortida = esSortida;
     }
     
+    /**
+     * @pre cert
+     * @post crea les portes que té aquest espai conectades amb els espais destí que té cada porta.
+     */
     public void conectarEspais(ArrayList<Espai> espaisConnectats){
         for(int i=0; i<espaisConnectats.size(); i++){
             Porta p = new Porta(espaisConnectats.get(i).mostrarId(),this,espaisConnectats.get(i));
             portes.add(p);
-
         }
     }
+
+    /**
+     * @pre cert
+     * @post afageix la porta a la llista de portes que té aquest espai.
+     */
     public void addPorta(Porta p){
         portes.add(p);
     }
 
-    
     /**
     @pre: --
     @post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.
@@ -235,6 +242,7 @@ public class Espai {
         return esSortida;
     }
     
+
     public void canviarId(int nouid){
         this.idEspai = nouid;
     }

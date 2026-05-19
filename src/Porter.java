@@ -18,6 +18,11 @@ public class Porter extends Personatge{
     public Porter(String nom, int capacitatMemoria){
         super(nom,capacitatMemoria);
     }
+
+    /**
+    @pre: --
+    @post: mètode principal perquè el personatge actui. Escull la següent porta amb algorisme de escollirSeguentPorta i es mou o no.
+    */
     public void actuar(){
         Porta escollida = null;
         escollida = escollirSeguentPorta();
@@ -25,16 +30,21 @@ public class Porter extends Personatge{
         int idDesti = 0;
         Espai origen = espaiActual;
         Espai desti = null;
+        
+        //Si té una porta per anar.
         if(escollida != null){
+            //Sempre la deixa oberta el nombre de moviments configurat.
             escollida.obrir();
             desti = escollida.altreCostat();
             idDesti = desti.mostrarId();
             
+            //Si no està ple l'espai destí es mou recordant l'espai on estava.
             if(!desti.estaPle()){
                 memoria.recordarEspai(origen,origen.esPerillos());
                 espaiActual.sortir(this);
                 desti.entrar(this);
             }
+            //Si està ple no es mou.
             else{
                idDesti*=-1; 
             }
@@ -45,11 +55,17 @@ public class Porter extends Personatge{
         mostrarMoviment(new ArrayList<Integer>(),false,idDesti,null);
     }
 
+    /**
+    @pre: --
+    @post: aplica l'estratègia per triar la millor porta segons el seu criteri.
+    */
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         Porta escollida=null;
         ArrayList<Porta> perillosa = new ArrayList<>();
         ArrayList<Porta> noPerillosa = new ArrayList<>();
+        //Borra de les portes on pot anar les que siguin de sortida del laberint. 
+        //Si la porta de l'altre costat és perillosa i l'espai on està no ho és el borra.
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(portes.get(i).altreCostat().esSortida()) borra=true;
@@ -73,8 +89,6 @@ public class Porter extends Personatge{
         
         return escollida;
     }
-    /** canvia de sala
-    @pre: --
-    @post: aplica l'estratègia per triar la millor porta segons el seu criteri i canvia de sala. */
+    
     
 }

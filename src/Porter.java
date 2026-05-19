@@ -35,6 +35,7 @@ public class Porter extends Personatge{
         if(escollida != null){
             //Sempre la deixa oberta el nombre de moviments configurat.
             escollida.obrir();
+            ultimaPortaOberta=escollida;
             desti = escollida.altreCostat();
             idDesti = desti.mostrarId();
             

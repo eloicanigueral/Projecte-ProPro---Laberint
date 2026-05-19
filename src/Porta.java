@@ -33,14 +33,6 @@ public class Porta {
         origen = o;
         desti = d;
     }
-
-    /**
-     * @pre --
-     * @post retorna el codi de la porta
-     */
-    public int getCodi(){
-        return codi;
-    }
     
     /**
      * @pre --

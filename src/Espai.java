@@ -56,14 +56,6 @@ public class Espai {
     }
 
     /**
-     * @pre cert
-     * @post afageix la porta a la llista de portes que té aquest espai.
-     */
-    public void addPorta(Porta p){
-        portes.add(p);
-    }
-
-    /**
     @pre: --
     @post: retorna true si la sala ha arribat al màxim de la seva capacitat. false altrament.
     */
@@ -219,8 +211,7 @@ public class Espai {
         boolean perillos = false;
         int i=0;
         while(!perillos && i<personatges.size()){
-            if(personatges.get(i) instanceof AlienGran || personatges.get(i) instanceof AlienPetit) perillos = true;
-            if(restesHumanes) perillos = true;
+            if(personatges.get(i) instanceof AlienGran || restesHumanes) perillos = true;
             i++;
         }
         return perillos;
@@ -241,10 +232,4 @@ public class Espai {
     public boolean esSortida(){
         return esSortida;
     }
-    
-
-    public void canviarId(int nouid){
-        this.idEspai = nouid;
-    }
-
 }

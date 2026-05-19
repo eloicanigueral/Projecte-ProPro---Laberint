@@ -300,7 +300,16 @@ public class Laberint {
                 personatges.remove(i);
                 i--;
             }
-            //FER AQUI IF PORTAESTAOBERTA. PUES LA POSO A LARRAYLIST... ES POT FER??? QUAN ES QUE AFEGAIXO LA PORTA A LARRAY????
+
+            if (personatges.get(i) instanceof Porter){ //si porter s'ha mogut, afegir porta oberta
+                Porta oberta = personatges.get(i).ultimaPortaOberta;
+                if (portesObertes.contains(oberta)){
+                    oberta.obrir(); //comprovar si funciona
+                }
+                else{
+                    portesObertes.add(oberta);
+                }
+            }
 
             //esta dins del for per tant son X moviments de personatges diferents, no pas X torns diferents, nomes els primers en moure's veuran la porta oberta
             for (int j = 0; j<portesObertes.size(); j++){

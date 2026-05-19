@@ -19,6 +19,7 @@ public abstract class Personatge {
     protected SmartGlasses ulleres;
     protected boolean haSortit = false;
     protected Random rand = new Random();
+    protected Porta ultimaPortaOberta;
 
 
     /**
@@ -31,6 +32,7 @@ public abstract class Personatge {
         this.memoria = new Memoria(capacitatMemoria);
         this.claus = claus;
         this.espaiActual = null;
+        this.ultimaPortaOberta=null;
     }
 
     /**
@@ -106,6 +108,7 @@ public abstract class Personatge {
         return agafat;
     }
 
+    //agafa les claus del terra
     public ArrayList<Integer> recollirClaus(){
         ArrayList<Integer> recollides = new ArrayList<>();
         if (espaiActual.hiHaClaus()) {

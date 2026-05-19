@@ -282,11 +282,25 @@ public class Laberint {
         // • nyam es el nom del personatge que s’ha menjat, en el cas que ho faci; buit sino.
         ordenarPrioritat();
 
-        for (int i=0; i<personatges.size(); i++) {
-            //sha de borrar la seguent....
-            System.out.println(">> " + personatges.get(i).getNom() + " [" + personatges.get(i).getClass().getSimpleName() + "] a sala " + personatges.get(i).espaiActual().mostrarId());
+        for (int i=0; i<personatges.size(); i++) {  
+            
+            if (!personatges.get(i).estaViu()) {
+                morts.add(personatges.get(i));
+                personatges.remove(i);
+                i--;
+                continue;
+            }
             
             personatges.get(i).actuar();
+            if (personatges.get(i) instanceof Porter){ //si porter s'ha mogut, afegir porta oberta
+                Porta oberta = personatges.get(i).ultimaPortaOberta;
+                if (portesObertes.contains(oberta)){
+                    oberta.obrir(); //comprovar si funciona
+                }
+                else{
+                    portesObertes.add(oberta);
+                }
+            }
             if (!personatges.get(i).estaViu()) {
                 //el personatge ha mort:
                 System.out.println(personatges.get(i).getNom() + " ha mort!");
@@ -301,15 +315,6 @@ public class Laberint {
                 i--;
             }
 
-            if (personatges.get(i) instanceof Porter){ //si porter s'ha mogut, afegir porta oberta
-                Porta oberta = personatges.get(i).ultimaPortaOberta;
-                if (portesObertes.contains(oberta)){
-                    oberta.obrir(); //comprovar si funciona
-                }
-                else{
-                    portesObertes.add(oberta);
-                }
-            }
 
             //esta dins del for per tant son X moviments de personatges diferents, no pas X torns diferents, nomes els primers en moure's veuran la porta oberta
             for (int j = 0; j<portesObertes.size(); j++){

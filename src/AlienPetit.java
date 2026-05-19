@@ -33,7 +33,7 @@ public class AlienPetit extends Personatge{
      */
     public void matar(Personatge p){ //aquiii lud e pillar claus he de agafar lu que tin  apersonatge crec... mriar aqueset....!!!!!!!!!!!!
         p.morir(p.claus, p.teSmartGlasses()); //personatge mor
-        espaiActual.sortir(p);
+        p.espaiActual().sortir(p);
         this.memoria.augmentarCapacitat(p.memoria.capacitatMemoria()); //alien suma la capacitat memoria
 
         ArrayList<Integer> clausRecollides = new ArrayList<>();

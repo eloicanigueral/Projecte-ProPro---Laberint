@@ -34,7 +34,7 @@ public class AlienGran extends Personatge{
      */
     public void matar(Personatge p){
         p.morir(p.claus, p.teSmartGlasses());
-        espaiActual.sortir(p);
+        p.espaiActual().sortir(p);
         System.out.println("   -> " + nom + " MATA a " + p.getNom()); //per borrarrr!!!
     }
 

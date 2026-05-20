@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 /**
  * @class Porter
  * @brief Classe per gestionar les característiques del porter.
@@ -14,6 +11,7 @@ import java.util.ArrayList;
  * @author arnaulloret
  */
 
+import java.util.ArrayList;
 public class Porter extends Personatge{
     public Porter(String nom, int capacitatMemoria){
         super(nom,capacitatMemoria);

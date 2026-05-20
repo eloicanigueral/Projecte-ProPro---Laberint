@@ -17,7 +17,6 @@
  * Encara que estigui oberta el sentit de pas serà el mateix (només s'entra per on hi ha el pany).
  * @author arnaulloret
  */
-//import java.util.ArrayList;
 
 public class Porta {
     private int codi;

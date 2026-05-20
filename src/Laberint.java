@@ -66,12 +66,12 @@ public class Laberint {
                 String linia = punter.nextLine();
                 llegirLinia(linia);
             }
+            punter.close();
             connectarEspais();
             conexions.clear();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             System.out.println("No s'ha trobat el fitxer");
         }
-        punter.close();
     }
 
     /**
@@ -88,7 +88,7 @@ public class Laberint {
 
         switch(tipus) {
             case "h":
-            llegirPersonatge(tipus, punter);
+            llegirPersonatge(tipus, liniaScanner);
             break;
 
             case "ag":

@@ -32,8 +32,8 @@ public class Laberint {
     private ArrayList<Porta> portes;
     private ArrayList<Porta> portesObertes;
     private ArrayList<Personatge> personatges; //tots els personatges VIUS que queden dins del laberint
-    private HashMap<Integer, ArrayList<Integer>> conexions; //mapa que conte, segons la id de cada espai, un arraylist de les sales amb les que conecta (les portes que te), en vd s'hauria de borrar pq nomes la fem servir al principi... mirar
-    //fer conexions.clear() o algo aixi?? .. borrar i mirar
+    private HashMap<Integer, ArrayList<Integer>> conexions; //mapa que conte, segons la id de cada espai, un arraylist de les sales amb les que conecta (les portes que te)
+  
 
     private ArrayList<Personatge> morts; //personatges que han mort
     private ArrayList<Personatge> salvats; //personatges que s'han salvat
@@ -277,43 +277,42 @@ public class Laberint {
         ordenarPrioritat();
 
         for (int i=0; i<personatges.size(); i++) {    
-            //he de mirar si sha mort en aquest torn???... reviar aixo pq crec q actua igualment
-            //suposo que he de fer lu de if !.estaviu.... mortsadd ... remove .. perooo clar llavors sobra lu d sota? o que?          
-            personatges.get(i).actuar();
-            
-            if (personatges.get(i) instanceof Porter){ //si porter s'ha mogut, afegir porta oberta
-                Porta oberta = personatges.get(i).ultimaPortaOberta;
-                if (oberta != null){
-                    if (portesObertes.contains(oberta)){
-                        oberta.obrir(); //comprovar si funciona
-                    }
-                    else{
-                        portesObertes.add(oberta);
-                    }
-                }
-            }
             if (!personatges.get(i).estaViu()) {
-                //el personatge ha mort:
-                System.out.println(personatges.get(i).getNom() + " ha mort!");
                 morts.add(personatges.get(i));
                 personatges.remove(i);
                 i--;
-            } else if (personatges.get(i).haSortit()) {
-                //el personatge s'ha salvat
-                System.out.println(personatges.get(i).getNom() + " ha sortit!");
-                salvats.add(personatges.get(i));
-                personatges.remove(i);
-                i--;
-            }
+            } else {
+                personatges.get(i).actuar();
 
-
-            //esta dins del for per tant son X moviments de personatges diferents, no pas X torns diferents, nomes els primers en moure's veuran la porta oberta
-            for (int j = 0; j<portesObertes.size(); j++){
-                portesObertes.get(j).baixarComptador();
-                if (!portesObertes.get(j).estaOberta()) {
-                    portesObertes.remove(j);
-                    j--;
+                if (personatges.get(i) instanceof Porter){ //si porter s'ha mogut, afegir porta oberta
+                    Porta oberta = personatges.get(i).ultimaPortaOberta;
+                    if (oberta != null){
+                        if (portesObertes.contains(oberta)){
+                            oberta.obrir(); //comprovar si funciona
+                        }
+                        else{
+                            portesObertes.add(oberta);
+                        }
+                    }
                 }
+
+
+                 if (personatges.get(i).haSortit()) {
+                    salvats.add(personatges.get(i));
+                    personatges.remove(i);
+                    i--;
+                } 
+            }
+            
+            
+
+        }
+        //esta dins del for per tant son X moviments de personatges diferents, no pas X torns diferents, nomes els primers en moure's veuran la porta oberta
+        for (int j = 0; j<portesObertes.size(); j++){
+            portesObertes.get(j).baixarComptador();
+            if (!portesObertes.get(j).estaOberta()) {
+                portesObertes.remove(j);
+                j--;
             }
         }
     }

@@ -66,7 +66,7 @@ public class AlienGran extends Personatge{
         String mataA = null;
 
         if (!espaiActual.hiHaGuardia() && espaiActual.hiHaVictimes()){ //si no h i ha guardia i hi ha victimes, ha de matar  
-            mataA = buscarVictima(espaiActual); //si funcona.. aixi estalvio codi
+            mataA = buscarVictima(espaiActual);
         } else {
             Porta seguent = escollirSeguentPorta();
             if (seguent != null){
@@ -115,33 +115,6 @@ public class AlienGran extends Personatge{
             }
         }               
 
-        // if(noRecorda.size() == 0 && recorda.size()>0){
-        //     ArrayList<Porta> perillosa = new ArrayList<>();
-        //     ArrayList<Porta> noPerillosa = new ArrayList<>();
-        //     for(int i=0; i<recorda.size(); i++){
-        //         if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
-        //         else noPerillosa.add(recorda.get(i));
-        //     }
-
-        //     if(noPerillosa.size()>0 ){
-        //         escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
-        //     } else if(noPerillosa.size()==0 && !espaiActual.esPerillos()){ //totes son perilloses excepte l'espai actual, no es mou
-        //         escollida = null;
-        //     } else if(noPerillosa.size()==0 && perillosa.size()>0){ //si totes son perilloses i la actual tambe, es mou random
-        //         escollida = perillosa.get(rand.nextInt(perillosa.size()));
-        //     }
-        //     else{
-        //         escollida = recorda.get(rand.nextInt(recorda.size()));
-        //     }
-        // } else if (noRecorda.size()>0){
-        //     escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
-        // }
-        // else {
-        //     escollida = null;
-        //     System.out.println("es burru i no recorda res");
-        // }
-
-        //revisar aixo.. iii av erue si aixi va tb.. pq no cal perilloses no??? pel gran.. a tot arreu on vaigi la ocnvertira en perillosa
         if(noRecorda.size()>0){
             escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
         }

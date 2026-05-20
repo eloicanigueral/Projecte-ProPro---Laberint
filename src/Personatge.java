@@ -44,12 +44,12 @@ public abstract class Personatge {
     protected Personatge(String nom, int capacitatMemoria) {
         this.nom = nom;
         this.memoria = new Memoria(capacitatMemoria);
-        this.claus = new ArrayList<>(); //buit ... es pot posar un null o algo?? (bueno no crec qserveix despres pel nombre de claus.. que tonri 0)
+        this.claus = new ArrayList<>();
         this.espaiActual = null;
     }
 
     /** @return Retorna el nom del Personatge */
-    protected String getNom(){ //canviar el nom de get no?? psoar algo diferent...
+    protected String getNom(){
         return nom;
     }
 
@@ -59,57 +59,46 @@ public abstract class Personatge {
         return espaiActual;
     }
 
-    /**     //mirar aquest metode!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! crec q no cal ja pero nose mirar i fer igual.. pq llavors lu que tenim de estaPle() que mirem a cad personatge de que serveix??
-     * sino es podria deixar aixi nomes amb aqeust i no posar lu de estaPle.. ii com que aquest comprova si esta ple, si no pot, retorna algo en especial, per arreglar el  problema que teniem per la sortida de si no pot entrar en negatiu
-     * @pre S'indica l'espai al que es vol canviar
-     * 
+    /**     
+     * @pre S'indica l'espai al que es vol canviar, i hi pot entrar
      * @post Si el personatge pot entrar a l'espai, hi canvia i s'actualitza l'espai actual, si no, es mante al mateix espai //AIXO HA DE SER AIXI??????
      */
     protected void canviEspai(Espai e){
-        if (potEntrarEspai(e)) espaiActual = e;
-    }
-    
-    /**
-     * @return Retorna si el personatge pot entrar a l'espai indicat
-     */
-    public boolean potEntrarEspai(Espai e) {
-        return !e.estaPle(); // || (tipusPersonatge=="a_gran" && e.hiHaVictimes()); //ben feta aquesta funcio??
+        espaiActual = e;
     }
 
-
     /**
-     * @pre:
-     * @post:
+     * @pre: S'entra la inforamacio corresponent a mostrar
+     * @post: Es mostra el moviment del personatge per pantalla
      */
     public void mostrarMoviment(ArrayList<Integer> clausRecollides, boolean haAgafatUlleres, int desti, String menjat){
         int agafaUlleres = 0;
         if (haAgafatUlleres) agafaUlleres = 1;
         
         
-        System.out.print(this.nom + ":["); //print ln aquest
+        System.out.print(this.nom + ":[");
         if (clausRecollides.size()>0){
             
             Collections.sort(clausRecollides);
             for(int i=0; i<clausRecollides.size()-1; i++){
                 System.out.print(clausRecollides.get(i) + ",");
             }
-            System.out.print(clausRecollides.get(clausRecollides.size()-1)); ///com mostro la ultimaa!!!!!!!!!!!!!!!!
+            System.out.print(clausRecollides.get(clausRecollides.size()-1));
         }
 
         System.out.print("]:" + agafaUlleres + ":" + desti + ":[");
         if (menjat != null){
             System.out.print(menjat);
         }
-        System.out.println("]"); //o aqust
+        System.out.println("]");
 
     }
 
 
-//-------------------------- tot aixo ho tenia comentat -------------------------------------------
-        /** AQUESTA IGUAL... NOMES LA NECESSITA HUMA. II ALIEN LA PART D ABAIX ---------------------------------
-     * @post Recull l'objecte del terra i se'l guarda  */
-    //tb m falta tot lu de memoria.. un que retorni la quantitat de memoria??? iii un que vaigi guardant per a aquest personatge... (un "recordar..." o afegirmemoria o algo aixi saes?)
-    
+    /**
+     * @pre: --
+     * @post Recull les ulleres del terra i se les guarda  
+     */    
     public boolean recollirSmartGlasses(){
         boolean agafat = false;
         if (ulleres==null && espaiActual.hiHaSmartGlasses()) {
@@ -119,7 +108,11 @@ public abstract class Personatge {
         return agafat;
     }
 
-    //agafa les claus del terra
+
+    /**
+     * @pre: --
+     * @post: Recull les claus del terra i se les guarda
+     */
     public ArrayList<Integer> recollirClaus(){
         ArrayList<Integer> recollides = new ArrayList<>();
         if (espaiActual.hiHaClaus()) {
@@ -129,34 +122,12 @@ public abstract class Personatge {
                     claus.add(tirades.get(i));
                     recollides.add(tirades.get(i));
                     espaiActual.agafarClau(tirades.get(i));
-                    i--; //revisar si cal
+                    i--;
                 } 
             }
         }
         return recollides;      
     }
-
-    // falta boolean de potObrirPorta(){envio tot larray de claus a potObrirPorta(claus) !!!!!
-    //per cada porta crida el potObrir aquest.. iii }
-
-    /**
-     * @return Retorna si el personatge té la clau amb el codi indicat, o si és un porter o l'alien gran (que poden obrir totes les portes)
-     */
-    //  public boolean teClau(int codi){
-    //     //  boolean trobat = false;
-    //     //  int i=0;
-
-    //     //  if (tipusPersonatge.equals("a_gran") || tipusPersonatge.equals("porter")) trobat = true; //el porter i l'alien gran sempre poden obrir les portes
-        
-    //     // while(!trobat && i<claus.size()){
-    //     //     Clau c = claus.get(i);
-    //     //     if(c.getCodi() == codi) trobat = true; 
-    //     //     i++;
-    //     // }
-    //     return trobat;
-    // }
-
-// --------------------------------- fins aqui lu comentat -----------------------------------
 
     /** @return Retorna si el personatge esta viu o no. */
     public boolean estaViu(){
@@ -167,7 +138,6 @@ public abstract class Personatge {
      * @post retorna el nombre de claus que te el personatge
      */
     public int nombreClaus(){
-        //if (claus.size() == null) return 0; //es pot fer aixo?? iii aixi al constructor sense claus posar null??
         return claus.size();
     }
 
@@ -200,8 +170,8 @@ public abstract class Personatge {
 
 
     /**
-     * @pre:
-     * @post:
+     * @pre: --
+     * @post: retorna si el personatge te smartglasses
      */
     public boolean teSmartGlasses(){
         return ulleres!=null;

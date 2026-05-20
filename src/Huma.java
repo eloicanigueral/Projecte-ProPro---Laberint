@@ -23,6 +23,10 @@ public class Huma extends Personatge{
         }
     }
 
+    /**
+     * @pre cert
+     * @post inclou les portes de sortida de les noves claus recollides per l'humà
+     */
     private void actualitzarSmartGlasses(ArrayList<Integer> claus){
         for(int i=0; i<claus.size();i++){
             ulleres.inclourePortaSortida(claus.get(i));

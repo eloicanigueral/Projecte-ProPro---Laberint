@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Queue;
 import java.util.LinkedList;
 public class SmartGlasses {
-    private ArrayList<Porta> sortidesExcloses;
+    private ArrayList<Porta> sortidesExcloses; //les portes que no tindrà en compte les SmartGlasses per sortir del laberint
 
     public SmartGlasses(){
         sortidesExcloses = new ArrayList<>();

@@ -11,8 +11,6 @@ import java.util.Random;
  * sala que ell. En el cas que estigui sol a una sala amb un àlien, aquest no se'l pot menjar 
  * (és immortal). I si hi ha àliens i personatges en aquella sala no hi haurà morts.
  * 
- * ????Apart d'això té la desaventatge de no poder recordar a quines sales hi ha àliens o personatges, només 
- * podrà recordar quines sales ha visitat.????
  * 
  *
  * @author arnaulloret

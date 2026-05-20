@@ -2,7 +2,8 @@
  * @class Main
  * @brief Classe Main des d'on s'executa tot el programa.
  *
- * @details ......
+ * @details Classe per començar la simulació del laberint i mostrar els resultats
+ * de la simulació.
  * 
  * @author arnaulloret
  */
@@ -13,7 +14,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         Laberint lab = new Laberint();
-        //lu de ensenyar les sales i a on hi ha la sala sortida i tal... ferho aqui tb no??
         int torn = 1;
         if(lab.buit()) System.out.println("El laberint és buit");
         while(!lab.acabat()){
@@ -21,17 +21,10 @@ public class Main {
             System.out.println(" ---- Torn " + torn + " ---- ");
             lab.seguentTorn();
             torn++;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
-
         System.out.println();
         System.out.println("S'ha acabat el joc.");
         lab.mostrarResultats();
-        //ensenyar els personatges morts
         sc.close();
     }
     

@@ -23,12 +23,11 @@ public class Espai {
     private int nPersonatges=0;
     private int maxPersonatges;
     private ArrayList<Personatge> personatges;
-    private ArrayList<Integer> clausTirades;
+    private ArrayList<Integer> clausTirades; //claus que estan al terra de la sala
     private int smartGlassesTirades;
     private ArrayList<Porta> portes;
-    private ArrayList<Integer> espaisConectats;
     private boolean restesHumanes;
-    private boolean esSortida;
+    private boolean esSortida; //guarda si és espai exterior
 
 
     public Espai(int idEspai, int maxPersonatges,boolean esSortida){
@@ -39,7 +38,6 @@ public class Espai {
         personatges = new ArrayList<Personatge>();
         clausTirades = new ArrayList<Integer>();
         portes = new ArrayList<Porta>();
-        espaisConectats = new ArrayList<Integer>();
         restesHumanes = false;
         this.esSortida = esSortida;
     }

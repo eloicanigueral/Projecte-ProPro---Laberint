@@ -17,11 +17,13 @@ public class Main {
         int torn = 1;
         if(lab.buit()) System.out.println("El laberint és buit");
         while(!lab.acabat()){
+            System.out.println();
             System.out.println(" ---- Torn " + torn + " ---- ");
             lab.seguentTorn();
             torn++;
         }
 
+        System.out.println();
         System.out.println("S'ha acabat el joc.");
         lab.mostrarResultats();
         //ensenyar els personatges morts

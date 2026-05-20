@@ -20,6 +20,11 @@ public class Main {
             System.out.println(" ---- Torn " + torn + " ---- ");
             lab.seguentTorn();
             torn++;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         System.out.println("S'ha acabat el joc.");

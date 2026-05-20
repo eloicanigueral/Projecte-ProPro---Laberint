@@ -88,6 +88,7 @@ public class Huma extends Personatge{
         for(int i=0;i<portes.size();i++){
             boolean borra = false;
             if(!portes.get(i).estaOberta() && !claus.contains(portes.get(i).comprovarClau())) borra=true;
+            if(borra && ulleres != null && portes.get(i).altreCostat().esSortida()) ulleres.exclourePortaSortida(portes.get(i));
             if(borra){
                 portes.remove(i);
                 i--;

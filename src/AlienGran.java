@@ -82,7 +82,6 @@ public class AlienGran extends Personatge{
                     memoria.recordarEspai(espaiActual, espaiActual.esPerillos());
                     espaiActual.sortir(this);
                     desti.entrar(this);
-                    System.out.println("   -> " + nom + " es mou de sala " + origen.mostrarId() + " a sala " + desti.mostrarId());
                 } else {
                     idDesti*=-1;
                 }

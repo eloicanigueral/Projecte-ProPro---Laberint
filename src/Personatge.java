@@ -14,13 +14,13 @@ public abstract class Personatge {
 
     protected String nom;
     protected boolean viu = true;
+    protected boolean haSortit = false;
     protected Espai espaiActual;
     protected Memoria memoria;
-    protected ArrayList<Integer> claus;
+    protected ArrayList<Integer> claus; //claus que te el personatge
     protected SmartGlasses ulleres;
-    protected boolean haSortit = false;
     protected Random rand = new Random();
-    protected Porta ultimaPortaOberta;
+    protected Porta ultimaPortaOberta; //per a saber la ultima porta (utilitzat per saber la porta que el porter ha deixat oberta)
 
 
     /**

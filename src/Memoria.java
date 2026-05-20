@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Memoria{
 
     private int capacitatMem=0;
-    private ArrayList<Pair<Espai, Boolean>> espais; //llista amb lespai i si es perillos o no..
+    private ArrayList<Pair<Espai, Boolean>> espais; //llista de pairs amb lespai i si aquest es perillos o no..
 
     /**
      *  @pre S'entra un enter (>0) amb la capacitat de memoria, si el personatge no te limit de memoria s'entra -1 (alien gran)

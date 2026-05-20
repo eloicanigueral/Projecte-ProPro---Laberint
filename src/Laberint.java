@@ -33,10 +33,9 @@ public class Laberint {
     private ArrayList<Porta> portesObertes;
     private ArrayList<Personatge> personatges; //tots els personatges VIUS que queden dins del laberint
     private HashMap<Integer, ArrayList<Integer>> conexions; //mapa que conte, segons la id de cada espai, un arraylist de les sales amb les que conecta (les portes que te)
-  
 
-    private ArrayList<Personatge> morts; //personatges que han mort
-    private ArrayList<Personatge> salvats; //personatges que s'han salvat
+    private ArrayList<Personatge> morts; //els personatges que han mort
+    private ArrayList<Personatge> salvats; //elspersonatges que s'han salvat
 
     
 
@@ -62,21 +61,17 @@ public class Laberint {
      * @post: Es crea el laberint a partir de la configuració del fitxer
      */
     public void llegirLaberint() {        
-        //if else? que fa try i catch
-        // que fa scanner iiii els he de tancar1!!
         try (Scanner punter = new Scanner(System.in)) {
             while (punter.hasNextLine()) {
                 String linia = punter.nextLine();
-
                 llegirLinia(linia);
             }
-
             connectarEspais();
             conexions.clear();
-
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.out.println("No s'ha trobat el fitxer");
         }
+        punter.close();
     }
 
     /**
@@ -86,10 +81,10 @@ public class Laberint {
     private void llegirLinia(String linia) {
         if (linia.isEmpty()) return;
 
-        Scanner punter = new Scanner(linia);
-        punter.useDelimiter(":");
+        Scanner liniaScanner = new Scanner(linia);
+        liniaScanner.useDelimiter(":");
     
-        String tipus = punter.next();
+        String tipus = liniaScanner.next();
 
         switch(tipus) {
             case "h":
@@ -97,32 +92,33 @@ public class Laberint {
             break;
 
             case "ag":
-            String nom = punter.next();
+            String nom = liniaScanner.next();
             AlienGran ag = new AlienGran(nom);
             personatges.add(ag);
             break;
 
             case "ap":
-            llegirPersonatge(tipus, punter);
+            llegirPersonatge(tipus, liniaScanner);
             break;
 
             case "g":
-            llegirPersonatge(tipus, punter);
+            llegirPersonatge(tipus, liniaScanner);
             break;
 
             case "p":
-            llegirPersonatge(tipus, punter);
+            llegirPersonatge(tipus, liniaScanner);
             break;
 
             case "sala":
-                llegirEspai(tipus, punter);
+                llegirEspai(tipus, liniaScanner);
                 break;
 
                 case "pas":
-                llegirEspai(tipus, punter);
+                llegirEspai(tipus, liniaScanner);
                 break; 
         }
 
+        liniaScanner.close();
     }
 
     /** 
@@ -169,7 +165,7 @@ public class Laberint {
         while (clausScanner.hasNextInt()) {
             claus.add(clausScanner.nextInt());
         }
-
+        clausScanner.close();
         return claus;
     }
 
@@ -188,7 +184,7 @@ public class Laberint {
         while (portaScanner.hasNextInt()) {
             portesEspai.add(portaScanner.nextInt());
         }
-
+        portaScanner.close();
         //s'afageix al Hashmap, que segons l'id d'un espai, te tot l'arraylist de portes on connecta
         conexions.put(id, portesEspai);
 
@@ -212,7 +208,7 @@ public class Laberint {
                     }
                 }
             }
-
+            personatgeScanner.close();
         } else if (tipus.equals("pas")) {
             Espai p = new Espai(id, max,false);
             espais.add(p);
@@ -225,7 +221,7 @@ public class Laberint {
      */
     private void connectarEspais(){
         for (int i=0; i<espais.size(); i++){
-            ArrayList<Integer> arrayPortes = conexions.get(espais.get(i).mostrarId()); //arrayList que es queda amb els id de les portes de l'espai a la posicio espais[i] -> es lios... pero pilla l'arrayList de portes que te l'espai amb id=espais[i]  
+            ArrayList<Integer> arrayPortes = conexions.get(espais.get(i).mostrarId()); //arrayList que es queda amb els id de les portes de l'espai a la posicio espais[i] -> pilla l'arrayList de portes que te l'espai amb id=espais[i]  
             ArrayList<Espai> arrayEspais = new ArrayList<>(); //son els espais amb què es conecta la sala espais[i]
             //per a cada porta, busca l'espai amb el que s'ha de connectar (i si no existeix, vol dir que connecta amb una sortida)
             for (int j=0; j<arrayPortes.size(); j++){
@@ -297,7 +293,7 @@ public class Laberint {
                 }
 
 
-                 if (personatges.get(i).haSortit()) {
+                if (personatges.get(i).haSortit()) {
                     salvats.add(personatges.get(i));
                     personatges.remove(i);
                     i--;

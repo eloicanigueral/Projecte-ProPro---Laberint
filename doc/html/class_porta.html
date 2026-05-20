@@ -99,14 +99,16 @@ $(function(){initNavTree('class_porta.html','','class_porta-members'); });
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8cd787edeee062b73d01a74dc13e9de1" id="r_a8cd787edeee062b73d01a74dc13e9de1"><td class="memItemLeft"><a id="a8cd787edeee062b73d01a74dc13e9de1" name="a8cd787edeee062b73d01a74dc13e9de1"></a>
 &#160;</td><td class="memItemRight"><b>Porta</b> (int codi, <a class="el" href="class_espai.html">Espai</a> o, <a class="el" href="class_espai.html">Espai</a> d)</td></tr>
-<tr class="memitem:a153d2530c7ab43f13e37eef9c9abcbed" id="r_a153d2530c7ab43f13e37eef9c9abcbed"><td class="memItemLeft"><a id="a153d2530c7ab43f13e37eef9c9abcbed" name="a153d2530c7ab43f13e37eef9c9abcbed"></a>
-int&#160;</td><td class="memItemRight"><b>getCodi</b> ()</td></tr>
 <tr class="memitem:abf3bb1e731f94cb48f27af207f328302" id="r_abf3bb1e731f94cb48f27af207f328302"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abf3bb1e731f94cb48f27af207f328302">obrir</a> ()</td></tr>
 <tr class="memitem:aac680719020a9c4cb20581e918859d56" id="r_aac680719020a9c4cb20581e918859d56"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aac680719020a9c4cb20581e918859d56">baixarComptador</a> ()</td></tr>
-<tr class="memitem:aa7a34ae8a5869e3c0adde192b3f6da8c" id="r_aa7a34ae8a5869e3c0adde192b3f6da8c"><td class="memItemLeft"><a id="aa7a34ae8a5869e3c0adde192b3f6da8c" name="aa7a34ae8a5869e3c0adde192b3f6da8c"></a>
-boolean&#160;</td><td class="memItemRight"><b>estaOberta</b> ()</td></tr>
+<tr class="memitem:aa7a34ae8a5869e3c0adde192b3f6da8c" id="r_aa7a34ae8a5869e3c0adde192b3f6da8c"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#aa7a34ae8a5869e3c0adde192b3f6da8c">estaOberta</a> ()</td></tr>
 <tr class="memitem:acf3832d2e1dad1dbc520736cab60e332" id="r_acf3832d2e1dad1dbc520736cab60e332"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#acf3832d2e1dad1dbc520736cab60e332">comprovarClau</a> ()</td></tr>
 <tr class="memitem:ae390f42127ed2fd5b367e04b3ac7b247" id="r_ae390f42127ed2fd5b367e04b3ac7b247"><td class="memItemLeft"><a class="el" href="class_espai.html">Espai</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae390f42127ed2fd5b367e04b3ac7b247">altreCostat</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ab1187d00a1bab9066056778b92abf8f1" id="r_ab1187d00a1bab9066056778b92abf8f1"><td class="memItemLeft"><a id="ab1187d00a1bab9066056778b92abf8f1" name="ab1187d00a1bab9066056778b92abf8f1"></a>
+static final int&#160;</td><td class="memItemRight"><b>MOVIMENTS_PORTA_OBERTA</b> = 3</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Classe per gestionar les portes del laberint. </p>
@@ -137,8 +139,8 @@ boolean&#160;</td><td class="memItemRight"><b>estaOberta</b> ()</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>per saber el codi de la porta </p><dl class="section pre"><dt>Precondition</dt><dd>: &ndash; </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>: retorna el codi identificador de la porta. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>retorna l'espai que hi ha a l'altre costat de la porta </dd></dl>
 
 </div>
 </div>
@@ -164,8 +166,8 @@ boolean&#160;</td><td class="memItemRight"><b>estaOberta</b> ()</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>obre la porta </p><dl class="section pre"><dt>Precondition</dt><dd>: &ndash; </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>: la porta s'obre. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>baixa en 1 el comptador de moviments. Si aquest ha arribat a 0 tanca la porta. </dd></dl>
 
 </div>
 </div>
@@ -191,8 +193,35 @@ boolean&#160;</td><td class="memItemRight"><b>estaOberta</b> ()</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>indica si la porta està oberta </p><dl class="section pre"><dt>Precondition</dt><dd>: &ndash; </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>: retorna true si la porta està oberta, false altrament. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>retorna el codi de la porta </dd></dl>
+
+</div>
+</div>
+<a id="aa7a34ae8a5869e3c0adde192b3f6da8c" name="aa7a34ae8a5869e3c0adde192b3f6da8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7a34ae8a5869e3c0adde192b3f6da8c">&#9670;&#160;</a></span>estaOberta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean Porta.estaOberta </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>indica si la porta està oberta </p><dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>retorna true si la porta està oberta, false altrament. </dd></dl>
 
 </div>
 </div>
@@ -218,8 +247,8 @@ boolean&#160;</td><td class="memItemRight"><b>estaOberta</b> ()</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>per saber si un personatge podrà obrir una porta des d'un espai determinat. </p><dl class="section pre"><dt>Precondition</dt><dd>: p està a l'espai origen. </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>retorna true si el personatge pot obrir la porta (té la clau), false altrament. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>la porta queda oberta durant el nombre de moviemnts configurat. </dd></dl>
 
 </div>
 </div>

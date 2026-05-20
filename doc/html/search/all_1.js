@@ -5,6 +5,6 @@ var searchData=
   ['agafarclau_2',['agafarClau',['../class_espai.html#a9a8a5c4fa1c6f17429844eca7d2d8c66',1,'Espai']]],
   ['aliengran_3',['AlienGran',['../class_alien_gran.html',1,'AlienGran'],['../class_alien_gran.html#ae978704e577807552cca7ffd80a9f4cc',1,'AlienGran.AlienGran()']]],
   ['alienpetit_4',['AlienPetit',['../class_alien_petit.html',1,'AlienPetit'],['../class_alien_petit.html#a072f4c57aba1ffefcab634870744ce65',1,'AlienPetit.AlienPetit()']]],
-  ['altrecostat_5',['altreCostat',['../class_porta.html#ae390f42127ed2fd5b367e04b3ac7b247',1,'Porta']]],
+  ['altrecostat_5',['altreCostat',['../class_laberint.html#ad310978fb5899ef4a2336872727578fa',1,'Laberint.altreCostat()'],['../class_porta.html#ae390f42127ed2fd5b367e04b3ac7b247',1,'Porta.altreCostat()']]],
   ['augmentarcapacitat_6',['augmentarCapacitat',['../class_memoria.html#a4c4b5b9bd2a1a75f2953884a35e3712d',1,'Memoria']]]
 ];

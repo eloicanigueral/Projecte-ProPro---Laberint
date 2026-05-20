@@ -63,8 +63,8 @@ public class Porter extends Personatge{
     public Porta escollirSeguentPorta(){
         ArrayList<Porta> portes = new ArrayList<>(espaiActual.getPortes());
         Porta escollida=null;
-        ArrayList<Porta> perillosa = new ArrayList<>();
-        ArrayList<Porta> noPerillosa = new ArrayList<>();
+        ArrayList<Porta> recorda = new ArrayList<>();
+        ArrayList<Porta> noRecorda = new ArrayList<>();
         //Borra de les portes on pot anar les que siguin de sortida del laberint. 
         //Si la porta de l'altre costat és perillosa i l'espai on està no ho és el borra.
         for(int i=0;i<portes.size();i++){
@@ -75,21 +75,32 @@ public class Porter extends Personatge{
                 portes.remove(i);
                 i--;
             }
+            else{
+                if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
+                else noRecorda.add(portes.get(i));
+            }
         }
-        for(int i=0;i<portes.size();i++){
-            if(memoria.esPerillos(portes.get(i).altreCostat())) perillosa.add(portes.get(i));
-            else noPerillosa.add(portes.get(i));
+        if(noRecorda.size()>0){
+            escollida = noRecorda.get(rand.nextInt(noRecorda.size()));
         }
-        if(noPerillosa.size()>0){
-            escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
+        else if(recorda.size()>0 && noRecorda.size() ==0){
+           ArrayList<Porta> perillosa = new ArrayList<>();
+           ArrayList<Porta> noPerillosa = new ArrayList<>();
+           for(int i=0;i<recorda.size();i++){
+                if(memoria.esPerillos(recorda.get(i).altreCostat())) perillosa.add(recorda.get(i));
+                else noPerillosa.add(recorda.get(i));
+           }
+           if(noPerillosa.size()>0){
+                escollida = noPerillosa.get(rand.nextInt(noPerillosa.size()));
+           }
+           else{
+                if(espaiActual.esPerillos()){
+                    escollida = perillosa.get(rand.nextInt(perillosa.size()));
+                }
+                else escollida=null;
+                
+           }
         }
-        else if(perillosa.size()>0){
-           escollida = perillosa.get(rand.nextInt(perillosa.size())); 
-        }
-           
-        
         return escollida;
-    }
-    
-    
+    }   
 }

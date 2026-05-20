@@ -98,15 +98,12 @@ $(function(){initNavTree('class_memoria.html','','class_memoria-members'); });
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9b9e327b6c5bb252867ba8c79725a72e" id="r_a9b9e327b6c5bb252867ba8c79725a72e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9b9e327b6c5bb252867ba8c79725a72e">Memoria</a> (int mem)</td></tr>
-<tr class="memitem:a04a23f89bd75f0046ce7b673776b99d8" id="r_a04a23f89bd75f0046ce7b673776b99d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a04a23f89bd75f0046ce7b673776b99d8">recordarEspai</a> (<a class="el" href="class_espai.html">Espai</a> e, boolean esPerillos)</td></tr>
+<tr class="memitem:a04a23f89bd75f0046ce7b673776b99d8" id="r_a04a23f89bd75f0046ce7b673776b99d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a04a23f89bd75f0046ce7b673776b99d8">recordarEspai</a> (<a class="el" href="class_espai.html">Espai</a> e, boolean <a class="el" href="#a54a1b00f880eb15cbc68890cf9d23089">esPerillos</a>)</td></tr>
 <tr class="memitem:a11a41bf64d3493e9b1d87f227853b512" id="r_a11a41bf64d3493e9b1d87f227853b512"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a11a41bf64d3493e9b1d87f227853b512">oblidarEspai</a> ()</td></tr>
-<tr class="memitem:a3604e1cca6c830df58d434a8b777a1fd" id="r_a3604e1cca6c830df58d434a8b777a1fd"><td class="memItemLeft"><a id="a3604e1cca6c830df58d434a8b777a1fd" name="a3604e1cca6c830df58d434a8b777a1fd"></a>
-int&#160;</td><td class="memItemRight"><b>capacitatMemoria</b> ()</td></tr>
+<tr class="memitem:a3604e1cca6c830df58d434a8b777a1fd" id="r_a3604e1cca6c830df58d434a8b777a1fd"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a3604e1cca6c830df58d434a8b777a1fd">capacitatMemoria</a> ()</td></tr>
 <tr class="memitem:a4c4b5b9bd2a1a75f2953884a35e3712d" id="r_a4c4b5b9bd2a1a75f2953884a35e3712d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4c4b5b9bd2a1a75f2953884a35e3712d">augmentarCapacitat</a> (int x)</td></tr>
-<tr class="memitem:a54a1b00f880eb15cbc68890cf9d23089" id="r_a54a1b00f880eb15cbc68890cf9d23089"><td class="memItemLeft"><a id="a54a1b00f880eb15cbc68890cf9d23089" name="a54a1b00f880eb15cbc68890cf9d23089"></a>
-boolean&#160;</td><td class="memItemRight"><b>esPerillos</b> (<a class="el" href="class_espai.html">Espai</a> e)</td></tr>
-<tr class="memitem:a9f6861efce59126f7dfd39b5eb8ef031" id="r_a9f6861efce59126f7dfd39b5eb8ef031"><td class="memItemLeft"><a id="a9f6861efce59126f7dfd39b5eb8ef031" name="a9f6861efce59126f7dfd39b5eb8ef031"></a>
-boolean&#160;</td><td class="memItemRight"><b>recorda</b> (<a class="el" href="class_espai.html">Espai</a> e)</td></tr>
+<tr class="memitem:a54a1b00f880eb15cbc68890cf9d23089" id="r_a54a1b00f880eb15cbc68890cf9d23089"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#a54a1b00f880eb15cbc68890cf9d23089">esPerillos</a> (<a class="el" href="class_espai.html">Espai</a> e)</td></tr>
+<tr class="memitem:a9f6861efce59126f7dfd39b5eb8ef031" id="r_a9f6861efce59126f7dfd39b5eb8ef031"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#a9f6861efce59126f7dfd39b5eb8ef031">recorda</a> (<a class="el" href="class_espai.html">Espai</a> e)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Modul per gestionar la memoria dels personatges. </p>
@@ -138,6 +135,7 @@ Cada personatge té una capacietat de memòria diferent.</dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section pre"><dt>Precondition</dt><dd>S'entra un enter (&gt;0) amb la capacitat de memoria, si el personatge no te limit de memoria s'entra -1 (alien gran) </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>: Constructor amb la capacitat de memoria del personatge </dd></dl>
 
 </div>
@@ -170,6 +168,58 @@ Cada personatge té una capacietat de memòria diferent.</dd></dl>
 
 </div>
 </div>
+<a id="a3604e1cca6c830df58d434a8b777a1fd" name="a3604e1cca6c830df58d434a8b777a1fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3604e1cca6c830df58d434a8b777a1fd">&#9670;&#160;</a></span>capacitatMemoria()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Memoria.capacitatMemoria </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>retorna la capacitat de memoria del personatge </dd></dl>
+
+</div>
+</div>
+<a id="a54a1b00f880eb15cbc68890cf9d23089" name="a54a1b00f880eb15cbc68890cf9d23089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a1b00f880eb15cbc68890cf9d23089">&#9670;&#160;</a></span>esPerillos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean Memoria.esPerillos </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_espai.html">Espai</a></td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Retorna true si el personatge recorde l'espai e com a perillos </dd></dl>
+
+</div>
+</div>
 <a id="a11a41bf64d3493e9b1d87f227853b512" name="a11a41bf64d3493e9b1d87f227853b512"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a11a41bf64d3493e9b1d87f227853b512">&#9670;&#160;</a></span>oblidarEspai()</h2>
 
@@ -192,7 +242,34 @@ Cada personatge té una capacietat de memòria diferent.</dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>S'elimina de memoria l'espai visitat fa més temps (el primer de la cua) </dd></dl>
+
+</div>
+</div>
+<a id="a9f6861efce59126f7dfd39b5eb8ef031" name="a9f6861efce59126f7dfd39b5eb8ef031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f6861efce59126f7dfd39b5eb8ef031">&#9670;&#160;</a></span>recorda()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean Memoria.recorda </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_espai.html">Espai</a></td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Retorna true si el personatge recorda l'espai </dd></dl>
 
 </div>
 </div>

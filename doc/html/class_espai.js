@@ -1,6 +1,7 @@
 var class_espai =
 [
     [ "agafarClau", "class_espai.html#a9a8a5c4fa1c6f17429844eca7d2d8c66", null ],
+    [ "conectarEspais", "class_espai.html#ab096b0b13ee235157fd5d432628fbf4b", null ],
     [ "deixarClau", "class_espai.html#ad9913e3e1a1de862e975daf21a38e55c", null ],
     [ "deixarRestes", "class_espai.html#ab287413db2897c2c10886b1ef4c9e331", null ],
     [ "deixarSmartGlasses", "class_espai.html#a22e5c7a56e228f0b557a13d82656fa54", null ],
@@ -13,8 +14,8 @@ var class_espai =
     [ "hiHaAlien", "class_espai.html#a3cbd67a7125d9d7b048547ce7891bca0", null ],
     [ "hiHaClaus", "class_espai.html#a1d96cd200552a97a211350bb3f4ca380", null ],
     [ "hiHaGuardia", "class_espai.html#a43656bc1e8851a9f2beef0415ce09761", null ],
-    [ "hiHaHuma", "class_espai.html#aa315398a502f33ddca868cc92d3fe4e6", null ],
     [ "hiHaSmartGlasses", "class_espai.html#ae2311dc94db0f3f3f077b759b87931b9", null ],
+    [ "hiHaVictimes", "class_espai.html#aa1989caf2d8be202c6bb5791d5883846", null ],
     [ "mostrarId", "class_espai.html#a5fe64b0b64e2793b577dbb0048ea236b", null ],
     [ "recollirSmartGlasses", "class_espai.html#a0a8de7927f7bed3d681061b0caacd9bd", null ],
     [ "sortir", "class_espai.html#a778273ca96a84968cc52f7e8a515b271", null ],

@@ -76,8 +76,14 @@ public class SmartGlasses {
      * @pre p s'ha exclós anteriorment
      * @post la porta p s'inclou a l'algorisme de camí ràpid.
      */
-    public void inclourePortaSortida(Porta p){
-        sortidesExcloses.remove(p);
+    public void inclourePortaSortida(Integer clau){
+        for(int i=0; i<sortidesExcloses.size();i++){
+            Porta p = sortidesExcloses.get(i);
+            if(p.comprovarClau() == clau){
+                sortidesExcloses.remove(i);
+                i--;
+            }
+        }
     }
 
     /**

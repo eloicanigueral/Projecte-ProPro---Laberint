@@ -99,12 +99,11 @@ $(function(){initNavTree('class_laberint.html','','class_laberint-members'); });
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0fffd25ebab8c8dd8e742184088a600b" id="r_a0fffd25ebab8c8dd8e742184088a600b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0fffd25ebab8c8dd8e742184088a600b">Laberint</a> ()</td></tr>
 <tr class="memitem:a319260a3ed68c300c6308a4e0f712ac9" id="r_a319260a3ed68c300c6308a4e0f712ac9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a319260a3ed68c300c6308a4e0f712ac9">llegirLaberint</a> ()</td></tr>
-<tr class="memitem:ad310978fb5899ef4a2336872727578fa" id="r_ad310978fb5899ef4a2336872727578fa"><td class="memItemLeft"><a id="ad310978fb5899ef4a2336872727578fa" name="ad310978fb5899ef4a2336872727578fa"></a>
-<a class="el" href="class_espai.html">Espai</a>&#160;</td><td class="memItemRight"><b>altreCostat</b> (int id)</td></tr>
-<tr class="memitem:ad920c851f7f4a3b0d9177c94b99dc959" id="r_ad920c851f7f4a3b0d9177c94b99dc959"><td class="memItemLeft"><a class="el" href="class_espai.html">Espai</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad920c851f7f4a3b0d9177c94b99dc959">salaSortida</a> (<a class="el" href="class_espai.html">Espai</a> s)</td></tr>
+<tr class="memitem:ad310978fb5899ef4a2336872727578fa" id="r_ad310978fb5899ef4a2336872727578fa"><td class="memItemLeft"><a class="el" href="class_espai.html">Espai</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad310978fb5899ef4a2336872727578fa">altreCostat</a> (int id)</td></tr>
 <tr class="memitem:a17c872fcb3ab44d08c25cc814d5882d3" id="r_a17c872fcb3ab44d08c25cc814d5882d3"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#a17c872fcb3ab44d08c25cc814d5882d3">buit</a> ()</td></tr>
 <tr class="memitem:a240a55b67e6df5728c7178726f9d6278" id="r_a240a55b67e6df5728c7178726f9d6278"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a240a55b67e6df5728c7178726f9d6278">seguentTorn</a> ()</td></tr>
 <tr class="memitem:acdb674459bffec2e82b22ba80afeff97" id="r_acdb674459bffec2e82b22ba80afeff97"><td class="memItemLeft">boolean&#160;</td><td class="memItemRight"><a class="el" href="#acdb674459bffec2e82b22ba80afeff97">acabat</a> ()</td></tr>
+<tr class="memitem:a271bb103036c58a7049d5fd4b32abcec" id="r_a271bb103036c58a7049d5fd4b32abcec"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a271bb103036c58a7049d5fd4b32abcec">mostrarResultats</a> ()</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_laberint.html" title="Laberint al que s&#39;ha d&#39;escapar.">Laberint</a> al que s'ha d'escapar. </p>
@@ -135,6 +134,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Es crea el laberint amb els espais, portes i personatges. </dd></dl>
 
 </div>
@@ -162,7 +162,33 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>balblabal crido actuar del personatge que li toqui i dsps miro si hi ha objectes al terra, si nhi ha, recollir objecte personatge </p>
+<dl class="section return"><dt>Returns</dt><dd>Retorna true si el joc ja s'ha acabat -&gt; que no queda cap huma viu dins del laberint </dd></dl>
+
+</div>
+</div>
+<a id="ad310978fb5899ef4a2336872727578fa" name="ad310978fb5899ef4a2336872727578fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad310978fb5899ef4a2336872727578fa">&#9670;&#160;</a></span>altreCostat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_espai.html">Espai</a> Laberint.altreCostat </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>: Busca dins dels espais guardats del laberint, quin te el id=id i retorna aquest <a class="el" href="class_espai.html" title="Classe per gestionar els espais del laberint aixi com totes les accions que passen a dins d&#39;un espai.">Espai</a>, si no existeix (voldra dir que es un id de sortida), retorna null </dd></dl>
 
 </div>
 </div>
@@ -219,8 +245,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad920c851f7f4a3b0d9177c94b99dc959" name="ad920c851f7f4a3b0d9177c94b99dc959"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad920c851f7f4a3b0d9177c94b99dc959">&#9670;&#160;</a></span>salaSortida()</h2>
+<a id="a271bb103036c58a7049d5fd4b32abcec" name="a271bb103036c58a7049d5fd4b32abcec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271bb103036c58a7049d5fd4b32abcec">&#9670;&#160;</a></span>mostrarResultats()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,9 +255,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_espai.html">Espai</a> Laberint.salaSortida </td>
+          <td class="memname">void Laberint.mostrarResultats </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_espai.html">Espai</a></td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -241,7 +267,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>La sala de sortida d'aquest laberint. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>: El joc s'ha acabat </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>: Es mostren els resultats (de la gent que ha mort, la que s'ha salvat, etc </dd></dl>
 
 </div>
 </div>
@@ -267,8 +294,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section pre"><dt>Precondition</dt><dd>Queda algun personatge humà viu dins el laberint</dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>Avança un torn </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>Queda algun personatge humà viu dins el laberint </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Avança un torn: on cada personatge que quedi viu actua (segons l'ordre de prioritat = ordre que estan a l'arrayList personatges), es mostra per pantalla el que ha passat en el torn i es baixa el comptador de la porta oberta (si es que n'hi ha) </dd></dl>
 
 </div>
 </div>

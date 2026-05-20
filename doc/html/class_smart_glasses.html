@@ -98,12 +98,9 @@ $(function(){initNavTree('class_smart_glasses.html','','class_smart_glasses-memb
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab6b97f12046a6c3b9b6b87f77adabbab" id="r_ab6b97f12046a6c3b9b6b87f77adabbab"><td class="memItemLeft"><a class="el" href="class_porta.html">Porta</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab6b97f12046a6c3b9b6b87f77adabbab">camiRapid</a> (<a class="el" href="class_espai.html">Espai</a> origen)</td></tr>
-<tr class="memitem:aaa32bb3b313aa91939d0fc2445669fc5" id="r_aaa32bb3b313aa91939d0fc2445669fc5"><td class="memItemLeft"><a id="aaa32bb3b313aa91939d0fc2445669fc5" name="aaa32bb3b313aa91939d0fc2445669fc5"></a>
-void&#160;</td><td class="memItemRight"><b>exclourePortaSortida</b> (<a class="el" href="class_porta.html">Porta</a> p)</td></tr>
-<tr class="memitem:a42e41323d84138912b77d9877a374103" id="r_a42e41323d84138912b77d9877a374103"><td class="memItemLeft"><a id="a42e41323d84138912b77d9877a374103" name="a42e41323d84138912b77d9877a374103"></a>
-void&#160;</td><td class="memItemRight"><b>inclourePortaSortida</b> (<a class="el" href="class_porta.html">Porta</a> p)</td></tr>
-<tr class="memitem:a65a77a5487c7cf5232d04da771d70440" id="r_a65a77a5487c7cf5232d04da771d70440"><td class="memItemLeft"><a id="a65a77a5487c7cf5232d04da771d70440" name="a65a77a5487c7cf5232d04da771d70440"></a>
-void&#160;</td><td class="memItemRight"><b>reiniciarUlleres</b> ()</td></tr>
+<tr class="memitem:aaa32bb3b313aa91939d0fc2445669fc5" id="r_aaa32bb3b313aa91939d0fc2445669fc5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaa32bb3b313aa91939d0fc2445669fc5">exclourePortaSortida</a> (<a class="el" href="class_porta.html">Porta</a> p)</td></tr>
+<tr class="memitem:a42e41323d84138912b77d9877a374103" id="r_a42e41323d84138912b77d9877a374103"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a42e41323d84138912b77d9877a374103">inclourePortaSortida</a> (<a class="el" href="class_porta.html">Porta</a> p)</td></tr>
+<tr class="memitem:a65a77a5487c7cf5232d04da771d70440" id="r_a65a77a5487c7cf5232d04da771d70440"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a65a77a5487c7cf5232d04da771d70440">reiniciarUlleres</a> ()</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Modul per gestionar les smart glasses. </p>
@@ -135,7 +132,89 @@ void&#160;</td><td class="memItemRight"><b>reiniciarUlleres</b> ()</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Retorna el seguent espai al qual s'ha d'accedir per arribar de forma ràpida a la sortida </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>cert </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>calcula el camí més ràpid cap a una sortida no excloa i retorna la següent porta per seguir el cami més ràpid fins a la sortida. </dd></dl>
+
+</div>
+</div>
+<a id="aaa32bb3b313aa91939d0fc2445669fc5" name="aaa32bb3b313aa91939d0fc2445669fc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa32bb3b313aa91939d0fc2445669fc5">&#9670;&#160;</a></span>exclourePortaSortida()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SmartGlasses.exclourePortaSortida </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_porta.html">Porta</a></td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section pre"><dt>Precondition</dt><dd>p és una porta de sortida </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>la porta p s'exclou de l'algorisme de camí ràpid. </dd></dl>
+
+</div>
+</div>
+<a id="a42e41323d84138912b77d9877a374103" name="a42e41323d84138912b77d9877a374103"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e41323d84138912b77d9877a374103">&#9670;&#160;</a></span>inclourePortaSortida()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SmartGlasses.inclourePortaSortida </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_porta.html">Porta</a></td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section pre"><dt>Precondition</dt><dd>p s'ha exclós anteriorment </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>la porta p s'inclou a l'algorisme de camí ràpid. </dd></dl>
+
+</div>
+</div>
+<a id="a65a77a5487c7cf5232d04da771d70440" name="a65a77a5487c7cf5232d04da771d70440"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65a77a5487c7cf5232d04da771d70440">&#9670;&#160;</a></span>reiniciarUlleres()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SmartGlasses.reiniciarUlleres </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section pre"><dt>Precondition</dt><dd>&ndash; </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>s'esborra list de sortides excloses perquè seguent personatge no tingui res a les ulleres. </dd></dl>
 
 </div>
 </div>

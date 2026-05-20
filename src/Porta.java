@@ -24,7 +24,7 @@ public class Porta {
     private int comptadorMoviments;
     private boolean oberta;
     Espai origen, desti;
-    public static final int MOVIMENTS_PORTA_OBERTA = 3;
+    public static final int MOVIMENTS_PORTA_OBERTA = 2;
 
     public Porta(int codi, Espai o, Espai d){
         this.codi = codi;

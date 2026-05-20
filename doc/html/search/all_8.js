@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['laberint_0',['Laberint',['../class_laberint.html',1,'Laberint'],['../class_laberint.html#a0fffd25ebab8c8dd8e742184088a600b',1,'Laberint.Laberint()']]],
-  ['llegirlaberint_1',['llegirLaberint',['../class_laberint.html#a319260a3ed68c300c6308a4e0f712ac9',1,'Laberint']]]
+  ['incloureportasortida_0',['inclourePortaSortida',['../class_smart_glasses.html#a42e41323d84138912b77d9877a374103',1,'SmartGlasses']]]
 ];

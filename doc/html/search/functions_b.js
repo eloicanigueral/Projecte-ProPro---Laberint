@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['personatge_0',['Personatge',['../class_personatge.html#a11e4d00b4b4ca572c18096237e182ac7',1,'Personatge']]],
-  ['potentrarespai_1',['potEntrarEspai',['../class_personatge.html#aebc18fb1b1d991ce2023ae0c5cba2b9a',1,'Personatge']]]
+  ['oblidarespai_0',['oblidarEspai',['../class_memoria.html#a11a41bf64d3493e9b1d87f227853b512',1,'Memoria']]],
+  ['obrir_1',['obrir',['../class_porta.html#abf3bb1e731f94cb48f27af207f328302',1,'Porta']]]
 ];

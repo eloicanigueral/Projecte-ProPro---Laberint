@@ -23,6 +23,12 @@ public class Huma extends Personatge{
         }
     }
 
+    private void actualitzarSmartGlasses(ArrayList<Integer> claus){
+        for(int i=0; i<claus.size();i++){
+            ulleres.inclourePortaSortida(claus.get(i));
+        } 
+    }
+
     /**
     @pre: --
     @post: mètode principal perquè el personatge actui. Primer recull les claus del terra (no agafa repetides), recull smartglasses 
@@ -31,6 +37,7 @@ public class Huma extends Personatge{
     public void actuar(){
         ArrayList<Integer> clausRecollides = new ArrayList<>();
         clausRecollides = recollirClaus();
+        if(ulleres != null) actualitzarSmartGlasses(clausRecollides);
         boolean ulleresRecollides = recollirSmartGlasses();
 
         Porta seguent = null;

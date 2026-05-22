@@ -166,7 +166,7 @@ public abstract class Personatge {
      * 
      * @post Cada personatge actua segons la seva estrategia
      */
-    public abstract void actuar(); //mirar si cal.. i com ferho... pq tots tenen un actuar diferent pero tots son personatges
+    public abstract void actuar();
 
 
     /**

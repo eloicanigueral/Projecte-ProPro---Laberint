@@ -328,7 +328,7 @@ public class Laberint {
      * @pre: El joc s'ha acabat
      * @post: Es mostren els resultats (de la gent que ha mort, la que s'ha salvat, etc
      */
-    public void mostrarResultats() { //emmm aixo nose pas si sha de fer..... pq no ho posa enllco, pero queda be per veureho millor a verue qui sha salvat i qui ha mort.. preguntar!!!
+    public void mostrarResultats() {
         System.out.println();
         System.out.println(" ---- Resultats ---- ");
 
@@ -341,7 +341,7 @@ public class Laberint {
         }
         else System.out.println("No s'ha salvat cap humà");
         
-        System.out.println(); //aixi es fa per imprimir un "intro?" endl;
+        System.out.println();
 
         if(morts.size()>0){
             System.out.println("Personatges morts:");

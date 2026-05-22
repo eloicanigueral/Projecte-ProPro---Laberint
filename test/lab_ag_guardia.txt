@@ -2,5 +2,5 @@ h:huma1:3:[3]:0
 h:huma2:5:[3]:0
 g:guardia:3:[3]
 ag:alien
-sala:1:(0,0,0,0):4:[huma1,huma2,guardia]
+sala:1:(0,0,0,2):4:[huma1,huma2,guardia]
 sala:2:(0,1,0,3):2:[alien]

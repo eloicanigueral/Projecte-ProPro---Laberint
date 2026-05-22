@@ -16,6 +16,7 @@ public class Main {
         Laberint lab = new Laberint();
         int torn = 1;
         if(lab.buit()) System.out.println("El laberint és buit");
+        else{
         while(!lab.acabat()){
             System.out.println();
             System.out.println(" ---- Torn " + torn + " ---- ");
@@ -25,6 +26,7 @@ public class Main {
         System.out.println();
         System.out.println("S'ha acabat el joc.");
         lab.mostrarResultats();
+        }
         sc.close();
     }
     

@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Random;
-
 /**
  * @class Guardia
  * @brief Classe per especificar com serà el guardia del laberint.
@@ -12,9 +9,12 @@ import java.util.Random;
  * (és immortal). I si hi ha àliens i personatges en aquella sala no hi haurà morts.
  * 
  * 
- *
+ * @invariant No pot morir. No surt mai del laberint.
  * @author arnaulloret
  */
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Guardia extends Personatge{
     public Guardia(String nom, int capacitatMemoria, ArrayList<Integer> claus){

@@ -5,9 +5,10 @@
  * @details
  * Aquest nou personatge té l'habilitat de poder obrir totes les portes, ja que té una clau mestre.
  * Pren un altre tipus de decisions a l'hora de canviar de sala, aquest dona prioritat a les sales encara no 
- * visitades en comptes de la més segura.
+ * visitades en comptes de la més segura. No surt mai del laberint
  * Apart d'això totes les altres característiques són les mateixes que les d'un humà.
- *
+ * 
+ * @invariant No surt del laberint es queda a dins.
  * @author arnaulloret
  */
 

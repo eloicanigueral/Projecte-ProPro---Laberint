@@ -101,7 +101,7 @@ public class Huma extends Personatge{
             else{
                 if(memoria.recorda(portes.get(i).altreCostat())) recorda.add(portes.get(i));
                 else noRecorda.add(portes.get(i));
-                if(portes.get(i).altreCostat().esSortida()) return portes.get(i);
+                //if(portes.get(i).altreCostat().esSortida()) return portes.get(i);  //Si pot saber què hi ha a l'altre costat de la porta, es descomenta aquesta linea.
             }
         }
         //Si té unes SmartGlasses: crida el mètode de SmartGlasses que li retorna la següent millor porta.
